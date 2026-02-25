@@ -1,8 +1,8 @@
-# InputNumber 数字输入框
+# InputNumber
 
-仅允许输入数字的输入框，支持步进、最小/最大值。
+Numeric input with step, min/max support.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -14,7 +14,7 @@ const num = ref(0)
 </script>
 ```
 
-## 步进与精度
+## Step & Precision
 
 ```vue
 <template>
@@ -24,14 +24,14 @@ const num = ref(0)
 
 ## API
 
-| 属性 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| modelValue | 绑定值 | `number` | - |
-| min | 最小值 | `number` | - |
-| max | 最大值 | `number` | - |
-| step | 步长 | `number` | `1` |
-| precision | 精度（小数位数） | `number` | - |
-| disabled | 禁用 | `boolean` | `false` |
-| size | 尺寸 | `ComponentSize` | `'md'` |
+| Prop | Description | Type | Default |
+|------|-------------|------|---------|
+| modelValue | Bound value | `number` | - |
+| min | Min value | `number` | - |
+| max | Max value | `number` | - |
+| step | Step | `number` | `1` |
+| precision | Decimal places | `number` | - |
+| disabled | Disabled | `boolean` | `false` |
+| size | Size | `ComponentSize` | `'md'` |
 
-事件：`update:modelValue`、`change`。
+Events: `update:modelValue`, `change`.

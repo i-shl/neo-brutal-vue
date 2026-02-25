@@ -1,13 +1,13 @@
-# CollapseItem 折叠项
+# CollapseItem
 
-折叠面板的单项，需放在 NeoCollapse 内使用。用法见 [Collapse 折叠面板](/components/collapse)。
+Single item of collapse panel. Must be used inside NeoCollapse. See [Collapse](/components/collapse) for usage.
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| name | 唯一标识 | `string` |
-| title | 标题 | `string` |
-| disabled | 禁用 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| name | Unique identifier | `string` |
+| title | Title | `string` |
+| disabled | Disabled | `boolean` |
 
-插槽：默认（内容）、`title`（自定义标题）。
+Slots: default (content), `title` (custom title).

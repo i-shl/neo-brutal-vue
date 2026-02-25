@@ -1,16 +1,16 @@
-# Space 间距
+# Space
 
-设置子元素之间的间距。
+Set spacing between child elements.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
   <NeoSpace>
-    <NeoButton>按钮1</NeoButton>
-    <NeoButton>按钮2</NeoButton>
+    <NeoButton>Button 1</NeoButton>
+    <NeoButton>Button 2</NeoButton>
   </NeoSpace>
 </template>
 ```
 
-可通过 `size` 等属性调整间距大小。
+Use `size` and other props to adjust spacing.

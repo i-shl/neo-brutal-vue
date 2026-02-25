@@ -1,18 +1,18 @@
-# Link 链接
+# Link
 
-文字链接组件，保持 Neobrutalism 风格。
+Text link component with Neobrutalism style.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoLink href="https://github.com">默认链接</NeoLink>
+  <NeoLink href="https://github.com">Default Link</NeoLink>
 </template>
 ```
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| href | 跳转地址 | `string` |
-| target | 打开方式，如 `_blank` | `string` |
+| Prop | Description | Type |
+|------|-------------|------|
+| href | URL | `string` |
+| target | Target, e.g. `_blank` | `string` |

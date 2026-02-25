@@ -1,12 +1,12 @@
-# Input 输入框
+# Input
 
-单行文本输入，支持前缀、后缀、清除、密码显隐等。
+Single-line text input with prefix, suffix, clear, password toggle, etc.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoInput v-model="value" placeholder="请输入" />
+  <NeoInput v-model="value" placeholder="Enter text" />
 </template>
 
 <script setup lang="ts">
@@ -14,38 +14,38 @@ const value = ref('')
 </script>
 ```
 
-## 禁用与只读
+## Disabled & Readonly
 
 ```vue
 <template>
-  <NeoInput v-model="value" disabled placeholder="禁用" />
-  <NeoInput v-model="value" readonly placeholder="只读" />
+  <NeoInput v-model="value" disabled placeholder="Disabled" />
+  <NeoInput v-model="value" readonly placeholder="Readonly" />
 </template>
 ```
 
-## 可清空
+## Clearable
 
 ```vue
 <template>
-  <NeoInput v-model="value" clearable placeholder="可清空" />
+  <NeoInput v-model="value" clearable placeholder="Clearable" />
 </template>
 ```
 
-## 尺寸与形状
+## Size & Shape
 
-`size`：`xs` / `sm` / `md` / `lg` / `xl`。  
-`shape`：`default` / `round` / `pill`。
+`size`: `xs` / `sm` / `md` / `lg` / `xl`.  
+`shape`: `default` / `round` / `pill`.
 
 ## API
 
-| 属性 | 说明 | 类型 | 默认值 |
-|------|------|------|--------|
-| modelValue | 绑定值 | `string \| number` | - |
-| type | 输入类型 | `string` | `'text'` |
-| size | 尺寸 | `ComponentSize` | `'md'` |
-| disabled | 禁用 | `boolean` | `false` |
-| readonly | 只读 | `boolean` | `false` |
-| clearable | 可清空 | `boolean` | `false` |
-| placeholder | 占位符 | `string` | `''` |
+| Prop | Description | Type | Default |
+|------|-------------|------|---------|
+| modelValue | Bound value | `string \| number` | - |
+| type | Input type | `string` | `'text'` |
+| size | Size | `ComponentSize` | `'md'` |
+| disabled | Disabled | `boolean` | `false` |
+| readonly | Readonly | `boolean` | `false` |
+| clearable | Clearable | `boolean` | `false` |
+| placeholder | Placeholder | `string` | `''` |
 
-事件：`update:modelValue`、`input`、`change`、`focus`、`blur`、`clear`。
+Events: `update:modelValue`, `input`, `change`, `focus`, `blur`, `clear`.

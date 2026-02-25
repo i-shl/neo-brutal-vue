@@ -1,17 +1,17 @@
-# Backtop 回到顶部
+# Backtop
 
-滚动页面后点击回到顶部的按钮。
+Button to scroll back to top after scrolling the page.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <div style="height: 2000px">长内容...</div>
+  <div style="height: 2000px">Long content...</div>
   <NeoBacktop />
 </template>
 ```
 
-## 自定义位置与可见高度
+## Custom Position & Visibility Height
 
 ```vue
 <template>
@@ -19,14 +19,14 @@
 </template>
 ```
 
-## 指定滚动容器
+## Specify Scroll Container
 
-若页面滚动发生在指定容器内，可通过 `target` 指定该容器的选择器。
+If scrolling happens inside a specific container, use `target` to specify the container selector.
 
 ```vue
 <template>
   <div ref="scrollRef" class="scroll-box">
-    内容...
+    Content...
   </div>
   <NeoBacktop target=".scroll-box" />
 </template>
@@ -34,9 +34,9 @@
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| target | 滚动容器的选择器 | `string` |
-| visibilityHeight | 滚动超过多少高度后显示 | `number` |
-| right | 距右侧距离 | `number` |
-| bottom | 距底部距离 | `number` |
+| Prop | Description | Type |
+|------|-------------|------|
+| target | Selector for scroll container | `string` |
+| visibilityHeight | Show after scrolling past this height | `number` |
+| right | Distance from right | `number` |
+| bottom | Distance from bottom | `number` |

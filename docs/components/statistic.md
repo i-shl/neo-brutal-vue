@@ -1,16 +1,16 @@
-# Statistic 统计数值
+# Statistic
 
-展示统计数字，支持前缀、后缀、精度。
+Display statistic numbers. Supports prefix, suffix, and precision.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoStatistic title="总销售额" :value="123456.78" prefix="¥" />
+  <NeoStatistic title="Total Sales" :value="123456.78" prefix="¥" />
 </template>
 ```
 
-## 精度与后缀
+## Precision & Suffix
 
 ```vue
 <template>
@@ -20,13 +20,13 @@
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| title | 标题 | `string` |
-| value | 数值 | `string \| number` |
-| precision | 小数位数 | `number` |
-| prefix | 前缀 | `string` |
-| suffix | 后缀 | `string` |
-| valueStyle | 数值样式 | `object` |
+| Prop | Description | Type |
+|------|-------------|------|
+| title | Title | `string` |
+| value | Value | `string \| number` |
+| precision | Decimal places | `number` |
+| prefix | Prefix | `string` |
+| suffix | Suffix | `string` |
+| valueStyle | Value style | `object` |
 
-插槽：`title`、`prefix`、`suffix`、默认（自定义数值）。
+Slots: `title`, `prefix`, `suffix`, default (custom value).

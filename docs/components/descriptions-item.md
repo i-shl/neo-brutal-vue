@@ -1,10 +1,10 @@
-# DescriptionsItem 描述项
+# DescriptionsItem
 
-描述列表的一项，需放在 NeoDescriptions 内。用法见 [Descriptions 描述列表](/components/descriptions)。
+Single item of descriptions list. Must be placed inside NeoDescriptions. See [Descriptions](/components/descriptions) for usage.
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| label | 标签 | `string` |
-| span | 跨列数 | `number` |
+| Prop | Description | Type |
+|------|-------------|------|
+| label | Label | `string` |
+| span | Column span | `number` |

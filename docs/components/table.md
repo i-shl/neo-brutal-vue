@@ -1,8 +1,8 @@
-# Table 表格
+# Table
 
-数据表格，支持列配置、斑马纹、边框等。
+Data table. Supports column config, stripe, border, etc.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -11,17 +11,17 @@
 
 <script setup lang="ts">
 const tableData = ref([
-  { name: '张三', age: 18 },
-  { name: '李四', age: 20 },
+  { name: 'Tom', age: 18 },
+  { name: 'Jerry', age: 20 },
 ])
 const columns = [
-  { prop: 'name', label: '姓名' },
-  { prop: 'age', label: '年龄' },
+  { prop: 'name', label: 'Name' },
+  { prop: 'age', label: 'Age' },
 ]
 </script>
 ```
 
-## 斑马纹与边框
+## Stripe & Border
 
 ```vue
 <template>
@@ -31,14 +31,14 @@ const columns = [
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| data | 表格数据 | `any[]` |
-| columns | 列配置 | `TableColumn[]` |
-| stripe | 斑马纹 | `boolean` |
-| border | 边框 | `boolean` |
-| height | 固定高度 | `string \| number` |
-| maxHeight | 最大高度 | `string \| number` |
-| showHeader | 是否显示表头 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| data | Table data | `any[]` |
+| columns | Column config | `TableColumn[]` |
+| stripe | Stripe rows | `boolean` |
+| border | Border | `boolean` |
+| height | Fixed height | `string \| number` |
+| maxHeight | Maximum height | `string \| number` |
+| showHeader | Whether to show header | `boolean` |
 
-TableColumn：`prop`、`label`、`width`、`minWidth`、`fixed`、`sortable`、`formatter` 等。
+TableColumn: `prop`, `label`, `width`, `minWidth`, `fixed`, `sortable`, `formatter`, etc.

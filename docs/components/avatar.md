@@ -1,8 +1,8 @@
-# Avatar 头像
+# Avatar
 
-用户头像，支持图片、图标或文字。
+User avatar. Supports image, icon, or text.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -12,7 +12,7 @@
 </template>
 ```
 
-## 尺寸与形状
+## Size & Shape
 
 ```vue
 <template>
@@ -23,12 +23,12 @@
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| src | 图片地址 | `string` |
-| icon | 图标（emoji 或类名） | `string` |
-| size | 尺寸 | `ComponentSize \| number` |
-| shape | 形状 | `'circle' \| 'square'` |
-| alt | 图片 alt | `string` |
+| Prop | Description | Type |
+|------|-------------|------|
+| src | Image URL | `string` |
+| icon | Icon (emoji or class name) | `string` |
+| size | Size | `ComponentSize \| number` |
+| shape | Shape | `'circle' \| 'square'` |
+| alt | Image alt | `string` |
 
-插槽：默认（文字或自定义内容）。
+Slots: default (text or custom content).

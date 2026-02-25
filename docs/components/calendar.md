@@ -1,8 +1,8 @@
-# Calendar 日历
+# Calendar
 
-日历组件，可选日期、展示日程等。
+Calendar component. Date selection, schedule display, etc.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -16,8 +16,8 @@ const date = ref(new Date())
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 当前日期 | `Date` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Current date | `Date` |
 
-事件：`update:modelValue`、`select` 等（以组件实现为准）。
+Events: `update:modelValue`, `select`, etc. (refer to component implementation).

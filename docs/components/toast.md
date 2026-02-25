@@ -1,36 +1,36 @@
-# Toast 轻提示
+# Toast
 
-轻量级全局提示，一段时间后自动消失。
+Lightweight global message. Auto-dismisses after a period.
 
-## 基础用法
+## Basic Usage
 
-通过组件或全局方法（若提供）调用：
+Via component or global method (if provided):
 
 ```vue
 <template>
-  <NeoToast v-model="visible" type="success" title="成功" message="操作完成" />
+  <NeoToast v-model="visible" type="success" title="Success" message="Operation completed" />
 </template>
 ```
 
-或通过 API 调用（示例）：
+Or via API (example):
 
 ```ts
-// 若库提供 useToast 或 $toast
-toast.success('操作成功')
-toast.error('操作失败')
-toast({ type: 'info', message: '提示信息' })
+// If library provides useToast or $toast
+toast.success('Operation successful')
+toast.error('Operation failed')
+toast({ type: 'info', message: 'Notice' })
 ```
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 是否显示 | `boolean` |
-| type | 类型 | `'success' \| 'error' \| 'warning' \| 'info' \| 'default'` |
-| title | 标题 | `string` |
-| message | 正文 | `string` |
-| duration | 显示时长（毫秒） | `number` |
-| closable | 是否可关闭 | `boolean` |
-| position | 位置 | `ToastPosition` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Whether visible | `boolean` |
+| type | Type | `'success' \| 'error' \| 'warning' \| 'info' \| 'default'` |
+| title | Title | `string` |
+| message | Message body | `string` |
+| duration | Display duration (ms) | `number` |
+| closable | Whether closable | `boolean` |
+| position | Position | `ToastPosition` |
 
-事件：`close`。
+Events: `close`.

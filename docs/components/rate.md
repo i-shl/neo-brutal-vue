@@ -1,8 +1,8 @@
-# Rate 评分
+# Rate
 
-星级评分组件。
+Star rating component.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -14,7 +14,7 @@ const score = ref(3)
 </script>
 ```
 
-## 半星与自定义数量
+## Half Star & Custom Count
 
 ```vue
 <template>
@@ -22,7 +22,7 @@ const score = ref(3)
 </template>
 ```
 
-## 只读
+## Read Only
 
 ```vue
 <template>
@@ -32,13 +32,13 @@ const score = ref(3)
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 当前分数 | `number` |
-| max | 最大分数（星星数） | `number` |
-| allowHalf | 是否允许半选 | `boolean` |
-| disabled | 禁用 | `boolean` |
-| color | 选中颜色 | `string` |
-| voidColor | 未选中颜色 | `string` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Current score | `number` |
+| max | Maximum score (number of stars) | `number` |
+| allowHalf | Whether to allow half selection | `boolean` |
+| disabled | Disabled | `boolean` |
+| color | Selected color | `string` |
+| voidColor | Unselected color | `string` |
 
-事件：`update:modelValue`、`change`。
+Events: `update:modelValue`, `change`.

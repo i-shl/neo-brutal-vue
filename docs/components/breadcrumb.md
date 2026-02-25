@@ -1,26 +1,26 @@
-# Breadcrumb 面包屑
+# Breadcrumb
 
-显示当前页面的路径层级。
+Display current page path hierarchy.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
   <NeoBreadcrumb>
-    <NeoBreadcrumbItem to="/">首页</NeoBreadcrumbItem>
-    <NeoBreadcrumbItem to="/list">列表</NeoBreadcrumbItem>
-    <NeoBreadcrumbItem>详情</NeoBreadcrumbItem>
+    <NeoBreadcrumbItem to="/">Home</NeoBreadcrumbItem>
+    <NeoBreadcrumbItem to="/list">List</NeoBreadcrumbItem>
+    <NeoBreadcrumbItem>Detail</NeoBreadcrumbItem>
   </NeoBreadcrumb>
 </template>
 ```
 
-## 自定义分隔符
+## Custom Separator
 
 ```vue
 <template>
   <NeoBreadcrumb separator=">">
-    <NeoBreadcrumbItem>首页</NeoBreadcrumbItem>
-    <NeoBreadcrumbItem>当前</NeoBreadcrumbItem>
+    <NeoBreadcrumbItem>Home</NeoBreadcrumbItem>
+    <NeoBreadcrumbItem>Current</NeoBreadcrumbItem>
   </NeoBreadcrumb>
 </template>
 ```
@@ -29,16 +29,16 @@
 
 **NeoBreadcrumb**
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| separator | 分隔符 | `string` |
-| separatorIcon | 分隔符图标 | `string` |
+| Prop | Description | Type |
+|------|-------------|------|
+| separator | Separator | `string` |
+| separatorIcon | Separator icon | `string` |
 
 **NeoBreadcrumbItem**
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| to | 链接地址 | `string` |
-| replace | 是否 replace 跳转 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| to | Link URL | `string` |
+| replace | Whether to use replace navigation | `boolean` |
 
-插槽：默认（文字或自定义）。
+Slots: default (text or custom).

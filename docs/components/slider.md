@@ -1,8 +1,8 @@
-# Slider 滑块
+# Slider
 
-在范围内拖拽选择数值，支持范围（双滑块）。
+Drag to select a value within a range. Supports range selection (dual sliders).
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -14,7 +14,7 @@ const value = ref(50)
 </script>
 ```
 
-## 带输入框
+## With Input
 
 ```vue
 <template>
@@ -22,7 +22,7 @@ const value = ref(50)
 </template>
 ```
 
-## 范围选择
+## Range Selection
 
 ```vue
 <template>
@@ -36,15 +36,15 @@ const range = ref([20, 80])
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 绑定值（单值为 number，范围为 [number, number]） | `number \| number[]` |
-| min | 最小值 | `number` |
-| max | 最大值 | `number` |
-| step | 步长 | `number` |
-| showInput | 是否显示输入框 | `boolean` |
-| showTooltip | 是否显示悬浮提示 | `boolean` |
-| disabled | 禁用 | `boolean` |
-| size | 尺寸 | `ComponentSize` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Bound value (single: number, range: [number, number]) | `number \| number[]` |
+| min | Minimum value | `number` |
+| max | Maximum value | `number` |
+| step | Step size | `number` |
+| showInput | Whether to show input | `boolean` |
+| showTooltip | Whether to show tooltip on hover | `boolean` |
+| disabled | Disabled | `boolean` |
+| size | Size | `ComponentSize` |
 
-事件：`update:modelValue`、`change`。
+Events: `update:modelValue`, `change`.

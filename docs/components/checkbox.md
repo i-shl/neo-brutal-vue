@@ -1,12 +1,12 @@
-# Checkbox 复选框
+# Checkbox
 
-多选勾选框。
+Multi-select checkbox.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoCheckbox v-model="checked">我已阅读协议</NeoCheckbox>
+  <NeoCheckbox v-model="checked">I agree</NeoCheckbox>
 </template>
 
 <script setup lang="ts">
@@ -16,9 +16,9 @@ const checked = ref(false)
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 绑定值 | `boolean \| array` |
-| label | 选项值（用于组） | `string \| number \| boolean` |
-| disabled | 禁用 | `boolean` |
-| size | 尺寸 | `ComponentSize` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Bound value | `boolean \| array` |
+| label | Option value (for group) | `string \| number \| boolean` |
+| disabled | Disabled | `boolean` |
+| size | Size | `ComponentSize` |

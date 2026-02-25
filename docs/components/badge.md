@@ -1,32 +1,32 @@
-# Badge 徽标
+# Badge
 
-在元素角上显示数字或小圆点提示。
+Display number or dot indicator on element corner.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
   <NeoBadge :value="5">
-    <NeoButton>消息</NeoButton>
+    <NeoButton>Messages</NeoButton>
   </NeoBadge>
 </template>
 ```
 
-## 最大值与圆点
+## Max Value & Dot
 
 ```vue
 <template>
-  <NeoBadge :value="100" :max="99">评论</NeoBadge>
-  <NeoBadge is-dot>状态</NeoBadge>
+  <NeoBadge :value="100" :max="99">Comments</NeoBadge>
+  <NeoBadge is-dot>Status</NeoBadge>
 </template>
 ```
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| value | 显示值（数字或文字） | `string \| number` |
-| max | 最大值，超过显示 max+ | `number` |
-| isDot | 是否显示为圆点 | `boolean` |
-| hidden | 是否隐藏 | `boolean` |
-| type | 类型 | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` |
+| Prop | Description | Type |
+|------|-------------|------|
+| value | Display value (number or text) | `string \| number` |
+| max | Max value, shows max+ when exceeded | `number` |
+| isDot | Whether to display as dot | `boolean` |
+| hidden | Whether to hide | `boolean` |
+| type | Type | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` |

@@ -1,14 +1,14 @@
-# Dialog 对话框
+# Dialog
 
-模态对话框，用于表单、确认或自定义内容。
+Modal dialog for forms, confirmation, or custom content.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoButton @click="open = true">打开对话框</NeoButton>
-  <NeoDialog v-model="open" title="标题" width="500px">
-    对话框内容
+  <NeoButton @click="open = true">Open Dialog</NeoButton>
+  <NeoDialog v-model="open" title="Title" width="500px">
+    Dialog content
   </NeoDialog>
 </template>
 
@@ -17,15 +17,15 @@ const open = ref(false)
 </script>
 ```
 
-## 自定义底部
+## Custom Footer
 
 ```vue
 <template>
-  <NeoDialog v-model="open" title="确认">
-    <p>确定要执行此操作吗？</p>
+  <NeoDialog v-model="open" title="Confirm">
+    <p>Are you sure you want to proceed?</p>
     <template #footer>
-      <NeoButton @click="open = false">取消</NeoButton>
-      <NeoButton type="primary" @click="confirm">确定</NeoButton>
+      <NeoButton @click="open = false">Cancel</NeoButton>
+      <NeoButton type="primary" @click="confirm">Confirm</NeoButton>
     </template>
   </NeoDialog>
 </template>
@@ -33,17 +33,17 @@ const open = ref(false)
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 是否显示 | `boolean` |
-| title | 标题 | `string` |
-| width | 宽度 | `string \| number` |
-| modal | 是否显示遮罩 | `boolean` |
-| closeOnClickModal | 点击遮罩是否关闭 | `boolean` |
-| closeOnPressEscape | 按 Esc 是否关闭 | `boolean` |
-| showClose | 是否显示关闭按钮 | `boolean` |
-| destroyOnClose | 关闭时销毁内容 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Whether visible | `boolean` |
+| title | Title | `string` |
+| width | Width | `string \| number` |
+| modal | Whether to show overlay | `boolean` |
+| closeOnClickModal | Whether to close on overlay click | `boolean` |
+| closeOnPressEscape | Whether to close on Esc | `boolean` |
+| showClose | Whether to show close button | `boolean` |
+| destroyOnClose | Destroy content on close | `boolean` |
 
-插槽：默认（内容）、`header`、`footer`。
+Slots: default (content), `header`, `footer`.
 
-事件：`update:modelValue`、`open`、`close`、`opened`。
+Events: `update:modelValue`, `open`, `close`, `opened`.

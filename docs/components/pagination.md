@@ -1,8 +1,8 @@
-# Pagination 分页
+# Pagination
 
-分页器，配合列表/表格使用。
+Pagination for lists/tables.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -18,7 +18,7 @@ const current = ref(1)
 </script>
 ```
 
-## 每页条数选择与简洁模式
+## Page Size Select & Simple Layout
 
 ```vue
 <template>
@@ -34,14 +34,14 @@ const current = ref(1)
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| current | 当前页（支持 v-model:current） | `number` |
-| pageSize | 每页条数（支持 v-model:pageSize） | `number` |
-| total | 总条数 | `number` |
-| pageSizes | 每页条数选项 | `number[]` |
-| layout | 布局子件组合 | `string` |
-| background | 按钮是否带背景 | `boolean` |
-| small | 小尺寸 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| current | Current page (supports v-model:current) | `number` |
+| pageSize | Page size (supports v-model:pageSize) | `number` |
+| total | Total count | `number` |
+| pageSizes | Page size options | `number[]` |
+| layout | Layout component combination | `string` |
+| background | Whether buttons have background | `boolean` |
+| small | Small size | `boolean` |
 
-事件：`current-change`、`size-change`。
+Events: `current-change`, `size-change`.

@@ -1,8 +1,8 @@
-# Carousel 走马灯
+# Carousel
 
-轮播展示图片或内容。
+Carousel for images or content.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -11,13 +11,13 @@
 
 <script setup lang="ts">
 const items = ref([
-  { image: 'https://picsum.photos/800/300?1', title: '标题 1' },
-  { image: 'https://picsum.photos/800/300?2', title: '标题 2' },
+  { image: 'https://picsum.photos/800/300?1', title: 'Title 1' },
+  { image: 'https://picsum.photos/800/300?2', title: 'Title 2' },
 ])
 </script>
 ```
 
-## 指定高度与当前项
+## Height & Active Item
 
 ```vue
 <template>
@@ -27,10 +27,10 @@ const items = ref([
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| items | 轮播项 | `CarouselItem[]` |
-| active | 当前激活索引 | `number` |
-| height | 高度 | `string \| number` |
+| Prop | Description | Type |
+|------|-------------|------|
+| items | Carousel items | `CarouselItem[]` |
+| active | Current active index | `number` |
+| height | Height | `string \| number` |
 
-CarouselItem：`{ image: string, title?: string }`。
+CarouselItem: `{ image: string, title?: string }`.

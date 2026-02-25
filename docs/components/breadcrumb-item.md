@@ -1,10 +1,10 @@
-# BreadcrumbItem 面包屑项
+# BreadcrumbItem
 
-面包屑的一项，需放在 NeoBreadcrumb 内。用法见 [Breadcrumb 面包屑](/components/breadcrumb)。
+Single breadcrumb item. Must be placed inside NeoBreadcrumb. See [Breadcrumb](/components/breadcrumb) for usage.
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| to | 链接地址 | `string` |
-| replace | 是否 replace 跳转 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| to | Link URL | `string` |
+| replace | Whether to use replace navigation | `boolean` |

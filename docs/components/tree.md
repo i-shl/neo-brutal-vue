@@ -1,8 +1,8 @@
-# Tree 树形控件
+# Tree
 
-树形结构数据展示，支持展开/收起、可选。
+Tree structure data display. Supports expand/collapse and selection.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -11,16 +11,16 @@
 
 <script setup lang="ts">
 const treeData = ref([
-  { id: '1', label: '一级 1', children: [
-    { id: '1-1', label: '二级 1-1' },
-    { id: '1-2', label: '二级 1-2' },
+  { id: '1', label: 'Level 1', children: [
+    { id: '1-1', label: 'Level 2-1' },
+    { id: '1-2', label: 'Level 2-2' },
   ]},
-  { id: '2', label: '一级 2' },
+  { id: '2', label: 'Level 2' },
 ])
 </script>
 ```
 
-## 可选与连线
+## Selectable & Line
 
 ```vue
 <template>
@@ -30,12 +30,12 @@ const treeData = ref([
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| data | 树数据 | `TreeData[]` |
-| showLine | 是否显示连接线 | `boolean` |
-| selectable | 是否可选 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| data | Tree data | `TreeData[]` |
+| showLine | Whether to show connecting lines | `boolean` |
+| selectable | Whether selectable | `boolean` |
 
-TreeData 结构：`{ id, label, children?, expanded? }`。
+TreeData structure: `{ id, label, children?, expanded? }`.
 
-事件：`node-click` 等。
+Events: `node-click`, etc.

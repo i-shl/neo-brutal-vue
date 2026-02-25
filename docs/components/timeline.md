@@ -1,39 +1,39 @@
-# Timeline 时间轴
+# Timeline
 
-按时间顺序展示事件列表。
+Display event list in chronological order.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
   <NeoTimeline>
-    <NeoTimelineItem>步骤一</NeoTimelineItem>
-    <NeoTimelineItem>步骤二</NeoTimelineItem>
-    <NeoTimelineItem>步骤三</NeoTimelineItem>
+    <NeoTimelineItem>Step 1</NeoTimelineItem>
+    <NeoTimelineItem>Step 2</NeoTimelineItem>
+    <NeoTimelineItem>Step 3</NeoTimelineItem>
   </NeoTimeline>
 </template>
 ```
 
-## 带时间戳与状态
+## With Timestamp & Status
 
 ```vue
 <template>
   <NeoTimeline>
-    <NeoTimelineItem timestamp="2025-01-01" type="primary">完成</NeoTimelineItem>
-    <NeoTimelineItem timestamp="2025-01-02">进行中</NeoTimelineItem>
+    <NeoTimelineItem timestamp="2025-01-01" type="primary">Completed</NeoTimelineItem>
+    <NeoTimelineItem timestamp="2025-01-02">In progress</NeoTimelineItem>
   </NeoTimeline>
 </template>
 ```
 
 ## API
 
-**NeoTimeline**：容器，可配置线条样式。
+**NeoTimeline**: Container. Can configure line style.
 
 **NeoTimelineItem**
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| timestamp | 时间戳文字 | `string` |
-| type | 节点类型/颜色 | `string` |
+| Prop | Description | Type |
+|------|-------------|------|
+| timestamp | Timestamp text | `string` |
+| type | Node type/color | `string` |
 
-插槽：默认（内容）。
+Slots: default (content).

@@ -1,14 +1,14 @@
-# Accordion 手风琴
+# Accordion
 
-与 Collapse 类似，支持手风琴或多项展开，API 与 NeoCollapse 一致。
+Similar to Collapse. Supports accordion (single expand) or multiple expand. API is consistent with NeoCollapse.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
   <NeoAccordion v-model="active">
-    <NeoAccordionItem name="a" title="项 A">内容 A</NeoAccordionItem>
-    <NeoAccordionItem name="b" title="项 B">内容 B</NeoAccordionItem>
+    <NeoAccordionItem name="a" title="Item A">Content A</NeoAccordionItem>
+    <NeoAccordionItem name="b" title="Item B">Content B</NeoAccordionItem>
   </NeoAccordion>
 </template>
 
@@ -19,9 +19,9 @@ const active = ref('a')
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 当前展开项 | `string \| number \| (string \| number)[]` |
-| accordion | 是否手风琴 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Currently expanded item(s) | `string \| number \| (string \| number)[]` |
+| accordion | Whether accordion mode | `boolean` |
 
-事件：`update:modelValue`。
+Events: `update:modelValue`.

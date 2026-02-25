@@ -1,17 +1,17 @@
-# 快速开始
+# Quick Start
 
-## 安装
+## Installation
 
 ```bash
 npm install neo-brutal-vue
-# 或
+# or
 yarn add neo-brutal-vue
 pnpm add neo-brutal-vue
 ```
 
-## 全量引入
+## Full Import
 
-在 `main.ts` 中引入组件库和样式：
+Import the library and styles in `main.ts`:
 
 ```ts
 import { createApp } from 'vue'
@@ -24,23 +24,23 @@ app.use(NeoBrutalVue)
 app.mount('#app')
 ```
 
-之后即可在任意组件中直接使用 `<NeoButton>`、`<NeoInput>` 等组件。
+You can then use `<NeoButton>`, `<NeoInput>`, etc. in any component.
 
-## 按需引入
+## On-Demand Import
 
-只引入用到的组件，减小打包体积：
+Import only the components you need to reduce bundle size:
 
 ```ts
 import { NeoButton, NeoInput, NeoCard } from 'neo-brutal-vue'
 import 'neo-brutal-vue/dist/style.css'
 ```
 
-在组件中注册或直接使用：
+Register or use in components:
 
 ```vue
 <template>
-  <NeoButton type="primary">主要按钮</NeoButton>
-  <NeoInput v-model="value" placeholder="请输入" />
+  <NeoButton type="primary">Primary</NeoButton>
+  <NeoInput v-model="value" placeholder="Enter text" />
 </template>
 
 <script setup lang="ts">
@@ -51,9 +51,9 @@ const value = ref('')
 </script>
 ```
 
-## 自定义组件前缀
+## Custom Prefix
 
-全量注册时可通过 `app.use(NeoBrutalVue, { prefix: 'Nb' })` 修改前缀，组件将注册为 `NbButton`、`NbInput` 等：
+When using full registration, you can change the prefix via `app.use(NeoBrutalVue, { prefix: 'Nb' })`. Components will register as `NbButton`, `NbInput`, etc.:
 
 ```ts
 app.use(NeoBrutalVue, { prefix: 'Nb' })

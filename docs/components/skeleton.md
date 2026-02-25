@@ -1,8 +1,8 @@
-# Skeleton 骨架屏
+# Skeleton
 
-内容加载中的占位骨架。
+Placeholder skeleton for loading content.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -10,7 +10,7 @@
 </template>
 ```
 
-## 多行与自定义
+## Multiple Rows & Custom
 
 ```vue
 <template>
@@ -20,8 +20,8 @@
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| rows | 段落行数 | `number` |
+| Prop | Description | Type |
+|------|-------------|------|
+| rows | Number of paragraph rows | `number` |
 
-插槽：默认（加载完成后显示的内容）。
+Slots: default (content to show when loading completes).

@@ -1,12 +1,12 @@
-# TimelineItem 时间轴项
+# TimelineItem
 
-时间轴的单条，需放在 NeoTimeline 内。用法见 [Timeline 时间轴](/components/timeline)。
+Single item of timeline. Must be placed inside NeoTimeline. See [Timeline](/components/timeline) for usage.
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| timestamp | 时间戳 | `string` |
-| type | 节点类型 | `string` |
+| Prop | Description | Type |
+|------|-------------|------|
+| timestamp | Timestamp | `string` |
+| type | Node type | `string` |
 
-插槽：默认（内容）。
+Slots: default (content).

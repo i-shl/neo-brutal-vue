@@ -1,12 +1,12 @@
-# Step 步骤项
+# Step
 
-步骤条的一项，需放在 NeoSteps 内。用法见 [Steps 步骤条](/components/steps)。
+Single step item. Must be placed inside NeoSteps. See [Steps](/components/steps) for usage.
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| title | 标题 | `string` |
-| description | 描述 | `string` |
-| icon | 图标 | `string` |
-| status | 状态 | `'wait' \| 'process' \| 'finish' \| 'error' \| 'success'` |
+| Prop | Description | Type |
+|------|-------------|------|
+| title | Title | `string` |
+| description | Description | `string` |
+| icon | Icon | `string` |
+| status | Status | `'wait' \| 'process' \| 'finish' \| 'error' \| 'success'` |

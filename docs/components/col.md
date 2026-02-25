@@ -1,8 +1,8 @@
-# Col 列
+# Col
 
-栅格列，需放在 Row 内，span 为 1–12。
+Grid column. Must be placed inside Row. span is 1–12.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -14,7 +14,7 @@
 </template>
 ```
 
-## 偏移
+## Offset
 
 ```vue
 <template>
@@ -24,7 +24,7 @@
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| span | 栅格占位 1–12 | `number` |
-| offset | 栅格左侧偏移 1–12 | `number` |
+| Prop | Description | Type |
+|------|-------------|------|
+| span | Grid span 1–12 | `number` |
+| offset | Grid left offset 1–12 | `number` |

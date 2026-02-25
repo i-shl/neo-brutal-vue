@@ -1,15 +1,15 @@
-# Divider 分割线
+# Divider
 
-分隔内容块或列表。
+Separate content blocks or list items.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <div>上方内容</div>
+  <div>Content above</div>
   <NeoDivider />
-  <div>下方内容</div>
+  <div>Content below</div>
 </template>
 ```
 
-可配合 `orientation`、`content-position` 等属性实现文字分割线。
+Use `orientation` and `content-position` for text dividers.

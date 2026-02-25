@@ -1,43 +1,43 @@
-# Loading 加载
+# Loading
 
-加载中状态，支持全屏或局部。
+Loading state. Supports fullscreen or local.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoLoading text="加载中..." />
+  <NeoLoading text="Loading..." />
 </template>
 ```
 
-## 全屏加载
+## Fullscreen Loading
 
-通过方法调用（若组件库提供全局方法）：
+Via method call (if the library provides a global method):
 
 ```ts
-// 打开全屏 Loading
-NeoLoading.service({ text: '加载中...', fullscreen: true })
+// Open fullscreen Loading
+NeoLoading.service({ text: 'Loading...', fullscreen: true })
 
-// 关闭
+// Close
 loadingInstance.close()
 ```
 
-或在父级容器内使用：
+Or use inside a parent container:
 
 ```vue
 <template>
   <div style="position: relative;">
     <NeoLoading fullscreen />
-    内容区域
+    Content area
   </div>
 </template>
 ```
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| text | 加载文字 | `string` |
-| fullscreen | 是否全屏 | `boolean` |
-| lock | 是否锁定滚动 | `boolean` |
-| background | 遮罩背景色 | `string` |
+| Prop | Description | Type |
+|------|-------------|------|
+| text | Loading text | `string` |
+| fullscreen | Whether fullscreen | `boolean` |
+| lock | Whether to lock scroll | `boolean` |
+| background | Overlay background color | `string` |

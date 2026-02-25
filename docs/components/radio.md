@@ -1,13 +1,13 @@
-# Radio 单选框
+# Radio
 
-在一组选项中单选。
+Single selection from a group of options.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoRadio v-model="picked" label="option1">选项 A</NeoRadio>
-  <NeoRadio v-model="picked" label="option2">选项 B</NeoRadio>
+  <NeoRadio v-model="picked" label="option1">Option A</NeoRadio>
+  <NeoRadio v-model="picked" label="option2">Option B</NeoRadio>
 </template>
 
 <script setup lang="ts">
@@ -15,24 +15,24 @@ const picked = ref('option1')
 </script>
 ```
 
-## 单选组
+## Radio Group
 
 ```vue
 <template>
-  <NeoRadio v-model="city" label="beijing">北京</NeoRadio>
-  <NeoRadio v-model="city" label="shanghai">上海</NeoRadio>
-  <NeoRadio v-model="city" label="guangzhou">广州</NeoRadio>
+  <NeoRadio v-model="city" label="beijing">Beijing</NeoRadio>
+  <NeoRadio v-model="city" label="shanghai">Shanghai</NeoRadio>
+  <NeoRadio v-model="city" label="guangzhou">Guangzhou</NeoRadio>
 </template>
 ```
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 绑定值 | `string \| number \| boolean` |
-| label | 当前项的值 | `string \| number \| boolean` |
-| disabled | 禁用 | `boolean` |
-| size | 尺寸 | `ComponentSize` |
-| border | 是否显示边框 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Bound value | `string \| number \| boolean` |
+| label | Option value | `string \| number \| boolean` |
+| disabled | Disabled | `boolean` |
+| size | Size | `ComponentSize` |
+| border | Show border | `boolean` |
 
-事件：`update:modelValue`、`change`。
+Events: `update:modelValue`, `change`.

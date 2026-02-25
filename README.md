@@ -1,32 +1,34 @@
 # NeoBrutal Vue
 
-> Neobrutalism 风格的 Vue 3 组件库
+> Neobrutalism style Vue 3 UI component library
 
-- **文档**：本地运行 `npm run docs:dev` 查看完整使用文档（VitePress）
+English | [中文](./README.zh-CN.md)
 
-## ✨ 特性
+- **Docs**: Run `npm run docs:dev` locally for full documentation (VitePress)
 
-- 🎨 **Neobrutalism 设计风格** - 粗边框、硬阴影、大胆对比
-- 📦 **40+ 丰富组件** - 涵盖基础、表单、布局、数据展示等
-- 🎯 **TypeScript 支持** - 完整类型定义
-- 🎭 **主题系统** - 支持浅色/深色主题切换
-- 📱 **响应式设计** - 5 种尺寸规格（xs/sm/md/lg/xl）
-- 🔧 **按需引入** - 支持全量安装和按需引入
-- 📚 **完整文档** - 详细的使用说明和示例
+## ✨ Features
 
-## 🛠 安装
+- 🎨 **Neobrutalism design** - Bold borders, hard shadows, strong contrast
+- 📦 **40+ components** - Base, form, layout, data display, feedback, navigation
+- 🎯 **TypeScript** - Full type definitions
+- 🎭 **Theme system** - Light/dark mode support
+- 📱 **Responsive** - 5 sizes (xs/sm/md/lg/xl)
+- 🔧 **Tree-shakeable** - Full or on-demand import
+- 📚 **Documentation** - Usage guide and examples
+
+## 🛠 Installation
 
 ```bash
 npm install neo-brutal-vue
-# 或
+# or
 yarn add neo-brutal-vue
-# 或
+# or
 pnpm add neo-brutal-vue
 ```
 
-## 📦 使用方式
+## 📦 Usage
 
-### 全量引入
+### Full import
 
 ```typescript
 // main.ts
@@ -38,93 +40,78 @@ const app = createApp(App)
 app.use(NeoBrutalVue)
 ```
 
-### 按需引入
+### On-demand import
 
 ```typescript
-// 按需引入单独组件（样式仍需全局引入一次）
+// Import components as needed (import styles once)
 import { NeoButton, NeoInput } from 'neo-brutal-vue'
 import 'neo-brutal-vue/dist/style.css'
 ```
 
-## 🎨 设计风格
+## 🎨 Design
 
-### Neobrutalism 特点
+### Neobrutalism
 
-- **边框**: 2-4px 的粗黑边框
-- **阴影**: 4-8px 的硬偏移阴影（非模糊）
-- **对比**: 强烈的色彩对比（黑白分明）
-- **形状**: 直角或轻微圆角，简洁有力
-- **颜色**: 大胆的纯色背景，高饱和度
+- **Borders**: 2–4px bold black borders
+- **Shadows**: 4–8px hard offset shadows (no blur)
+- **Contrast**: Strong black/white contrast
+- **Colors**: Bold solid backgrounds, high saturation
 
-### 主题色彩
+### Theme colors
 
-通过 CSS 变量覆盖即可换肤（参见 `src/styles/variables.css`）：
+Override via CSS variables (see `src/styles/variables.css`):
 
 ```css
 :root {
-  --neo-primary: #8338ec;    /* 主色 */
-  --neo-secondary: #06d6a0;  /* 次色 */
-  --neo-accent: #ffbe0b;     /* 强调色 */
-  --neo-success: #06d6a0;    /* 成功 */
-  --neo-warning: #fb5607;    /* 警告 */
-  --neo-danger: #ef233c;     /* 错误 */
-  --neo-info: #3a86ff;       /* 信息 */
+  --neo-primary: #8338ec;
+  --neo-secondary: #06d6a0;
+  --neo-accent: #ffbe0b;
+  --neo-success: #06d6a0;
+  --neo-warning: #fb5607;
+  --neo-danger: #ef233c;
+  --neo-info: #3a86ff;
 }
 ```
 
-## 🔧 开发命令
+## 🔧 Scripts
 
 ```bash
-# 库开发模式
-npm run dev
-
-# 构建库（产出 dist/，含类型声明）
-npm run build
-
-# 预览构建结果
-npm run preview
-
-# 文档站本地开发
-npm run docs:dev
-
-# 文档站构建（产出 docs/.vitepress/dist）
-npm run docs:build
+npm run dev          # Library dev mode
+npm run build        # Build library (output dist/)
+npm run preview      # Preview build
+npm run docs:dev     # Docs dev server
+npm run docs:build   # Build docs (output docs/.vitepress/dist)
 ```
 
-## 🌟 示例
+## 🌟 Examples
 
-### 基础按钮
+### Button
 
 ```vue
 <template>
-  <!-- 类型 -->
-  <NeoButton type="primary">主要按钮</NeoButton>
-  <NeoButton type="success">成功按钮</NeoButton>
-  
-  <!-- 尺寸 -->
-  <NeoButton size="xs">超小</NeoButton>
-  <NeoButton size="lg">大号</NeoButton>
-  
-  <!-- 形状 -->
+  <NeoButton type="primary">Primary</NeoButton>
+  <NeoButton type="success">Success</NeoButton>
+  <NeoButton size="xs">XS</NeoButton>
+  <NeoButton size="lg">LG</NeoButton>
   <NeoButton circle>🔥</NeoButton>
-  <NeoButton shape="round">圆角</NeoButton>
+  <NeoButton shape="round">Round</NeoButton>
 </template>
 ```
 
-### 表单组件
+### Form
 
 ```vue
 <template>
-  <NeoInput v-model="inputValue" placeholder="请输入内容" />
-  <NeoCheckbox v-model="checked">我已阅读用户协议</NeoCheckbox>
+  <NeoInput v-model="inputValue" placeholder="Enter text" />
+  <NeoCheckbox v-model="checked">I agree</NeoCheckbox>
   <NeoSwitch v-model="enabled" />
 </template>
 ```
 
-## 📄 许可证
+## 📄 License
 
 [MIT](LICENSE)
 
-## 🤝 贡献
+## 🤝 Contributing
 
-欢迎提交 Issue 和 Pull Request 来完善这个组件库！
+Issues and Pull Requests are welcome!

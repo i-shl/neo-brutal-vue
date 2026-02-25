@@ -1,35 +1,35 @@
-# Card 卡片
+# Card
 
-内容容器，支持标题、副标题、插槽。
+Content container with title, subtitle, and slots.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoCard title="卡片标题" sub-title="副标题">
-    卡片内容
+  <NeoCard title="Card Title" sub-title="Subtitle">
+    Card content
   </NeoCard>
 </template>
 ```
 
-## 变体 (variant)
+## Variant
 
-`default`、`flat`、`elevated`、`gradient`、`colored`。
+`default`, `flat`, `elevated`, `gradient`, `colored`.
 
-## 插槽
+## Slots
 
-- `header`：自定义头部
-- `title`：标题
-- `sub-title`：副标题
-- `footer`：底部
-- 默认：正文内容
+- `header`: Custom header
+- `title`: Title
+- `sub-title`: Subtitle
+- `footer`: Footer
+- default: Body content
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| title | 标题 | `string` |
-| subTitle | 副标题 | `string` |
-| shadow | 是否阴影 | `boolean \| 'hover' \| 'never'` |
-| bordered | 是否边框 | `boolean` |
-| variant | 样式变体 | `CardVariant` |
+| Prop | Description | Type |
+|------|-------------|------|
+| title | Title | `string` |
+| subTitle | Subtitle | `string` |
+| shadow | Shadow | `boolean \| 'hover' \| 'never'` |
+| bordered | Bordered | `boolean` |
+| variant | Variant | `CardVariant` |

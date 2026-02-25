@@ -1,36 +1,36 @@
-# Alert 警告提示
+# Alert
 
-页面内提示信息，支持类型、可关闭。
+In-page alert message. Supports types and closable.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoAlert title="提示" description="这是一段描述文字" />
-  <NeoAlert type="success" title="成功" />
-  <NeoAlert type="warning" title="警告" />
-  <NeoAlert type="error" title="错误" />
-  <NeoAlert type="info" title="信息" />
+  <NeoAlert title="Notice" description="This is a description" />
+  <NeoAlert type="success" title="Success" />
+  <NeoAlert type="warning" title="Warning" />
+  <NeoAlert type="error" title="Error" />
+  <NeoAlert type="info" title="Info" />
 </template>
 ```
 
-## 可关闭
+## Closable
 
 ```vue
 <template>
-  <NeoAlert title="可关闭" closable @close="handleClose" />
+  <NeoAlert title="Closable" closable @close="handleClose" />
 </template>
 ```
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| title | 标题 | `string` |
-| description | 描述 | `string` |
-| type | 类型 | `'success' \| 'warning' \| 'error' \| 'info'` |
-| closable | 是否可关闭 | `boolean` |
-| showIcon | 是否显示图标 | `boolean` |
-| effect | 效果 | `'light' \| 'dark'` |
+| Prop | Description | Type |
+|------|-------------|------|
+| title | Title | `string` |
+| description | Description | `string` |
+| type | Type | `'success' \| 'warning' \| 'error' \| 'info'` |
+| closable | Whether closable | `boolean` |
+| showIcon | Whether to show icon | `boolean` |
+| effect | Effect | `'light' \| 'dark'` |
 
-事件：`close`。
+Events: `close`.

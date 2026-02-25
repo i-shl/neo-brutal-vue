@@ -1,14 +1,14 @@
-# Drawer 抽屉
+# Drawer
 
-从屏幕一侧滑出的面板，常用于表单或详情。
+Panel that slides in from the screen side. Often used for forms or details.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoButton @click="open = true">打开抽屉</NeoButton>
-  <NeoDrawer v-model="open" title="抽屉标题" direction="rtl">
-    抽屉内容
+  <NeoButton @click="open = true">Open Drawer</NeoButton>
+  <NeoDrawer v-model="open" title="Drawer Title" direction="rtl">
+    Drawer content
   </NeoDrawer>
 </template>
 
@@ -17,28 +17,28 @@ const open = ref(false)
 </script>
 ```
 
-## 方向与尺寸
+## Direction & Size
 
 ```vue
 <template>
-  <NeoDrawer v-model="open" title="右侧抽屉" direction="rtl" size="400px" />
-  <NeoDrawer v-model="open2" title="底部抽屉" direction="btt" />
+  <NeoDrawer v-model="open" title="Right Drawer" direction="rtl" size="400px" />
+  <NeoDrawer v-model="open2" title="Bottom Drawer" direction="btt" />
 </template>
 ```
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 是否显示 | `boolean` |
-| title | 标题 | `string` |
-| direction | 方向 | `'ltr' \| 'rtl' \| 'ttb' \| 'btt'` |
-| size | 尺寸（宽或高） | `string \| number` |
-| modal | 是否显示遮罩 | `boolean` |
-| closeOnClickModal | 点击遮罩关闭 | `boolean` |
-| showClose | 显示关闭按钮 | `boolean` |
-| withHeader | 是否显示头部 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Whether visible | `boolean` |
+| title | Title | `string` |
+| direction | Direction | `'ltr' \| 'rtl' \| 'ttb' \| 'btt'` |
+| size | Size (width or height) | `string \| number` |
+| modal | Whether to show overlay | `boolean` |
+| closeOnClickModal | Close on overlay click | `boolean` |
+| showClose | Show close button | `boolean` |
+| withHeader | Whether to show header | `boolean` |
 
-插槽：默认（内容）、`header`、`footer`。
+Slots: default (content), `header`, `footer`.
 
-事件：`update:modelValue`、`open`、`close`、`opened`。
+Events: `update:modelValue`, `open`, `close`, `opened`.

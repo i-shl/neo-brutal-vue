@@ -1,20 +1,20 @@
-# Steps 步骤条
+# Steps
 
-引导用户按步骤完成任务的步骤条。
+Step indicator to guide users through a task.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
   <NeoSteps :active="1">
-    <NeoStep title="步骤一" description="描述一" />
-    <NeoStep title="步骤二" description="描述二" />
-    <NeoStep title="步骤三" description="描述三" />
+    <NeoStep title="Step 1" description="Description 1" />
+    <NeoStep title="Step 2" description="Description 2" />
+    <NeoStep title="Step 3" description="Description 3" />
   </NeoSteps>
 </template>
 ```
 
-## 垂直方向与对齐
+## Vertical & Alignment
 
 ```vue
 <template>
@@ -29,20 +29,20 @@
 
 **NeoSteps**
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| active | 当前步骤（从 0 开始） | `number` |
-| direction | 方向 | `'horizontal' \| 'vertical'` |
-| space | 间距 | `number \| string` |
-| processStatus | 进行中状态 | `string` |
-| finishStatus | 已完成状态 | `string` |
-| alignCenter | 标题是否居中 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| active | Current step (0-based) | `number` |
+| direction | Direction | `'horizontal' \| 'vertical'` |
+| space | Spacing | `number \| string` |
+| processStatus | In-progress status | `string` |
+| finishStatus | Finished status | `string` |
+| alignCenter | Whether title is centered | `boolean` |
 
 **NeoStep**
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| title | 标题 | `string` |
-| description | 描述 | `string` |
-| icon | 图标 | `string` |
-| status | 状态 | `'wait' \| 'process' \| 'finish' \| 'error' \| 'success'` |
+| Prop | Description | Type |
+|------|-------------|------|
+| title | Title | `string` |
+| description | Description | `string` |
+| icon | Icon | `string` |
+| status | Status | `'wait' \| 'process' \| 'finish' \| 'error' \| 'success'` |

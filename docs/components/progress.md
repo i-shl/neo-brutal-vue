@@ -1,8 +1,8 @@
-# Progress 进度条
+# Progress
 
-展示进度百分比。
+Display progress percentage.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -10,7 +10,7 @@
 </template>
 ```
 
-## 状态与内显文字
+## Status & Inner Text
 
 ```vue
 <template>
@@ -19,7 +19,7 @@
 </template>
 ```
 
-## 自定义颜色
+## Custom Color
 
 ```vue
 <template>
@@ -29,12 +29,12 @@
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| percentage | 进度 0–100 | `number` |
-| status | 状态 | `'success' \| 'warning' \| 'exception'` |
-| strokeWidth | 线条宽度 | `number` |
-| showText | 是否显示文字 | `boolean` |
-| textInside | 文字是否在条内 | `boolean` |
-| color | 进度条颜色 | `string \| string[]` |
-| format | 自定义文字格式化 | `(p: number) => string` |
+| Prop | Description | Type |
+|------|-------------|------|
+| percentage | Progress 0–100 | `number` |
+| status | Status | `'success' \| 'warning' \| 'exception'` |
+| strokeWidth | Stroke width | `number` |
+| showText | Whether to show text | `boolean` |
+| textInside | Whether text is inside bar | `boolean` |
+| color | Progress bar color | `string \| string[]` |
+| format | Custom text formatter | `(p: number) => string` |

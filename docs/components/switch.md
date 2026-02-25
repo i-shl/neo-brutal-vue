@@ -1,8 +1,8 @@
-# Switch 开关
+# Switch
 
-开关选择器。
+Toggle switch.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -16,9 +16,9 @@ const enabled = ref(false)
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 绑定值 | `boolean \| string \| number` |
-| disabled | 禁用 | `boolean` |
-| size | 尺寸 | `ComponentSize` |
-| activeText / inactiveText | 开关文字 | `string` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Bound value | `boolean \| string \| number` |
+| disabled | Disabled | `boolean` |
+| size | Size | `ComponentSize` |
+| activeText / inactiveText | Switch text | `string` |

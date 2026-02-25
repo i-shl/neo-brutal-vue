@@ -1,10 +1,10 @@
-# 主题与 CSS 变量
+# Theme & CSS Variables
 
-NeoBrutal Vue 使用 CSS 变量控制主题，便于覆盖和扩展。
+NeoBrutal Vue uses CSS variables for theming, making it easy to override and extend.
 
-## 主色与语义色
+## Primary & Semantic Colors
 
-在 your-app 的全局样式或根元素上覆盖变量即可换肤：
+Override variables in your app's global styles or root element:
 
 ```css
 :root {
@@ -18,22 +18,22 @@ NeoBrutal Vue 使用 CSS 变量控制主题，便于覆盖和扩展。
 }
 ```
 
-## 深色主题
+## Dark Theme
 
-通过 `data-theme="dark"` 切换深色：
+Switch to dark mode with `data-theme="dark"`:
 
 ```html
 <html data-theme="dark">
 ```
 
-组件库已为 `[data-theme="dark"]` 定义深色语义色（背景、文字、边框等），无需额外写大量 CSS。
+The library already defines dark semantic colors (background, text, borders) for `[data-theme="dark"]`, so no extra CSS is needed.
 
-## 边框与阴影
+## Borders & Shadows
 
-Neobrutalism 典型变量：
+Typical Neobrutalism variables:
 
-- `--neo-border-width`：边框粗细（默认 3px）
-- `--neo-border-color`：边框颜色
-- `--neo-shadow`：硬偏移阴影（如 4px 4px 0）
+- `--neo-border-width`: Border width (default 3px)
+- `--neo-border-color`: Border color
+- `--neo-shadow`: Hard offset shadow (e.g. 4px 4px 0)
 
-按需覆盖即可微调风格。
+Override as needed to fine-tune the style.

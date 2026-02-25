@@ -1,8 +1,8 @@
-# Upload 上传
+# Upload
 
-文件上传，支持点击与拖拽。
+File upload with click and drag support.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
@@ -10,7 +10,7 @@
 </template>
 ```
 
-## 拖拽上传
+## Drag Upload
 
 ```vue
 <template>
@@ -18,7 +18,7 @@
 </template>
 ```
 
-## 多选与限制
+## Multiple & Limit
 
 ```vue
 <template>
@@ -28,12 +28,12 @@
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| action | 上传地址 | `string` |
-| drag | 是否拖拽上传 | `boolean` |
-| multiple | 是否多选 | `boolean` |
-| accept | 接受的文件类型 | `string` |
-| limit | 最大上传数量 | `number` |
+| Prop | Description | Type |
+|------|-------------|------|
+| action | Upload URL | `string` |
+| drag | Whether to enable drag upload | `boolean` |
+| multiple | Whether to allow multiple selection | `boolean` |
+| accept | Accepted file types | `string` |
+| limit | Maximum number of uploads | `number` |
 
-事件：`success`、`error`、`change` 等。
+Events: `success`, `error`, `change`, etc.

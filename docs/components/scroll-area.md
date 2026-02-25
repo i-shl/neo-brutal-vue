@@ -1,28 +1,28 @@
-# ScrollArea 滚动区域
+# ScrollArea
 
-固定高度/最大高度的滚动容器，带自定义滚动条样式。
+Scroll container with fixed or max height. Custom scrollbar styling.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
   <NeoScrollArea height="200px">
-    <div>很长很长的内容...</div>
+    <div>Very long content...</div>
   </NeoScrollArea>
 </template>
 ```
 
-## 最大高度
+## Max Height
 
 ```vue
 <template>
-  <NeoScrollArea max-height="300px">内容</NeoScrollArea>
+  <NeoScrollArea max-height="300px">Content</NeoScrollArea>
 </template>
 ```
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| height | 固定高度 | `string \| number` |
-| maxHeight | 最大高度 | `string \| number` |
+| Prop | Description | Type |
+|------|-------------|------|
+| height | Fixed height | `string \| number` |
+| maxHeight | Maximum height | `string \| number` |

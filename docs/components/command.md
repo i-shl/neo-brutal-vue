@@ -1,23 +1,23 @@
-# Command 命令面板
+# Command
 
-通过快捷键唤出的命令/搜索面板（类似 VS Code Command Palette）。
+Command/search panel invoked by shortcut (similar to VS Code Command Palette).
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoButton @click="open = true">打开命令面板 (Ctrl+K)</NeoButton>
-  <NeoCommand v-model="open" placeholder="输入搜索..." :groups="groups" />
+  <NeoButton @click="open = true">Open Command (Ctrl+K)</NeoButton>
+  <NeoCommand v-model="open" placeholder="Type to search..." :groups="groups" />
 </template>
 
 <script setup lang="ts">
 const open = ref(false)
 const groups = ref([
   {
-    name: '常用',
+    name: 'Common',
     items: [
-      { id: '1', label: '新建', shortcut: 'Ctrl+N' },
-      { id: '2', label: '保存', shortcut: 'Ctrl+S' },
+      { id: '1', label: 'New', shortcut: 'Ctrl+N' },
+      { id: '2', label: 'Save', shortcut: 'Ctrl+S' },
     ],
   },
 ])
@@ -26,13 +26,13 @@ const groups = ref([
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 是否显示 | `boolean` |
-| placeholder | 搜索框占位符 | `string` |
-| groups | 分组与命令项 | `CommandGroup[]` |
+| Prop | Description | Type |
+|------|-------------|------|
+| modelValue | Whether visible | `boolean` |
+| placeholder | Search input placeholder | `string` |
+| groups | Groups and command items | `CommandGroup[]` |
 
-CommandGroup：`{ name: string, items: CommandItem[] }`。  
-CommandItem：`{ id: string, label: string, icon?: string, shortcut?: string }`。
+CommandGroup: `{ name: string, items: CommandItem[] }`.  
+CommandItem: `{ id: string, label: string, icon?: string, shortcut?: string }`.
 
-事件：`select`（选中某项时）。
+Events: `select` (when an item is selected).

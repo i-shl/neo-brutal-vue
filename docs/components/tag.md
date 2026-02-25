@@ -1,32 +1,32 @@
-# Tag 标签
+# Tag
 
-用于标记和分类的标签。
+Tags for labeling and categorization.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoTag>默认</NeoTag>
-  <NeoTag type="primary">主要</NeoTag>
-  <NeoTag type="success">成功</NeoTag>
-  <NeoTag type="warning">警告</NeoTag>
-  <NeoTag type="danger">危险</NeoTag>
+  <NeoTag>Default</NeoTag>
+  <NeoTag type="primary">Primary</NeoTag>
+  <NeoTag type="success">Success</NeoTag>
+  <NeoTag type="warning">Warning</NeoTag>
+  <NeoTag type="danger">Danger</NeoTag>
 </template>
 ```
 
-## 可关闭
+## Closable
 
 ```vue
 <template>
-  <NeoTag closable @close="handleClose">可关闭</NeoTag>
+  <NeoTag closable @close="handleClose">Closable</NeoTag>
 </template>
 ```
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| type | 类型 | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' \| 'default'` |
-| size | 尺寸 | `'xs' \| 'sm' \| 'md' \| 'lg'` |
-| effect | 效果 | `'light' \| 'dark' \| 'plain'` |
-| closable | 是否可关闭 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| type | Type | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' \| 'default'` |
+| size | Size | `'xs' \| 'sm' \| 'md' \| 'lg'` |
+| effect | Effect | `'light' \| 'dark' \| 'plain'` |
+| closable | Whether closable | `boolean` |

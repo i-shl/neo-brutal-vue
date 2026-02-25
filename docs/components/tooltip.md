@@ -1,34 +1,34 @@
-# Tooltip 文字提示
+# Tooltip
 
-鼠标悬停或聚焦时显示提示文字。
+Show hint text on hover or focus.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
-  <NeoTooltip content="提示文字">
-    <NeoButton>悬停我</NeoButton>
+  <NeoTooltip content="Hint text">
+    <NeoButton>Hover me</NeoButton>
   </NeoTooltip>
 </template>
 ```
 
-## 位置与触发方式
+## Placement & Trigger
 
 ```vue
 <template>
-  <NeoTooltip content="顶部" placement="top">Top</NeoTooltip>
-  <NeoTooltip content="点击显示" trigger="click">Click</NeoTooltip>
+  <NeoTooltip content="Top" placement="top">Top</NeoTooltip>
+  <NeoTooltip content="Click to show" trigger="click">Click</NeoTooltip>
 </template>
 ```
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| content | 提示内容 | `string` |
-| placement | 出现位置 | `'top' \| 'bottom' \| 'left' \| 'right'` 等 |
-| trigger | 触发方式 | `'hover' \| 'click' \| 'focus' \| 'manual'` |
-| effect | 主题 | `'light' \| 'dark'` |
-| disabled | 是否禁用 | `boolean` |
+| Prop | Description | Type |
+|------|-------------|------|
+| content | Tooltip content | `string` |
+| placement | Placement | `'top' \| 'bottom' \| 'left' \| 'right'` etc. |
+| trigger | Trigger | `'hover' \| 'click' \| 'focus' \| 'manual'` |
+| effect | Theme | `'light' \| 'dark'` |
+| disabled | Whether disabled | `boolean` |
 
-插槽：默认（触发元素）。
+Slots: default (trigger element).

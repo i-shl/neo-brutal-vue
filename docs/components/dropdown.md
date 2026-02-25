@@ -1,21 +1,21 @@
-# Dropdown 下拉菜单
+# Dropdown
 
-点击或悬停触发下拉菜单列表。
+Dropdown menu triggered by click or hover.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
   <NeoDropdown>
-    <NeoButton>下拉菜单 <span class="arrow">▼</span></NeoButton>
+    <NeoButton>Dropdown <span class="arrow">▼</span></NeoButton>
     <template #dropdown>
       <div class="neo-dropdown-menu">
-        <div class="item">选项一</div>
-        <div class="item">选项二</div>
+        <div class="item">Option 1</div>
+        <div class="item">Option 2</div>
       </div>
     </template>
   </NeoDropdown>
 </template>
 ```
 
-具体 API 以组件实现为准，常见属性：`trigger`（click/hover）、`placement`、`disabled` 等。插槽：默认（触发元素）、`dropdown`（下拉内容）。
+Refer to component implementation for exact API. Common props: `trigger` (click/hover), `placement`, `disabled`, etc. Slots: default (trigger element), `dropdown` (dropdown content).

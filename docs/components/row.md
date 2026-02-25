@@ -1,14 +1,14 @@
-# Row 行
+# Row
 
-栅格行，与 Col 搭配实现 12 栏布局。
+Grid row. Use with Col for 12-column layout.
 
-## 基础用法
+## Basic Usage
 
 ```vue
 <template>
   <NeoRow>
-    <NeoCol :span="12">占 12 栏</NeoCol>
-    <NeoCol :span="12">占 12 栏</NeoCol>
+    <NeoCol :span="12">12 cols</NeoCol>
+    <NeoCol :span="12">12 cols</NeoCol>
   </NeoRow>
   <NeoRow>
     <NeoCol :span="8">8</NeoCol>
@@ -20,8 +20,8 @@
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| gutter | 栅格间隔（像素） | `number \| string` |
-| justify | 水平对齐 | `string` |
-| align | 垂直对齐 | `string` |
+| Prop | Description | Type |
+|------|-------------|------|
+| gutter | Grid gap (pixels) | `number \| string` |
+| justify | Horizontal alignment | `string` |
+| align | Vertical alignment | `string` |
