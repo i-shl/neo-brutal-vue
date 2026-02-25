@@ -1,0 +1,52 @@
+{
+  "name": "neo-brutal-vue",
+  "version": "1.0.0",
+  "description": "Neobrutalism style UI component library for Vue 3",
+  "type": "module",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.es.js",
+      "require": "./dist/index.umd.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./dist/style.css": "./dist/style.css"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.0"
+  },
+  "dependencies": {
+    "@vueuse/core": "^10.7.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.0",
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0",
+    "vite-plugin-dts": "^4.3.0",
+    "vitepress": "^1.0.0",
+    "vue": "^3.3.0",
+    "vue-tsc": "^1.8.0"
+  },
+  "keywords": ["vue", "vue3", "ui-component", "neobrutalism", "design-system"],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/i-shl/neo-brutal-vue.git"
+  },
+  "homepage": "https://github.com/i-shl/neo-brutal-vue#readme",
+  "bugs": {
+    "url": "https://github.com/i-shl/neo-brutal-vue/issues"
+  }
+}
