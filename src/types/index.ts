@@ -5,6 +5,9 @@
 // ==================== Size Types ====================
 export type ComponentSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
 
+// ==================== Semantic Type (for color variants) ====================
+export type SemanticType = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'default'
+
 // ==================== Button Types ====================
 export type ButtonType = 'primary' | 'secondary' | 'accent' | 'success' | 'warning' | 'danger' | 'info' | 'default' | 'neo' | 'pink' | 'purple' | 'blue' | 'orange' | 'green'
 export type ButtonVariant = 'solid' | 'outline' | 'ghost' | 'soft'
@@ -63,6 +66,7 @@ export interface SelectProps {
   filterable?: boolean
   allowCreate?: boolean
   size?: ComponentSize
+  type?: SemanticType
   disabled?: boolean
   placeholder?: string
   clearable?: boolean
@@ -85,6 +89,7 @@ export interface CheckboxProps {
   indeterminate?: boolean
   size?: ComponentSize
   border?: boolean
+  type?: SemanticType
   trueValue?: any
   falseValue?: any
 }
@@ -109,9 +114,9 @@ export interface SwitchProps {
   modelValue?: boolean | string | number
   disabled?: boolean
   size?: ComponentSize
+  type?: SemanticType
   activeValue?: boolean | string | number
   inactiveValue?: boolean | string | number
- 
   activeText?: string
   inactiveText?: string
 }
@@ -157,6 +162,7 @@ export interface CardProps {
   shadow?: boolean | 'hover' | 'never'
   bordered?: boolean
   variant?: CardVariant
+  type?: SemanticType
   showHeader?: boolean
   showFooter?: boolean
   bodyStyle?: string | object
@@ -544,6 +550,8 @@ export interface StatisticProps {
   prefix?: string
   suffix?: string
   valueStyle?: any
+  type?: SemanticType
+  color?: string
 }
 
 // ==================== Backtop Types ====================

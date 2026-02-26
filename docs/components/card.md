@@ -6,6 +6,10 @@ Content container with title, subtitle, and slots.
 
 <demo vue="../demos/card-basic.vue" />
 
+## Type
+
+<demo vue="../demos/card-type.vue" />
+
 ## Variant
 
 `default`, `flat`, `elevated`, `gradient`, `colored`.
@@ -35,3 +39,4 @@ Set `show-header="false"` to hide the header.
 | shadow | Shadow | `boolean \| 'hover' \| 'never'` |
 | bordered | Bordered | `boolean` |
 | variant | Variant | `CardVariant` |
+| type | Color type for header | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' \| 'default'` |

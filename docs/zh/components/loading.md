@@ -6,6 +6,10 @@
 
 <demo vue="../../demos/loading-basic.vue" />
 
+## 类型 (Type)
+
+<demo vue="../../demos/loading-type.vue" />
+
 ## 全屏加载
 
 <demo vue="../../demos/loading-fullscreen.vue" />
@@ -14,7 +18,8 @@
 
 | 属性 | 说明 | 类型 |
 |------|------|------|
+| loading | 是否显示加载 | `boolean` |
 | text | 加载文字 | `string` |
+| size | 加载图标尺寸 | `'small' \| 'default' \| 'large'` |
 | fullscreen | 是否全屏 | `boolean` |
-| lock | 是否锁定滚动 | `boolean` |
-| background | 遮罩背景色 | `string` |
+| type | 加载图标颜色类型 | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' \| 'default'` |

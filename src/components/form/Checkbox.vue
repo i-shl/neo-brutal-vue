@@ -5,6 +5,7 @@ import type { CheckboxProps } from '@/types'
 const props = withDefaults(defineProps<CheckboxProps>(), {
   size: 'md',
   border: false,
+  type: 'primary',
   trueValue: true,
   falseValue: false
 })
@@ -30,6 +31,7 @@ const checkboxClass = computed(() => {
   if (props.disabled) classes.push('neo-checkbox--disabled')
   if (props.indeterminate) classes.push('neo-checkbox--indeterminate')
   if (props.border) classes.push('neo-checkbox--border')
+  if (props.type && props.type !== 'default') classes.push(`neo-checkbox--${props.type}`)
   return classes.join(' ')
 })
 
@@ -126,6 +128,32 @@ const handleChange = () => {
 .neo-checkbox--checked .neo-checkbox__box,
 .neo-checkbox--indeterminate .neo-checkbox__box {
   background-color: var(--neo-primary);
+}
+
+/* Types */
+.neo-checkbox--primary.neo-checkbox--checked .neo-checkbox__box,
+.neo-checkbox--primary.neo-checkbox--indeterminate .neo-checkbox__box {
+  background-color: var(--neo-primary);
+}
+.neo-checkbox--success.neo-checkbox--checked .neo-checkbox__box,
+.neo-checkbox--success.neo-checkbox--indeterminate .neo-checkbox__box {
+  background-color: var(--neo-success);
+}
+.neo-checkbox--warning.neo-checkbox--checked .neo-checkbox__box,
+.neo-checkbox--warning.neo-checkbox--indeterminate .neo-checkbox__box {
+  background-color: var(--neo-warning);
+}
+.neo-checkbox--danger.neo-checkbox--checked .neo-checkbox__box,
+.neo-checkbox--danger.neo-checkbox--indeterminate .neo-checkbox__box {
+  background-color: var(--neo-danger);
+}
+.neo-checkbox--info.neo-checkbox--checked .neo-checkbox__box,
+.neo-checkbox--info.neo-checkbox--indeterminate .neo-checkbox__box {
+  background-color: var(--neo-info);
+}
+.neo-checkbox--default.neo-checkbox--checked .neo-checkbox__box,
+.neo-checkbox--default.neo-checkbox--indeterminate .neo-checkbox__box {
+  background-color: var(--neo-main);
 }
 
 .neo-checkbox--disabled {

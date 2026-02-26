@@ -6,6 +6,10 @@ Display number or dot indicator on element corner.
 
 <demo vue="../demos/badge-basic.vue" />
 
+## Type
+
+<demo vue="../demos/badge-type.vue" />
+
 ## Max Value & Dot
 
 <demo vue="../demos/badge-max-dot.vue" />

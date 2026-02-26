@@ -6,6 +6,10 @@
 
 <demo vue="../../demos/card-basic.vue" />
 
+## 类型 (Type)
+
+<demo vue="../../demos/card-type.vue" />
+
 ## 变体 (variant)
 
 `default`、`flat`、`elevated`、`gradient`、`colored`。
@@ -35,3 +39,4 @@
 | shadow | 是否阴影 | `boolean \| 'hover' \| 'never'` |
 | bordered | 是否边框 | `boolean` |
 | variant | 样式变体 | `CardVariant` |
+| type | 头部颜色类型 | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' \| 'default'` |

@@ -14,6 +14,10 @@ Dropdown select with single/multiple selection and search.
 
 <demo vue="../demos/select-search.vue" />
 
+## Type
+
+<demo vue="../demos/select-type.vue" />
+
 ## API
 
 | Prop | Description | Type |
@@ -26,5 +30,6 @@ Dropdown select with single/multiple selection and search.
 | clearable | Clearable | `boolean` |
 | disabled | Disabled | `boolean` |
 | size | Size | `ComponentSize` |
+| type | Color type for focus/selected state | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' \| 'default'` |
 
 Events: `update:modelValue`, `change`, `clear`.

@@ -6,6 +6,10 @@ Placeholder when there is no data.
 
 <demo vue="../demos/empty-basic.vue" />
 
+## Type
+
+<demo vue="../demos/empty-type.vue" />
+
 ## Custom Slot
 
 <demo vue="../demos/empty-custom.vue" />
@@ -15,5 +19,8 @@ Placeholder when there is no data.
 | Prop | Description | Type |
 |------|-------------|------|
 | description | Description text | `string` |
+| image | Custom image URL | `string` |
+| showImage | Whether to show image | `boolean` |
+| type | Color type for placeholder | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' \| 'default'` |
 
-Slots: default (custom content).
+Slots: default (custom content), `image`, `footer`.

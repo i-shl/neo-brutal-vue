@@ -14,6 +14,10 @@
 
 <demo vue="../../demos/select-search.vue" />
 
+## 类型 (Type)
+
+<demo vue="../../demos/select-type.vue" />
+
 ## API
 
 | 属性 | 说明 | 类型 |
@@ -26,5 +30,6 @@
 | clearable | 是否可清空 | `boolean` |
 | disabled | 禁用 | `boolean` |
 | size | 尺寸 | `ComponentSize` |
+| type | 聚焦/选中状态的颜色类型 | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' \| 'default'` |
 
 事件：`update:modelValue`、`change`、`clear`。

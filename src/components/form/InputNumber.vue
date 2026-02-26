@@ -75,6 +75,7 @@ const handleInput = (e: Event) => {
 .neo-input-number {
   display: inline-flex;
   align-items: center;
+  width: fit-content;
   background-color: var(--neo-white);
   border: var(--neo-border-thick);
   box-shadow: 4px 4px 0 var(--neo-black);
@@ -126,7 +127,9 @@ const handleInput = (e: Event) => {
 }
 
 .neo-input-number__input {
+  flex: 0 0 auto;
   width: 4rem;
+  min-width: 4rem;
   height: 2.5rem;
   padding: 0 0.5rem;
   font-size: 1rem;

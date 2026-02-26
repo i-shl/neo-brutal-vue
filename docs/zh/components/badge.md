@@ -6,6 +6,10 @@
 
 <demo vue="../../demos/badge-basic.vue" />
 
+## 类型 (Type)
+
+<demo vue="../../demos/badge-type.vue" />
+
 ## 最大值与圆点
 
 <demo vue="../../demos/badge-max-dot.vue" />

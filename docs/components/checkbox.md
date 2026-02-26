@@ -6,6 +6,10 @@ Multi-select checkbox.
 
 <demo vue="../demos/checkbox-basic.vue" />
 
+## Type
+
+<demo vue="../demos/checkbox-type.vue" />
+
 ## Disabled & Size
 
 <demo vue="../demos/checkbox-more.vue" />
@@ -18,3 +22,4 @@ Multi-select checkbox.
 | label | Option value (for group) | `string \| number \| boolean` |
 | disabled | Disabled | `boolean` |
 | size | Size | `ComponentSize` |
+| type | Color type when checked | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' \| 'default'` |

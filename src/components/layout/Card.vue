@@ -6,6 +6,7 @@ const props = withDefaults(defineProps<CardProps>(), {
   shadow: true,
   bordered: true,
   variant: 'default',
+  type: 'default',
   showHeader: true,
   showFooter: true,
 })
@@ -16,6 +17,7 @@ const cardClass = computed(() => {
   if (props.shadow === 'hover') classes.push('neo-card--shadow-hover')
   if (props.shadow === false || props.shadow === 'never') classes.push('neo-card--no-shadow')
   if (!props.bordered) classes.push('neo-card--no-border')
+  if (props.type && props.type !== 'default') classes.push(`neo-card--${props.type}`)
   
   return classes.join(' ')
 })
@@ -77,6 +79,13 @@ const bodyStyle = computed(() => props.bodyStyle as any)
 .neo-card--colored {
   background-color: var(--neo-main);
 }
+
+/* Types - header accent for colored/gradient */
+.neo-card--primary .neo-card__header { background-color: var(--neo-primary); }
+.neo-card--success .neo-card__header { background-color: var(--neo-success); }
+.neo-card--warning .neo-card__header { background-color: var(--neo-warning); }
+.neo-card--danger .neo-card__header { background-color: var(--neo-danger); }
+.neo-card--info .neo-card__header { background-color: var(--neo-info); }
 
 .neo-card--no-shadow { box-shadow: none; }
 .neo-card--no-border { border: none; }

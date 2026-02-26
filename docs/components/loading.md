@@ -6,6 +6,10 @@ Loading state. Supports fullscreen or local.
 
 <demo vue="../demos/loading-basic.vue" />
 
+## Type
+
+<demo vue="../demos/loading-type.vue" />
+
 ## Fullscreen Loading
 
 <demo vue="../demos/loading-fullscreen.vue" />
@@ -14,7 +18,8 @@ Loading state. Supports fullscreen or local.
 
 | Prop | Description | Type |
 |------|-------------|------|
+| loading | Whether to show loading | `boolean` |
 | text | Loading text | `string` |
+| size | Spinner size | `'small' \| 'default' \| 'large'` |
 | fullscreen | Whether fullscreen | `boolean` |
-| lock | Whether to lock scroll | `boolean` |
-| background | Overlay background color | `string` |
+| type | Color type for spinner | `'primary' \| 'success' \| 'warning' \| 'danger' \| 'info' \| 'default'` |

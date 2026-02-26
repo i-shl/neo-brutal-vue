@@ -6,15 +6,18 @@ const props = withDefaults(defineProps<{
   animated?: boolean
   rows?: number
   avatar?: boolean
+  type?: 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'default'
 }>(), {
   loading: true,
   animated: true,
-  rows: 3
+  rows: 3,
+  type: 'default'
 })
 
 const skeletonClass = computed(() => {
   const classes = ['neo-skeleton']
   if (props.animated !== false) classes.push('neo-skeleton--animated')
+  if (props.type && props.type !== 'default') classes.push(`neo-skeleton--${props.type}`)
   return classes.join(' ')
 })
 
@@ -71,6 +74,18 @@ const rowCount = computed(() => props.rows ?? 3)
   background-color: var(--neo-gray-200);
   border: var(--neo-border);
 }
+
+/* Types */
+.neo-skeleton--primary .neo-skeleton__avatar,
+.neo-skeleton--primary .neo-skeleton__row { background-color: color-mix(in srgb, var(--neo-primary) 30%, var(--neo-gray-200)); }
+.neo-skeleton--success .neo-skeleton__avatar,
+.neo-skeleton--success .neo-skeleton__row { background-color: color-mix(in srgb, var(--neo-success) 30%, var(--neo-gray-200)); }
+.neo-skeleton--warning .neo-skeleton__avatar,
+.neo-skeleton--warning .neo-skeleton__row { background-color: color-mix(in srgb, var(--neo-warning) 30%, var(--neo-gray-200)); }
+.neo-skeleton--danger .neo-skeleton__avatar,
+.neo-skeleton--danger .neo-skeleton__row { background-color: color-mix(in srgb, var(--neo-danger) 30%, var(--neo-gray-200)); }
+.neo-skeleton--info .neo-skeleton__avatar,
+.neo-skeleton--info .neo-skeleton__row { background-color: color-mix(in srgb, var(--neo-info) 30%, var(--neo-gray-200)); }
 
 .neo-skeleton--animated .neo-skeleton__avatar,
 .neo-skeleton--animated .neo-skeleton__row {

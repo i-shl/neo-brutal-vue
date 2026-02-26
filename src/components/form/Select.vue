@@ -4,6 +4,7 @@ import type { SelectProps, SelectOption } from '@/types'
 
 const props = withDefaults(defineProps<SelectProps>(), {
   size: 'md',
+  type: 'default',
   disabled: false,
   clearable: false,
   noDataText: '暂无数据',
@@ -45,6 +46,7 @@ const selectClass = computed(() => {
   ]
   if (isOpen.value) classes.push('neo-select--open')
   if (props.disabled) classes.push('neo-select--disabled')
+  if (props.type && props.type !== 'default') classes.push(`neo-select--${props.type}`)
   return classes.join(' ')
 })
 
@@ -179,6 +181,28 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
   background-color: var(--neo-gray-50);
 }
 
+/* Types - open/focus state accent */
+.neo-select--primary.neo-select--open .neo-select__trigger {
+  border-color: var(--neo-primary);
+  background-color: color-mix(in srgb, var(--neo-primary) 15%, white);
+}
+.neo-select--success.neo-select--open .neo-select__trigger {
+  border-color: var(--neo-success);
+  background-color: color-mix(in srgb, var(--neo-success) 15%, white);
+}
+.neo-select--warning.neo-select--open .neo-select__trigger {
+  border-color: var(--neo-warning);
+  background-color: color-mix(in srgb, var(--neo-warning) 15%, white);
+}
+.neo-select--danger.neo-select--open .neo-select__trigger {
+  border-color: var(--neo-danger);
+  background-color: color-mix(in srgb, var(--neo-danger) 15%, white);
+}
+.neo-select--info.neo-select--open .neo-select__trigger {
+  border-color: var(--neo-info);
+  background-color: color-mix(in srgb, var(--neo-info) 15%, white);
+}
+
 .neo-select__display {
   flex: 1;
   min-width: 0;
@@ -300,6 +324,18 @@ onUnmounted(() => document.removeEventListener('click', handleClickOutside))
   background-color: var(--neo-info-light);
   color: var(--neo-black);
 }
+
+/* Type variants for tag and option */
+.neo-select--primary .neo-select__tag { background-color: var(--neo-primary); }
+.neo-select--primary .neo-select__option--selected { background-color: color-mix(in srgb, var(--neo-primary) 25%, white); }
+.neo-select--success .neo-select__tag { background-color: var(--neo-success); }
+.neo-select--success .neo-select__option--selected { background-color: color-mix(in srgb, var(--neo-success) 25%, white); }
+.neo-select--warning .neo-select__tag { background-color: var(--neo-warning); }
+.neo-select--warning .neo-select__option--selected { background-color: color-mix(in srgb, var(--neo-warning) 25%, white); }
+.neo-select--danger .neo-select__tag { background-color: var(--neo-danger); }
+.neo-select--danger .neo-select__option--selected { background-color: color-mix(in srgb, var(--neo-danger) 25%, white); }
+.neo-select--info .neo-select__tag { background-color: var(--neo-info); }
+.neo-select--info .neo-select__option--selected { background-color: color-mix(in srgb, var(--neo-info) 25%, white); }
 
 .neo-select__option--disabled {
   opacity: 0.3;

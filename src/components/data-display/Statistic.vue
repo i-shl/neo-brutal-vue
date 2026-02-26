@@ -1,17 +1,25 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-const props = withDefaults(defineProps<{
-  title?: string
-  value?: string | number
-  precision?: number
-  prefix?: string
-  suffix?: string
-  valueStyle?: any
-  color?: string
-}>(), {
+import type { StatisticProps } from '@/types'
+
+const props = withDefaults(defineProps<StatisticProps>(), {
   precision: 0,
-  color: 'var(--neo-main)'
+  type: 'default'
+})
+
+const colorMap: Record<string, string> = {
+  primary: 'var(--neo-primary)',
+  success: 'var(--neo-success)',
+  warning: 'var(--neo-warning)',
+  danger: 'var(--neo-danger)',
+  info: 'var(--neo-info)',
+  default: 'var(--neo-main)'
+}
+
+const computedColor = computed(() => {
+  if (props.color) return props.color
+  return colorMap[props.type || 'default']
 })
 
 const formattedValue = computed(() => {
@@ -29,7 +37,7 @@ const formattedValue = computed(() => {
         <slot name="title">{{ title }}</slot>
       </span>
     </div>
-    <div class="neo-statistic__content" :style="{ ...valueStyle, color: color }">
+    <div class="neo-statistic__content" :style="{ ...valueStyle, color: computedColor }">
       <span v-if="prefix || $slots.prefix" class="neo-statistic__prefix">
         <slot name="prefix">{{ prefix }}</slot>
       </span>

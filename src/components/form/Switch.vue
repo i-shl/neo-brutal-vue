@@ -4,6 +4,7 @@ import type { SwitchProps } from '@/types'
 
 const props = withDefaults(defineProps<SwitchProps>(), {
   size: 'md',
+  type: 'default',
   activeValue: true,
   inactiveValue: false
 })
@@ -19,6 +20,7 @@ const switchClass = computed(() => {
   const classes: string[] = ['neo-switch', `neo-switch--${props.size}`]
   if (isChecked.value) classes.push('neo-switch--checked')
   if (props.disabled) classes.push('neo-switch--disabled')
+  if (props.type && props.type !== 'default') classes.push(`neo-switch--${props.type}`)
   return classes.join(' ')
 })
 
@@ -70,6 +72,26 @@ const handleClick = () => {
   background-color: var(--neo-main);
   box-shadow: 2px 2px 0 var(--neo-black);
   transform: translate(1px, 1px);
+}
+
+/* Types */
+.neo-switch--primary.neo-switch--checked .neo-switch__track {
+  background-color: var(--neo-primary);
+}
+.neo-switch--success.neo-switch--checked .neo-switch__track {
+  background-color: var(--neo-success);
+}
+.neo-switch--warning.neo-switch--checked .neo-switch__track {
+  background-color: var(--neo-warning);
+}
+.neo-switch--danger.neo-switch--checked .neo-switch__track {
+  background-color: var(--neo-danger);
+}
+.neo-switch--info.neo-switch--checked .neo-switch__track {
+  background-color: var(--neo-info);
+}
+.neo-switch--default.neo-switch--checked .neo-switch__track {
+  background-color: var(--neo-main);
 }
 
 .neo-switch__thumb {
