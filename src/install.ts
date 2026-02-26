@@ -3,13 +3,16 @@ import type { App, Component } from 'vue'
 
 // Base Components
 import NeoButton from './components/base/Button.vue'
+import NeoButtonGroup from './components/base/ButtonGroup.vue'
 import NeoLink from './components/base/Link.vue'
 import NeoSpace from './components/base/Space.vue'
 import NeoDivider from './components/base/Divider.vue'
 
 // Form Components
 import NeoInput from './components/form/Input.vue'
+import NeoInputGroup from './components/form/InputGroup.vue'
 import NeoInputNumber from './components/form/InputNumber.vue'
+import NeoInputOTP from './components/form/InputOTP.vue'
 import NeoTextarea from './components/form/Textarea.vue'
 import NeoSelect from './components/form/Select.vue'
 import NeoRadio from './components/form/Radio.vue'
@@ -28,6 +31,7 @@ import NeoCollapseItem from './components/layout/CollapseItem.vue'
 import NeoAccordion from './components/layout/Accordion.vue'
 import NeoAccordionItem from './components/layout/AccordionItem.vue'
 import NeoScrollArea from './components/layout/ScrollArea.vue'
+import NeoResizable from './components/layout/Resizable.vue'
 
 // Data Display Components
 import NeoTag from './components/data-display/Tag.vue'
@@ -44,6 +48,7 @@ import NeoTree from './components/data-display/Tree.vue'
 import NeoTable from './components/data-table/Table.vue'
 import NeoCarousel from './components/data-display/Carousel.vue'
 import NeoStatistic from './components/data-display/Statistic.vue'
+import NeoMarquee from './components/data-display/Marquee.vue'
 
 // Feedback Components
 import NeoAlert from './components/feedback/Alert.vue'
@@ -54,6 +59,8 @@ import NeoResult from './components/feedback/Result.vue'
 import NeoTooltip from './components/overlays/Tooltip.vue'
 import NeoDrawer from './components/overlays/Drawer.vue'
 import NeoPopover from './components/overlays/Popover.vue'
+import NeoHoverCard from './components/overlays/HoverCard.vue'
+import NeoContextMenu from './components/overlays/ContextMenu.vue'
 
 // Navigation Components
 import NeoTabs from './components/navigation/Tabs.vue'
@@ -78,13 +85,16 @@ import './styles/variables.css'
 const components: Record<string, Component> = {
   // Base
   NeoButton,
+  NeoButtonGroup,
   NeoLink,
   NeoSpace,
   NeoDivider,
   
   // Form
   NeoInput,
+  NeoInputGroup,
   NeoInputNumber,
+  NeoInputOTP,
   NeoTextarea,
   NeoSelect,
   NeoRadio,
@@ -103,6 +113,7 @@ const components: Record<string, Component> = {
   NeoAccordion,
   NeoAccordionItem,
   NeoScrollArea,
+  NeoResizable,
   
   // Data Display
   NeoTag,
@@ -119,6 +130,7 @@ const components: Record<string, Component> = {
   NeoTable,
   NeoCarousel,
   NeoStatistic,
+  NeoMarquee,
   
   // Feedback
   NeoAlert,
@@ -129,6 +141,8 @@ const components: Record<string, Component> = {
   NeoTooltip,
   NeoDrawer,
   NeoPopover,
+  NeoHoverCard,
+  NeoContextMenu,
   
   // Navigation
   NeoTabs,

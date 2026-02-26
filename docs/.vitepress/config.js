@@ -46,6 +46,7 @@ export default defineConfig({
             text: 'Base',
             items: [
               { text: 'Button', link: '/components/button' },
+              { text: 'ButtonGroup', link: '/components/button-group' },
               { text: 'Link', link: '/components/link' },
               { text: 'Space', link: '/components/space' },
               { text: 'Divider', link: '/components/divider' },
@@ -55,7 +56,9 @@ export default defineConfig({
             text: 'Form',
             items: [
               { text: 'Input', link: '/components/input' },
+              { text: 'InputGroup', link: '/components/input-group' },
               { text: 'InputNumber', link: '/components/input-number' },
+              { text: 'InputOTP', link: '/components/input-otp' },
               { text: 'Textarea', link: '/components/textarea' },
               { text: 'Select', link: '/components/select' },
               { text: 'Radio', link: '/components/radio' },
@@ -77,6 +80,7 @@ export default defineConfig({
               { text: 'Accordion', link: '/components/accordion' },
               { text: 'AccordionItem', link: '/components/accordion-item' },
               { text: 'ScrollArea', link: '/components/scroll-area' },
+              { text: 'Resizable', link: '/components/resizable' },
             ],
           },
           {
@@ -96,6 +100,7 @@ export default defineConfig({
               { text: 'Table', link: '/components/table' },
               { text: 'Carousel', link: '/components/carousel' },
               { text: 'Statistic', link: '/components/statistic' },
+              { text: 'Marquee', link: '/components/marquee' },
             ],
           },
           {
@@ -113,6 +118,8 @@ export default defineConfig({
             items: [
               { text: 'Tooltip', link: '/components/tooltip' },
               { text: 'Popover', link: '/components/popover' },
+              { text: 'HoverCard', link: '/components/hover-card' },
+              { text: 'ContextMenu', link: '/components/context-menu' },
               { text: 'Drawer', link: '/components/drawer' },
             ],
           },
@@ -167,6 +174,7 @@ export default defineConfig({
             text: '基础组件',
             items: [
               { text: 'Button 按钮', link: '/zh/components/button' },
+              { text: 'ButtonGroup 按钮组', link: '/zh/components/button-group' },
               { text: 'Link 链接', link: '/zh/components/link' },
               { text: 'Space 间距', link: '/zh/components/space' },
               { text: 'Divider 分割线', link: '/zh/components/divider' },
@@ -176,7 +184,9 @@ export default defineConfig({
             text: '表单组件',
             items: [
               { text: 'Input 输入框', link: '/zh/components/input' },
+              { text: 'InputGroup 输入框组', link: '/zh/components/input-group' },
               { text: 'InputNumber 数字输入框', link: '/zh/components/input-number' },
+              { text: 'InputOTP 验证码输入框', link: '/zh/components/input-otp' },
               { text: 'Textarea 文本域', link: '/zh/components/textarea' },
               { text: 'Select 选择器', link: '/zh/components/select' },
               { text: 'Radio 单选框', link: '/zh/components/radio' },
@@ -198,6 +208,7 @@ export default defineConfig({
               { text: 'Accordion 手风琴', link: '/zh/components/accordion' },
               { text: 'AccordionItem 手风琴项', link: '/zh/components/accordion-item' },
               { text: 'ScrollArea 滚动区域', link: '/zh/components/scroll-area' },
+              { text: 'Resizable 可缩放面板', link: '/zh/components/resizable' },
             ],
           },
           {
@@ -217,6 +228,7 @@ export default defineConfig({
               { text: 'Table 表格', link: '/zh/components/table' },
               { text: 'Carousel 走马灯', link: '/zh/components/carousel' },
               { text: 'Statistic 统计数值', link: '/zh/components/statistic' },
+              { text: 'Marquee 跑马灯', link: '/zh/components/marquee' },
             ],
           },
           {
@@ -234,6 +246,8 @@ export default defineConfig({
             items: [
               { text: 'Tooltip 文字提示', link: '/zh/components/tooltip' },
               { text: 'Popover 气泡卡片', link: '/zh/components/popover' },
+              { text: 'HoverCard 悬浮卡片', link: '/zh/components/hover-card' },
+              { text: 'ContextMenu 右键菜单', link: '/zh/components/context-menu' },
               { text: 'Drawer 抽屉', link: '/zh/components/drawer' },
             ],
           },

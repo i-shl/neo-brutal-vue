@@ -3,7 +3,7 @@ layout: home
 hero:
   name: NeoBrutal Vue
   text: The Unapologetic Vue 3 UI Library
-  tagline: Break the mold of flat design. Bold borders, hard offset shadows, and high-contrast color palettes. 40+ Neobrutalism components out of the box.
+  tagline: Break the mold of flat design. Bold borders, hard offset shadows, and high-contrast color palettes. A rich and expanding set of Neobrutalism components out of the box.
   actions:
     - theme: brand
       text: Quick Start

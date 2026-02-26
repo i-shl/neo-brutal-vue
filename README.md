@@ -9,7 +9,7 @@ English | [中文](./README.zh-CN.md)
 ## ✨ Features
 
 - 🎨 **Neobrutalism design** - Bold borders, hard shadows, strong contrast
-- 📦 **40+ components** - Base, form, layout, data display, feedback, navigation
+- 📦 **Rich components** - Base, form, layout, data display, feedback, navigation
 - 🎯 **TypeScript** - Full type definitions
 - 🎭 **Theme system** - Light/dark mode support
 - 📱 **Responsive** - 5 sizes (xs/sm/md/lg/xl)

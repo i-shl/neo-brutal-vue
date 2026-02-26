@@ -1,0 +1,94 @@
+/* Neobrutalism UI style overrides for Vitepress Default Home */
+
+/* Hero Identity */
+.VPHero .name {
+  color: var(--neo-black) !important;
+  text-shadow: 3px 3px 0 var(--neo-main);
+  letter-spacing: -0.04em;
+  font-weight: 900 !important;
+  /* Dark mode text shadow adjustment */
+}
+html.dark .VPHero .name {
+  color: var(--neo-white) !important;
+  text-shadow: 4px 4px 0px var(--neo-main-dark);
+}
+
+.VPHero .tagline {
+  font-weight: 600 !important;
+  color: var(--neo-text-primary) !important;
+}
+
+/* Hero Action Buttons */
+.VPHero .VPButton {
+  border: var(--neo-border) !important;
+  box-shadow: var(--neo-shadow) !important;
+  transition: var(--neo-transition) !important;
+  border-radius: var(--neo-radius-none) !important; /* brutally boxy */
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.VPHero .VPButton:hover {
+  transform: translate(-2px, -2px) !important;
+  box-shadow: var(--neo-shadow-hover) !important;
+}
+
+.VPHero .VPButton:active {
+  transform: translate(4px, 4px) !important;
+  box-shadow: none !important;
+}
+
+.VPHero .VPButton.brand {
+  background-color: var(--neo-main) !important;
+  color: #1a1a1a !important; /* Force black text */
+}
+
+.VPHero .VPButton.alt {
+  background-color: var(--neo-white) !important;
+  color: var(--neo-black) !important;
+}
+html.dark .VPHero .VPButton.alt {
+  background-color: var(--neo-gray-800) !important;
+  color: var(--neo-white) !important;
+}
+
+/* Feature Styles (Vitepress natively handles the responsive grid 1 to 3 cols) */
+.VPFeature {
+  border: var(--neo-border) !important;
+  box-shadow: var(--neo-shadow) !important;
+  border-radius: var(--neo-radius-none) !important;
+  transition: var(--neo-transition) !important;
+  background-color: var(--neo-white) !important;
+  padding: 32px !important;
+  display: flex;
+  flex-direction: column;
+}
+
+html.dark .VPFeature {
+  background-color: var(--neo-gray-800) !important;
+}
+
+.VPFeature:hover {
+  transform: translate(-3px, -3px) !important;
+  box-shadow: var(--neo-shadow-lg) !important;
+  border-color: var(--neo-black) !important;
+}
+
+html.dark .VPFeature:hover {
+  border-color: var(--neo-white) !important;
+}
+
+.VPFeature .title {
+  font-weight: 900 !important;
+  font-size: 1.25rem !important;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--neo-black) !important;
+}
+
+.VPFeature .details {
+  font-weight: 500 !important;
+  color: var(--neo-text-secondary) !important;
+  line-height: 1.6;
+}

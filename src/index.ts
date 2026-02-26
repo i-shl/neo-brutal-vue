@@ -4,13 +4,16 @@ import './styles/variables.css'
 
 // Base Components
 export { default as NeoButton } from './components/base/Button.vue'
+export { default as NeoButtonGroup } from './components/base/ButtonGroup.vue'
 export { default as NeoLink } from './components/base/Link.vue'
 export { default as NeoSpace } from './components/base/Space.vue'
 export { default as NeoDivider } from './components/base/Divider.vue'
 
 // Form Components
 export { default as NeoInput } from './components/form/Input.vue'
+export { default as NeoInputGroup } from './components/form/InputGroup.vue'
 export { default as NeoInputNumber } from './components/form/InputNumber.vue'
+export { default as NeoInputOTP } from './components/form/InputOTP.vue'
 export { default as NeoTextarea } from './components/form/Textarea.vue'
 export { default as NeoSelect } from './components/form/Select.vue'
 export { default as NeoRadio } from './components/form/Radio.vue'
@@ -29,6 +32,7 @@ export { default as NeoCollapseItem } from './components/layout/CollapseItem.vue
 export { default as NeoAccordion } from './components/layout/Accordion.vue'
 export { default as NeoAccordionItem } from './components/layout/AccordionItem.vue'
 export { default as NeoScrollArea } from './components/layout/ScrollArea.vue'
+export { default as NeoResizable } from './components/layout/Resizable.vue'
 
 // Data Display Components
 export { default as NeoTag } from './components/data-display/Tag.vue'
@@ -45,6 +49,7 @@ export { default as NeoTree } from './components/data-display/Tree.vue'
 export { default as NeoTable } from './components/data-table/Table.vue'
 export { default as NeoCarousel } from './components/data-display/Carousel.vue'
 export { default as NeoStatistic } from './components/data-display/Statistic.vue'
+export { default as NeoMarquee } from './components/data-display/Marquee.vue'
 
 // Feedback Components
 export { default as NeoAlert } from './components/feedback/Alert.vue'
@@ -55,6 +60,8 @@ export { default as NeoResult } from './components/feedback/Result.vue'
 export { default as NeoTooltip } from './components/overlays/Tooltip.vue'
 export { default as NeoDrawer } from './components/overlays/Drawer.vue'
 export { default as NeoPopover } from './components/overlays/Popover.vue'
+export { default as NeoHoverCard } from './components/overlays/HoverCard.vue'
+export { default as NeoContextMenu } from './components/overlays/ContextMenu.vue'
 
 // Navigation Components
 export { default as NeoTabs } from './components/navigation/Tabs.vue'
