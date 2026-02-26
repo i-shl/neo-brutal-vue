@@ -4,23 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoAlert title="提示" description="这是一段描述文字" />
-  <NeoAlert type="success" title="成功" />
-  <NeoAlert type="warning" title="警告" />
-  <NeoAlert type="error" title="错误" />
-  <NeoAlert type="info" title="信息" />
-</template>
-```
+<demo vue="../../demos/alert-basic.vue" />
 
 ## 可关闭
 
-```vue
-<template>
-  <NeoAlert title="可关闭" closable @close="handleClose" />
-</template>
-```
+<demo vue="../../demos/alert-closable.vue" />
 
 ## API
 

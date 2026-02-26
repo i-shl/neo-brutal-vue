@@ -4,34 +4,11 @@ Loading state. Supports fullscreen or local.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoLoading text="Loading..." />
-</template>
-```
+<demo vue="../demos/loading-basic.vue" />
 
 ## Fullscreen Loading
 
-Via method call (if the library provides a global method):
-
-```ts
-// Open fullscreen Loading
-NeoLoading.service({ text: 'Loading...', fullscreen: true })
-
-// Close
-loadingInstance.close()
-```
-
-Or use inside a parent container:
-
-```vue
-<template>
-  <div style="position: relative;">
-    <NeoLoading fullscreen />
-    Content area
-  </div>
-</template>
-```
+<demo vue="../demos/loading-fullscreen.vue" />
 
 ## API
 

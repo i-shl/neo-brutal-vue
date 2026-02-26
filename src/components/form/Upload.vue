@@ -16,15 +16,33 @@ const fileInput = ref<HTMLInputElement | null>(null)
 const files = ref<File[]>([])
 
 const handleFileSelect = (e: Event) => {
-  const selectedFiles = (e.target as HTMLInputElement).files
-  if (selectedFiles) {
+  const target = e.target as HTMLInputElement
+  const selectedFiles = target?.files
+  if (selectedFiles && selectedFiles.length > 0) {
     addFiles(Array.from(selectedFiles))
+    target.value = ''
   }
 }
 
+const handleDrop = (e: DragEvent) => {
+  isDragOver.value = false
+  const droppedFiles = e.dataTransfer?.files
+  if (droppedFiles && droppedFiles.length > 0) {
+    addFiles(Array.from(droppedFiles))
+  }
+  e.preventDefault()
+}
+
 const addFiles = (newFiles: File[]) => {
-  files.value = [...files.value, ...newFiles]
+  let toAdd = newFiles
+  if (props.limit !== undefined && props.limit > 0) {
+    const remaining = props.limit - files.value.length
+    if (remaining <= 0) return
+    toAdd = newFiles.slice(0, remaining)
+  }
+  files.value = [...files.value, ...toAdd]
   emit('change', files.value)
+  if (toAdd.length > 0) emit('success', toAdd)
 }
 
 const removeFile = (index: number) => {
@@ -42,11 +60,15 @@ const triggerClick = () => {
   <div class="neo-upload">
     <div 
       class="neo-upload__trigger"
-      :class="{ 'is-dragover': isDragOver }"
-      @click="triggerClick"
-      @dragover.prevent="isDragOver = true"
+      :class="{ 
+        'is-dragover': isDragOver, 
+        'is-limit-reached': limit && files.length >= limit,
+        'has-drag': drag
+      }"
+      @click="!limit || files.length < limit ? triggerClick() : null"
+      @dragover.prevent="(!limit || files.length < limit) && (isDragOver = true)"
       @dragleave.prevent="isDragOver = false"
-      @drop.prevent="isDragOver = false; handleFileSelect($event)"
+      @drop.prevent="handleDrop"
     >
       <input 
         ref="fileInput"
@@ -57,96 +79,178 @@ const triggerClick = () => {
         @change="handleFileSelect"
       >
       <div v-if="drag" class="neo-upload__drag-content">
-        <span class="neo-upload__icon">📁</span>
-        <p>将文件拖到此处，或 <span>点击上传</span></p>
+        <div class="neo-upload__icon-box">📁</div>
+        <p class="neo-upload__main-text">Drop files here, or <span class="neo-upload__link">click to upload</span></p>
+        <p v-if="limit" class="neo-upload__limit">Maximum {{ limit }} file(s) allowed</p>
       </div>
       <slot v-else />
     </div>
     
-    <div v-if="files.length > 0" class="neo-upload__list">
-      <div v-for="(file, index) in files" :key="index" class="neo-upload__item">
+    <TransitionGroup name="neo-upload-list" tag="div" class="neo-upload__list">
+      <div v-for="(file, index) in files" :key="file.name + index" class="neo-upload__item">
+        <div class="neo-upload__item-icon">📄</div>
         <span class="neo-upload__item-name">{{ file.name }}</span>
-        <span class="neo-upload__item-status">已就绪</span>
-        <span class="neo-upload__item-delete" @click="removeFile(index)">✕</span>
+        <span class="neo-upload__item-status">Ready</span>
+        <button type="button" class="neo-upload__item-delete" @click="removeFile(index)">✕</button>
       </div>
-    </div>
+    </TransitionGroup>
   </div>
 </template>
 
 <style scoped>
 .neo-upload {
   width: 100%;
+  font-family: var(--neo-font-family);
 }
 
 .neo-upload__trigger {
-  border: 4px dashed black;
-  padding: 2rem;
-  background: white;
+  border: 4px dashed var(--neo-black);
+  padding: 3rem 2rem;
+  background-color: var(--neo-white);
   text-align: center;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: var(--neo-transition);
+  position: relative;
+  border-radius: 4px;
 }
 
-.neo-upload__trigger:hover, .neo-upload__trigger.is-dragover {
-  background: var(--neo-yellow);
-  box-shadow: 8px 8px 0px black;
-  transform: translate(-4px, -4px);
+.neo-upload__trigger:hover {
+  background-color: var(--neo-gray-50);
+  border-style: solid;
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--neo-black);
+}
+
+.neo-upload__trigger.is-dragover {
+  background-color: var(--neo-main);
+  border-style: solid;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--neo-black);
+}
+
+.neo-upload__trigger.is-limit-reached {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--neo-gray-100);
 }
 
 .neo-upload__input {
   display: none;
 }
 
-.neo-upload__drag-content p {
-  font-weight: 800;
-  margin-top: 1rem;
+.neo-upload__drag-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.neo-upload__drag-content p span {
+.neo-upload__icon-box {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(4px 4px 0 var(--neo-black));
+}
+
+.neo-upload__main-text {
+  font-size: 1.125rem;
+  font-weight: var(--neo-font-weight-black);
+  text-transform: uppercase;
+  color: var(--neo-black);
+}
+
+.neo-upload__link {
   color: var(--neo-primary);
   text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
 }
 
-.neo-upload__icon {
-  font-size: 3rem;
+.neo-upload__limit {
+  font-size: 0.8125rem;
+  font-weight: var(--neo-font-weight-bold);
+  color: var(--neo-gray-500);
 }
 
 .neo-upload__list {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 1rem;
 }
 
 .neo-upload__item {
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem;
-  background: white;
-  border: 3px solid black;
-  box-shadow: 4px 4px 0px black;
-  font-weight: 700;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 4px 4px 0 var(--neo-black);
+  font-weight: var(--neo-font-weight-bold);
+  transition: var(--neo-transition);
+}
+
+.neo-upload__item:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--neo-black);
+}
+
+.neo-upload__item-icon {
+  font-size: 1.25rem;
 }
 
 .neo-upload__item-name {
   flex: 1;
+  color: var(--neo-black);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .neo-upload__item-status {
-  font-size: 0.8rem;
-  background: var(--neo-green);
-  padding: 2px 8px;
-  border: 2px solid black;
-  margin-right: 1rem;
+  font-size: 0.75rem;
+  font-weight: var(--neo-font-weight-black);
+  background-color: var(--neo-main);
+  color: var(--neo-black);
+  padding: 0.25rem 0.625rem;
+  border: var(--neo-border);
+  text-transform: uppercase;
+  box-shadow: 2px 2px 0 var(--neo-black);
 }
 
 .neo-upload__item-delete {
   cursor: pointer;
-  font-weight: 900;
-  color: var(--neo-pink);
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--neo-danger);
+  color: var(--neo-white);
+  border: var(--neo-border);
+  font-weight: var(--neo-font-weight-black);
+  box-shadow: 2px 2px 0 var(--neo-black);
+  transition: var(--neo-transition);
 }
 
 .neo-upload__item-delete:hover {
-  transform: scale(1.2);
+  transform: scale(1.1) rotate(90deg);
+  background-color: var(--neo-black);
+}
+
+/* List Transitions */
+.neo-upload-list-enter-active,
+.neo-upload-list-leave-active {
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.neo-upload-list-enter-from {
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.neo-upload-list-leave-to {
+  opacity: 0;
+  transform: translateX(20px);
 }
 </style>

@@ -4,27 +4,15 @@ File upload with click and drag support.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoUpload action="/api/upload" />
-</template>
-```
+<demo vue="../demos/upload-basic.vue" />
 
 ## Drag Upload
 
-```vue
-<template>
-  <NeoUpload action="/api/upload" drag />
-</template>
-```
+<demo vue="../demos/upload-drag.vue" />
 
 ## Multiple & Limit
 
-```vue
-<template>
-  <NeoUpload action="/api/upload" multiple :limit="5" accept="image/*" />
-</template>
-```
+<demo vue="../demos/upload-multiple.vue" />
 
 ## API
 

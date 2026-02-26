@@ -4,22 +4,11 @@ Display number or dot indicator on element corner.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoBadge :value="5">
-    <NeoButton>Messages</NeoButton>
-  </NeoBadge>
-</template>
-```
+<demo vue="../demos/badge-basic.vue" />
 
 ## Max Value & Dot
 
-```vue
-<template>
-  <NeoBadge :value="100" :max="99">Comments</NeoBadge>
-  <NeoBadge is-dot>Status</NeoBadge>
-</template>
-```
+<demo vue="../demos/badge-max-dot.vue" />
 
 ## API
 

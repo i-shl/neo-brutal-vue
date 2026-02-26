@@ -4,21 +4,7 @@ Popover layer on click/hover. Can hold more content.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoPopover content="Popover content" title="Title">
-    <NeoButton>Click</NeoButton>
-  </NeoPopover>
-</template>
-```
-
-## Trigger & Placement
-
-```vue
-<template>
-  <NeoPopover trigger="hover" placement="bottom" content="Show on hover" />
-</template>
-```
+<demo vue="../demos/popover-basic.vue" />
 
 ## API
 

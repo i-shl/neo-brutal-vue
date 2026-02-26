@@ -4,15 +4,7 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoButton>默认</NeoButton>
-  <NeoButton type="primary">主要</NeoButton>
-  <NeoButton type="success">成功</NeoButton>
-  <NeoButton type="warning">警告</NeoButton>
-  <NeoButton type="danger">危险</NeoButton>
-</template>
-```
+<demo vue="../../demos/button-basic.vue" />
 
 ## 类型 (type)
 
@@ -24,27 +16,13 @@
 - `outline`：描边
 - `ghost`：透明背景
 
-```vue
-<template>
-  <NeoButton variant="solid" type="primary">Solid</NeoButton>
-  <NeoButton variant="outline" type="primary">Outline</NeoButton>
-  <NeoButton variant="ghost" type="primary">Ghost</NeoButton>
-</template>
-```
+<demo vue="../../demos/button-variant.vue" />
 
 ## 尺寸 (size)
 
 `xs`、`sm`、`md`、`lg`、`xl`。
 
-```vue
-<template>
-  <NeoButton size="xs">超小</NeoButton>
-  <NeoButton size="sm">小</NeoButton>
-  <NeoButton size="md">中</NeoButton>
-  <NeoButton size="lg">大</NeoButton>
-  <NeoButton size="xl">超大</NeoButton>
-</template>
-```
+<demo vue="../../demos/button-size.vue" />
 
 ## 形状 (shape)
 
@@ -53,30 +31,15 @@
 - `circle`：圆形（常配合图标）
 - `sharp`：直角
 
-```vue
-<template>
-  <NeoButton shape="round">圆角</NeoButton>
-  <NeoButton circle>🔥</NeoButton>
-  <NeoButton shape="sharp">直角</NeoButton>
-</template>
-```
+<demo vue="../../demos/button-shape.vue" />
 
 ## 禁用与加载
 
-```vue
-<template>
-  <NeoButton disabled>禁用</NeoButton>
-  <NeoButton :loading="true">加载中</NeoButton>
-</template>
-```
+<demo vue="../../demos/button-disabled.vue" />
 
 ## 块级按钮
 
-```vue
-<template>
-  <NeoButton block>块级按钮</NeoButton>
-</template>
-```
+<demo vue="../../demos/button-block.vue" />
 
 ## API
 

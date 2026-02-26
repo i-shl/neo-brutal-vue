@@ -4,31 +4,15 @@ Star rating component.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoRate v-model="score" />
-</template>
-
-<script setup lang="ts">
-const score = ref(3)
-</script>
-```
+<demo vue="../demos/rate-basic.vue" />
 
 ## Half Star & Custom Count
 
-```vue
-<template>
-  <NeoRate v-model="score" allow-half :max="10" />
-</template>
-```
+<demo vue="../demos/rate-half.vue" />
 
 ## Read Only
 
-```vue
-<template>
-  <NeoRate v-model="score" disabled />
-</template>
-```
+<demo vue="../demos/rate-readonly.vue" />
 
 ## API
 

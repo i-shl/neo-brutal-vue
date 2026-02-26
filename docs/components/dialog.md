@@ -4,32 +4,11 @@ Modal dialog for forms, confirmation, or custom content.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoButton @click="open = true">Open Dialog</NeoButton>
-  <NeoDialog v-model="open" title="Title" width="500px">
-    Dialog content
-  </NeoDialog>
-</template>
-
-<script setup lang="ts">
-const open = ref(false)
-</script>
-```
+<demo vue="../demos/dialog-basic.vue" />
 
 ## Custom Footer
 
-```vue
-<template>
-  <NeoDialog v-model="open" title="Confirm">
-    <p>Are you sure you want to proceed?</p>
-    <template #footer>
-      <NeoButton @click="open = false">Cancel</NeoButton>
-      <NeoButton type="primary" @click="confirm">Confirm</NeoButton>
-    </template>
-  </NeoDialog>
-</template>
-```
+<demo vue="../demos/dialog-footer.vue" />
 
 ## API
 

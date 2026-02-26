@@ -4,21 +4,11 @@ Scroll container with fixed or max height. Custom scrollbar styling.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoScrollArea height="200px">
-    <div>Very long content...</div>
-  </NeoScrollArea>
-</template>
-```
+<demo vue="../demos/scroll-area-basic.vue" />
 
 ## Max Height
 
-```vue
-<template>
-  <NeoScrollArea max-height="300px">Content</NeoScrollArea>
-</template>
-```
+<demo vue="../demos/scroll-area-max.vue" />
 
 ## API
 

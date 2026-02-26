@@ -4,33 +4,15 @@ Feedback for operation results (success, error, 403, 404, 500, etc.).
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoResult status="success" title="Success" sub-title="Your request has been submitted" />
-</template>
-```
+<demo vue="../demos/result-basic.vue" />
 
 ## Different Statuses
 
-```vue
-<template>
-  <NeoResult status="error" title="Submission Failed" sub-title="Please try again later" />
-  <NeoResult status="404" title="Page Not Found" />
-  <NeoResult status="403" title="No Permission" />
-</template>
-```
+<demo vue="../demos/result-statuses.vue" />
 
 ## Custom Action Area
 
-```vue
-<template>
-  <NeoResult status="success" title="Success">
-    <template #extra>
-      <NeoButton type="primary">Back to Home</NeoButton>
-    </template>
-  </NeoResult>
-</template>
-```
+<demo vue="../demos/result-extra.vue" />
 
 ## API
 

@@ -4,15 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoSwitch v-model="enabled" />
-</template>
+<demo vue="../../demos/switch-basic.vue" />
 
-<script setup lang="ts">
-const enabled = ref(false)
-</script>
-```
+## 禁用与尺寸
+
+<demo vue="../../demos/switch-more.vue" />
 
 ## API
 

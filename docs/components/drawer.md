@@ -4,27 +4,11 @@ Panel that slides in from the screen side. Often used for forms or details.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoButton @click="open = true">Open Drawer</NeoButton>
-  <NeoDrawer v-model="open" title="Drawer Title" direction="rtl">
-    Drawer content
-  </NeoDrawer>
-</template>
-
-<script setup lang="ts">
-const open = ref(false)
-</script>
-```
+<demo vue="../demos/drawer-basic.vue" />
 
 ## Direction & Size
 
-```vue
-<template>
-  <NeoDrawer v-model="open" title="Right Drawer" direction="rtl" size="400px" />
-  <NeoDrawer v-model="open2" title="Bottom Drawer" direction="btt" />
-</template>
-```
+<demo vue="../demos/drawer-direction.vue" />
 
 ## API
 

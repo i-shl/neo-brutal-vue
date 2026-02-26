@@ -4,13 +4,6 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoSpace>
-    <NeoButton>按钮1</NeoButton>
-    <NeoButton>按钮2</NeoButton>
-  </NeoSpace>
-</template>
-```
+<demo vue="../../demos/space-basic.vue" />
 
 可通过 `size` 等属性调整间距大小。

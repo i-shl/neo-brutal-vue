@@ -17,12 +17,9 @@ const alertClass = computed(() => {
   const classes: string[] = [
     'neo-alert',
     `neo-alert--${props.type}`,
-    `neo-alert--${props.effect}`,
   ]
-  
   if (props.closable) classes.push('neo-alert--closable')
   if (props.showIcon) classes.push('neo-alert--icon')
-  
   return classes.join(' ')
 })
 
@@ -33,7 +30,6 @@ const handleClose = (e: MouseEvent) => {
 
 <template>
   <div :class="alertClass" role="alert">
-    <!-- Icon -->
     <div v-if="showIcon" class="neo-alert__icon">
       <slot name="icon">
         <span v-if="type === 'success'">✓</span>
@@ -43,7 +39,6 @@ const handleClose = (e: MouseEvent) => {
       </slot>
     </div>
     
-    <!-- Content -->
     <div class="neo-alert__content">
       <div v-if="title" class="neo-alert__title">
         <slot name="title">{{ title }}</slot>
@@ -53,137 +48,88 @@ const handleClose = (e: MouseEvent) => {
       </div>
     </div>
     
-    <!-- Close -->
-    <button
-      v-if="closable"
-      type="button"
-      class="neo-alert__close"
-      @click="handleClose"
-    >
+    <button v-if="closable" type="button" class="neo-alert__close" @click="handleClose">
       {{ closeText || '✕' }}
     </button>
   </div>
 </template>
 
 <style scoped>
-/* ==================== Base Alert Styles ==================== */
 .neo-alert {
-  --alert-bg: var(--neo-bg-primary);
-  --alert-border: var(--neo-border-color);
-  --alert-text: var(--neo-text-primary);
-  --alert-icon: var(--neo-text-primary);
+  --alert-bg: var(--neo-white);
+  --alert-color: var(--neo-black);
   
   display: flex;
   align-items: flex-start;
-  gap: var(--neo-spacing-sm);
-  padding: var(--neo-spacing-md);
-  margin-bottom: var(--neo-spacing-md);
-  font-family: var(--neo-font-family);
-  font-size: var(--neo-font-size-sm);
-  color: var(--alert-text);
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
   background-color: var(--alert-bg);
-  border: var(--neo-border-width) solid var(--alert-border);
-  border-radius: var(--neo-radius);
-  box-shadow: var(--neo-shadow-sm);
-  transition: all var(--neo-transition-base) var(--neo-transition-timing);
+  color: var(--alert-color);
+  border: var(--neo-border-thick);
+  border-radius: var(--neo-radius-sm);
+  box-shadow: var(--neo-shadow);
+  transition: var(--neo-transition);
 }
 
-/* ==================== Alert Types ==================== */
-.neo-alert--success {
-  --alert-bg: var(--neo-success-light);
-  --alert-border: var(--neo-success);
-  --alert-text: var(--neo-success);
-  --alert-icon: var(--neo-success);
-}
+.neo-alert--success { --alert-bg: var(--neo-main); }
+.neo-alert--warning { --alert-bg: var(--neo-warning); }
+.neo-alert--error { --alert-bg: var(--neo-danger); --alert-color: var(--neo-white); }
+.neo-alert--info { --alert-bg: var(--neo-info); --alert-color: var(--neo-white); }
 
-.neo-alert--warning {
-  --alert-bg: var(--neo-warning-light);
-  --alert-border: var(--neo-warning);
-  --alert-text: var(--neo-warning);
-  --alert-icon: var(--neo-warning);
-}
-
-.neo-alert--error {
-  --alert-bg: var(--neo-danger-light);
-  --alert-border: var(--neo-danger);
-  --alert-text: var(--neo-danger);
-  --alert-icon: var(--neo-danger);
-}
-
-.neo-alert--info {
-  --alert-bg: var(--neo-info-light);
-  --alert-border: var(--neo-info);
-  --alert-text: var(--neo-info);
-  --alert-icon: var(--neo-info);
-}
-
-/* ==================== Alert Effects ==================== */
-.neo-alert--dark {
-  --alert-text: var(--neo-white);
-}
-
-.neo-alert--dark.neo-alert--success {
-  --alert-bg: var(--neo-success);
-}
-
-.neo-alert--dark.neo-alert--warning {
-  --alert-bg: var(--neo-warning);
-}
-
-.neo-alert--dark.neo-alert--error {
-  --alert-bg: var(--neo-danger);
-}
-
-.neo-alert--dark.neo-alert--info {
-  --alert-bg: var(--neo-info);
-}
-
-/* ==================== Alert Icon ==================== */
 .neo-alert__icon {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 20px;
-  height: 20px;
-  font-size: var(--neo-font-size-base);
-  font-weight: var(--neo-font-weight-bold);
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: var(--neo-font-weight-black);
+  border: var(--neo-border);
+  background-color: var(--neo-white);
+  color: var(--neo-black);
+  border-radius: 4px;
 }
 
-/* ==================== Alert Content ==================== */
 .neo-alert__content {
   flex: 1;
   min-width: 0;
 }
 
 .neo-alert__title {
-  font-weight: var(--neo-font-weight-semibold);
-  color: inherit;
+  font-weight: var(--neo-font-weight-black);
+  text-transform: uppercase;
+  font-size: 0.9375rem;
+  line-height: 1.5rem;
 }
 
 .neo-alert__description {
-  margin-top: var(--neo-spacing-xs);
-  line-height: var(--neo-line-height-relaxed);
-  opacity: 0.9;
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: var(--neo-font-weight-normal);
+  line-height: 1.4;
 }
 
-/* ==================== Alert Close ==================== */
 .neo-alert__close {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  padding: var(--neo-spacing-xs);
-  font-size: var(--neo-font-size-xs);
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
   color: inherit;
-  background: transparent;
-  border: none;
-  opacity: 0.7;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid currentColor;
   cursor: pointer;
-  transition: opacity var(--neo-transition-fast);
+  border-radius: 2px;
+  transition: var(--neo-transition);
 }
 
 .neo-alert__close:hover {
-  opacity: 1;
+  background-color: var(--neo-black);
+  color: var(--neo-white);
 }
 </style>

@@ -4,33 +4,15 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <div style="height: 2000px">长内容...</div>
-  <NeoBacktop />
-</template>
-```
+<demo vue="../../demos/backtop-basic.vue" />
 
 ## 自定义位置与可见高度
 
-```vue
-<template>
-  <NeoBacktop :visibility-height="300" :right="40" :bottom="80" />
-</template>
-```
+<demo vue="../../demos/backtop-custom.vue" />
 
 ## 指定滚动容器
 
 若页面滚动发生在指定容器内，可通过 `target` 指定该容器的选择器。
-
-```vue
-<template>
-  <div ref="scrollRef" class="scroll-box">
-    内容...
-  </div>
-  <NeoBacktop target=".scroll-box" />
-</template>
-```
 
 ## API
 

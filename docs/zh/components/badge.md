@@ -4,22 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoBadge :value="5">
-    <NeoButton>消息</NeoButton>
-  </NeoBadge>
-</template>
-```
+<demo vue="../../demos/badge-basic.vue" />
 
 ## 最大值与圆点
 
-```vue
-<template>
-  <NeoBadge :value="100" :max="99">评论</NeoBadge>
-  <NeoBadge is-dot>状态</NeoBadge>
-</template>
-```
+<demo vue="../../demos/badge-max-dot.vue" />
 
 ## API
 

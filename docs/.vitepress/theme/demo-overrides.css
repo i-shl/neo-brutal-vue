@@ -1,0 +1,50 @@
+/* Demo preview container - spacious layout */
+.vitepress-demo-plugin-preview {
+  padding: 24px;
+  min-height: 80px;
+}
+
+/* 
+ * Allow block-level demos (table, card, collapse, slider, etc.)
+ * to take up full width by default.
+ * The .neo-demo-block wrapper signals "this demo needs full width".
+ */
+.vitepress-demo-plugin-preview > div.neo-demo-block {
+  display: block !important;
+  width: 100%;
+}
+
+/* 
+ * Vertical stacking layout for multiple blocks.
+ * The .neo-demo-vertical wrapper signals "stack children vertically".
+ */
+.vitepress-demo-plugin-preview > div.neo-demo-vertical {
+  display: flex !important;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  width: 100%;
+}
+
+/* 
+ * Default inline demos (buttons, links, radios, etc.) 
+ * that do NOT use .neo-demo-block use inline-flex for natural sizing.
+ * Only apply to divs that are NOT neo-demo-block or neo-demo-vertical.
+ */
+.vitepress-demo-plugin-preview > div:not(.neo-demo-block):not(.neo-demo-vertical) {
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+/* Ensure key layout components always take full width inside their container */
+.neo-descriptions,
+.neo-table-wrapper,
+.neo-table-container,
+.neo-table,
+.neo-card,
+.neo-collapse,
+.neo-slider {
+  width: 100% !important;
+}

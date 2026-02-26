@@ -4,15 +4,7 @@ Common action button with multiple types, sizes, and shapes.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoButton>Default</NeoButton>
-  <NeoButton type="primary">Primary</NeoButton>
-  <NeoButton type="success">Success</NeoButton>
-  <NeoButton type="warning">Warning</NeoButton>
-  <NeoButton type="danger">Danger</NeoButton>
-</template>
-```
+<demo vue="../demos/button-basic.vue" />
 
 ## Type
 
@@ -24,27 +16,13 @@ Besides default: `primary`, `secondary`, `accent`, `success`, `warning`, `danger
 - `outline`: Outlined
 - `ghost`: Transparent background
 
-```vue
-<template>
-  <NeoButton variant="solid" type="primary">Solid</NeoButton>
-  <NeoButton variant="outline" type="primary">Outline</NeoButton>
-  <NeoButton variant="ghost" type="primary">Ghost</NeoButton>
-</template>
-```
+<demo vue="../demos/button-variant.vue" />
 
 ## Size
 
 `xs`, `sm`, `md`, `lg`, `xl`.
 
-```vue
-<template>
-  <NeoButton size="xs">XS</NeoButton>
-  <NeoButton size="sm">SM</NeoButton>
-  <NeoButton size="md">MD</NeoButton>
-  <NeoButton size="lg">LG</NeoButton>
-  <NeoButton size="xl">XL</NeoButton>
-</template>
-```
+<demo vue="../demos/button-size.vue" />
 
 ## Shape
 
@@ -53,30 +31,15 @@ Besides default: `primary`, `secondary`, `accent`, `success`, `warning`, `danger
 - `circle`: Circular (often with icon)
 - `sharp`: Square corners
 
-```vue
-<template>
-  <NeoButton shape="round">Round</NeoButton>
-  <NeoButton circle>🔥</NeoButton>
-  <NeoButton shape="sharp">Sharp</NeoButton>
-</template>
-```
+<demo vue="../demos/button-shape.vue" />
 
 ## Disabled & Loading
 
-```vue
-<template>
-  <NeoButton disabled>Disabled</NeoButton>
-  <NeoButton :loading="true">Loading</NeoButton>
-</template>
-```
+<demo vue="../demos/button-disabled.vue" />
 
 ## Block
 
-```vue
-<template>
-  <NeoButton block>Block Button</NeoButton>
-</template>
-```
+<demo vue="../demos/button-block.vue" />
 
 ## API
 

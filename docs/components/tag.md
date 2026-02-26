@@ -4,23 +4,11 @@ Tags for labeling and categorization.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoTag>Default</NeoTag>
-  <NeoTag type="primary">Primary</NeoTag>
-  <NeoTag type="success">Success</NeoTag>
-  <NeoTag type="warning">Warning</NeoTag>
-  <NeoTag type="danger">Danger</NeoTag>
-</template>
-```
+<demo vue="../demos/tag-basic.vue" />
 
 ## Closable
 
-```vue
-<template>
-  <NeoTag closable @close="handleClose">Closable</NeoTag>
-</template>
-```
+<demo vue="../demos/tag-closable.vue" />
 
 ## API
 

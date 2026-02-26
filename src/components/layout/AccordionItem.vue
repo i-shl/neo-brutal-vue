@@ -9,8 +9,15 @@ const props = withDefaults(defineProps<{
   disabled: false
 })
 
-const isActive = inject<() => boolean>('isActive', () => false)
-const setActive = inject<(name: string | number) => void>('setActive', () => {})
+const isActiveFn = inject<(name: string | number) => boolean>(
+  'accordionIsActive',
+  () => false
+)
+const setActive = inject<(name: string | number) => void>(
+  'accordionSetActive',
+  () => {}
+)
+const isActive = () => isActiveFn(props.name)
 
 const itemClass = computed(() => {
   const classes: string[] = ['neo-accordion-item']
@@ -34,62 +41,63 @@ const handleClick = () => {
       <span class="neo-accordion-item__title">
         <slot name="title">{{ title }}</slot>
       </span>
-      <span class="neo-accordion-item__arrow">
+      <span class="neo-accordion-item__arrow" :class="{ 'is-active': isActive() }">
         <svg 
-          :class="{ 'neo-accordion-item__arrow--active': isActive() }"
-          width="16" 
-          height="16" 
-          viewBox="0 0 16 16" 
+          width="20" 
+          height="20" 
+          viewBox="0 0 24 24" 
           fill="none"
+          stroke="currentColor" 
+          stroke-width="3" 
+          stroke-linecap="square" 
+          stroke-linejoin="miter"
         >
-          <path 
-            d="M4 6L8 10L12 6" 
-            stroke="currentColor" 
-            stroke-width="2" 
-            stroke-linecap="round" 
-            stroke-linejoin="round"
-          />
+          <path d="M6 9l6 6 6-6" />
         </svg>
       </span>
     </div>
-    <div 
-      v-show="isActive()" 
-      class="neo-accordion-item__content"
-    >
-      <div class="neo-accordion-item__body">
-        <slot />
+    
+    <Transition name="neo-accordion-slide">
+      <div 
+        v-if="isActive()" 
+        class="neo-accordion-item__content"
+      >
+        <div class="neo-accordion-item__body">
+          <slot />
+        </div>
       </div>
-    </div>
+    </Transition>
   </div>
 </template>
 
 <style scoped>
 .neo-accordion-item {
-  --item-header-bg: var(--neo-bg-secondary);
-  --item-header-text: var(--neo-text-primary);
-  --item-content-bg: var(--neo-bg-primary);
-  --item-content-text: var(--neo-text-secondary);
-  --item-border: var(--neo-border-color);
-  
-  background-color: var(--item-header-bg);
-  border: var(--neo-border-width) solid var(--item-border);
-  border-radius: var(--neo-radius);
-  box-shadow: var(--neo-shadow-sm);
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 4px 4px 0px var(--neo-black);
+  transition: var(--neo-transition);
   overflow: hidden;
-  transition: all var(--neo-transition-base) var(--neo-transition-timing);
 }
 
 .neo-accordion-item:hover:not(.neo-accordion-item--disabled) {
-  box-shadow: var(--neo-shadow);
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0px var(--neo-black);
 }
 
 .neo-accordion-item--active {
-  box-shadow: var(--neo-shadow);
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px var(--neo-black);
+}
+
+.neo-accordion-item--active .neo-accordion-item__header {
+  background-color: var(--neo-main);
+  border-bottom: var(--neo-border-thick);
 }
 
 .neo-accordion-item--disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  filter: grayscale(1);
 }
 
 /* Header */
@@ -97,49 +105,52 @@ const handleClick = () => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--neo-spacing-md);
+  padding: 1.25rem 1.5rem;
   cursor: pointer;
   user-select: none;
-  transition: background-color var(--neo-transition-fast);
-}
-
-.neo-accordion-item:not(.neo-accordion-item--disabled) .neo-accordion-item__header:hover {
-  background-color: var(--neo-bg-tertiary);
+  transition: var(--neo-transition);
 }
 
 .neo-accordion-item__title {
-  font-family: var(--neo-font-family);
-  font-size: var(--neo-font-size-sm);
-  font-weight: var(--neo-font-weight-semibold);
-  color: var(--item-header-text);
+  font-size: 1rem;
+  font-weight: var(--neo-font-weight-black);
+  color: var(--neo-black);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .neo-accordion-item__arrow {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--neo-text-tertiary);
-  transition: transform var(--neo-transition-base);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.neo-accordion-item__arrow svg {
-  transition: transform var(--neo-transition-base);
-}
-
-.neo-accordion-item__arrow--active {
+.neo-accordion-item__arrow.is-active {
   transform: rotate(180deg);
 }
 
 /* Content */
-.neo-accordion-item__content {
-  border-top: var(--neo-border-width-thin) solid var(--item-border);
+.neo-accordion-item__body {
+  padding: 1.5rem;
+  background-color: var(--neo-white);
+  color: var(--neo-black);
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-bold);
+  line-height: 1.6;
 }
 
-.neo-accordion-item__body {
-  padding: var(--neo-spacing-md);
-  background-color: var(--item-content-bg);
-  color: var(--item-content-text);
-  font-size: var(--neo-font-size-sm);
-  line-height: var(--neo-line-height-normal);
+/* Slide Animation */
+.neo-accordion-slide-enter-active,
+.neo-accordion-slide-leave-active {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  max-height: 1000px;
+  overflow: hidden;
+}
+
+.neo-accordion-slide-enter-from,
+.neo-accordion-slide-leave-to {
+  max-height: 0;
+  opacity: 0;
 }
 </style>

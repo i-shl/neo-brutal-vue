@@ -4,33 +4,17 @@ Pagination for lists/tables.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoPagination
-    v-model:current="current"
-    :total="100"
-    :page-size="10"
-  />
-</template>
-
-<script setup lang="ts">
-const current = ref(1)
-</script>
-```
+<demo vue="../demos/pagination-basic.vue" />
 
 ## Page Size Select & Simple Layout
 
-```vue
-<template>
-  <NeoPagination
-    v-model:current="current"
-    v-model:page-size="pageSize"
-    :total="200"
-    :page-sizes="[10, 20, 50]"
-    layout="sizes, prev, pager, next"
-  />
-</template>
-```
+<demo vue="../demos/pagination-sizes.vue" />
+
+## Full Layout
+
+Use `layout` to combine: `total`, `sizes`, `prev`, `pager`, `next`, `jumper`. All three (total, sizes, jumper) can be hidden; default shows only `total`.
+
+<demo vue="../demos/pagination-full.vue" />
 
 ## API
 
@@ -40,6 +24,7 @@ const current = ref(1)
 | pageSize | Page size (supports v-model:pageSize) | `number` |
 | total | Total count | `number` |
 | pageSizes | Page size options | `number[]` |
+| pagerCount | Visible page buttons (1–10, default 5) | `number` |
 | layout | Layout component combination | `string` |
 | background | Whether buttons have background | `boolean` |
 | small | Small size | `boolean` |

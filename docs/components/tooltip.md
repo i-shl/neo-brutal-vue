@@ -4,22 +4,11 @@ Show hint text on hover or focus.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoTooltip content="Hint text">
-    <NeoButton>Hover me</NeoButton>
-  </NeoTooltip>
-</template>
-```
+<demo vue="../demos/tooltip-basic.vue" />
 
 ## Placement & Trigger
 
-```vue
-<template>
-  <NeoTooltip content="Top" placement="top">Top</NeoTooltip>
-  <NeoTooltip content="Click to show" trigger="click">Click</NeoTooltip>
-</template>
-```
+<demo vue="../demos/tooltip-placement.vue" />
 
 ## API
 

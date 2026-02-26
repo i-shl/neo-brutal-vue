@@ -4,33 +4,15 @@ Button to scroll back to top after scrolling the page.
 
 ## Basic Usage
 
-```vue
-<template>
-  <div style="height: 2000px">Long content...</div>
-  <NeoBacktop />
-</template>
-```
+<demo vue="../demos/backtop-basic.vue" />
 
 ## Custom Position & Visibility Height
 
-```vue
-<template>
-  <NeoBacktop :visibility-height="300" :right="40" :bottom="80" />
-</template>
-```
+<demo vue="../demos/backtop-custom.vue" />
 
 ## Specify Scroll Container
 
 If scrolling happens inside a specific container, use `target` to specify the container selector.
-
-```vue
-<template>
-  <div ref="scrollRef" class="scroll-box">
-    Content...
-  </div>
-  <NeoBacktop target=".scroll-box" />
-</template>
-```
 
 ## API
 

@@ -4,22 +4,11 @@
 
 ## 基础用法
 
-通过组件或全局方法（若提供）调用：
+<demo vue="../../demos/toast-basic.vue" />
 
-```vue
-<template>
-  <NeoToast v-model="visible" type="success" title="成功" message="操作完成" />
-</template>
-```
+## 类型
 
-或通过 API 调用（示例）：
-
-```ts
-// 若库提供 useToast 或 $toast
-toast.success('操作成功')
-toast.error('操作失败')
-toast({ type: 'info', message: '提示信息' })
-```
+<demo vue="../../demos/toast-more.vue" />
 
 ## API
 

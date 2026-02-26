@@ -4,22 +4,11 @@ User avatar. Supports image, icon, or text.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoAvatar src="https://api.dicebear.com/7.x/avataaars/svg?seed=1" />
-  <NeoAvatar>U</NeoAvatar>
-  <NeoAvatar icon="👤" />
-</template>
-```
+<demo vue="../demos/avatar-basic.vue" />
 
 ## Size & Shape
 
-```vue
-<template>
-  <NeoAvatar size="lg" src="..." />
-  <NeoAvatar shape="square" src="..." />
-</template>
-```
+<demo vue="../demos/avatar-size.vue" />
 
 ## API
 

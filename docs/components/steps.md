@@ -4,26 +4,11 @@ Step indicator to guide users through a task.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoSteps :active="1">
-    <NeoStep title="Step 1" description="Description 1" />
-    <NeoStep title="Step 2" description="Description 2" />
-    <NeoStep title="Step 3" description="Description 3" />
-  </NeoSteps>
-</template>
-```
+<demo vue="../demos/steps-basic.vue" />
 
 ## Vertical & Alignment
 
-```vue
-<template>
-  <NeoSteps :active="2" direction="vertical">
-    <NeoStep title="A" />
-    <NeoStep title="B" />
-  </NeoSteps>
-</template>
-```
+<demo vue="../demos/steps-vertical.vue" />
 
 ## API
 

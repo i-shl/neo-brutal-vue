@@ -4,26 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoTimeline>
-    <NeoTimelineItem>步骤一</NeoTimelineItem>
-    <NeoTimelineItem>步骤二</NeoTimelineItem>
-    <NeoTimelineItem>步骤三</NeoTimelineItem>
-  </NeoTimeline>
-</template>
-```
+<demo vue="../../demos/timeline-basic.vue" />
 
 ## 带时间戳与状态
 
-```vue
-<template>
-  <NeoTimeline>
-    <NeoTimelineItem timestamp="2025-01-01" type="primary">完成</NeoTimelineItem>
-    <NeoTimelineItem timestamp="2025-01-02">进行中</NeoTimelineItem>
-  </NeoTimeline>
-</template>
-```
+<demo vue="../../demos/timeline-status.vue" />
 
 ## API
 

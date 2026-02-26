@@ -4,43 +4,15 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoSelect
-    v-model="value"
-    :options="options"
-    placeholder="请选择"
-  />
-</template>
-
-<script setup lang="ts">
-const value = ref('')
-const options = [
-  { label: '选项一', value: '1' },
-  { label: '选项二', value: '2' },
-]
-</script>
-```
+<demo vue="../../demos/select-basic.vue" />
 
 ## 多选
 
-```vue
-<template>
-  <NeoSelect v-model="values" :options="options" multiple placeholder="多选" />
-</template>
-
-<script setup lang="ts">
-const values = ref<string[]>([])
-</script>
-```
+<demo vue="../../demos/select-multiple.vue" />
 
 ## 可搜索
 
-```vue
-<template>
-  <NeoSelect v-model="value" :options="options" filterable placeholder="输入搜索" />
-</template>
-```
+<demo vue="../../demos/select-search.vue" />
 
 ## API
 

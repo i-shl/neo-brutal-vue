@@ -4,34 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoCollapse v-model="activeNames">
-    <NeoCollapseItem name="1" title="面板 1">内容 1</NeoCollapseItem>
-    <NeoCollapseItem name="2" title="面板 2">内容 2</NeoCollapseItem>
-    <NeoCollapseItem name="3" title="面板 3">内容 3</NeoCollapseItem>
-  </NeoCollapse>
-</template>
-
-<script setup lang="ts">
-const activeNames = ref(['1'])
-</script>
-```
+<demo vue="../../demos/collapse-basic.vue" />
 
 ## 手风琴（仅展开一个）
 
-```vue
-<template>
-  <NeoCollapse v-model="activeName" accordion>
-    <NeoCollapseItem name="1" title="面板 1">内容 1</NeoCollapseItem>
-    <NeoCollapseItem name="2" title="面板 2">内容 2</NeoCollapseItem>
-  </NeoCollapse>
-</template>
-
-<script setup lang="ts">
-const activeName = ref('1')
-</script>
-```
+<demo vue="../../demos/collapse-accordion.vue" />
 
 ## API
 

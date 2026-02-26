@@ -4,25 +4,7 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoButton @click="open = true">打开命令面板 (Ctrl+K)</NeoButton>
-  <NeoCommand v-model="open" placeholder="输入搜索..." :groups="groups" />
-</template>
-
-<script setup lang="ts">
-const open = ref(false)
-const groups = ref([
-  {
-    name: '常用',
-    items: [
-      { id: '1', label: '新建', shortcut: 'Ctrl+N' },
-      { id: '2', label: '保存', shortcut: 'Ctrl+S' },
-    ],
-  },
-])
-</script>
-```
+<demo vue="../../demos/command-basic.vue" />
 
 ## API
 

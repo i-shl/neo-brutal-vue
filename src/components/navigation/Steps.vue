@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, provide, ref, reactive } from 'vue'
 import type { StepsProps } from '@/types'
 
 const props = withDefaults(defineProps<StepsProps>(), {
@@ -11,6 +11,26 @@ const props = withDefaults(defineProps<StepsProps>(), {
   alignCenter: false,
   simple: false
 })
+
+const steps = ref<any[]>([])
+
+const addStep = (step: any) => {
+  steps.value.push(step)
+}
+
+const removeStep = (step: any) => {
+  const index = steps.value.indexOf(step)
+  if (index > -1) {
+    steps.value.splice(index, 1)
+  }
+}
+
+provide('neoSteps', reactive({
+  props,
+  steps,
+  addStep,
+  removeStep
+}))
 
 const stepsClass = computed(() => {
   const classes: string[] = ['neo-steps']
@@ -37,6 +57,7 @@ const stepsClass = computed(() => {
 
 .neo-steps--horizontal {
   flex-direction: row;
+  gap: 0;
 }
 
 .neo-steps--vertical {

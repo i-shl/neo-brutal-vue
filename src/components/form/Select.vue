@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import type { SelectProps } from '@/types'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
+import type { SelectProps, SelectOption } from '@/types'
 
 const props = withDefaults(defineProps<SelectProps>(), {
   size: 'md',
@@ -18,20 +18,24 @@ const emit = defineEmits<{
 
 const isOpen = ref(false)
 const searchValue = ref('')
+const selectRef = ref<HTMLElement | null>(null)
+
 const selectedOption = computed(() => {
+  if (!props.options) return props.multiple ? [] : null
   if (props.multiple) {
-    return props.options?.filter(opt => 
-      Array.isArray(props.modelValue) && props.modelValue.includes(opt.value)
-    ) || []
+    return props.options.filter(opt => 
+      Array.isArray(props.modelValue) && (props.modelValue as any[]).includes(opt.value)
+    )
   }
-  return props.options?.find(opt => opt.value === props.modelValue)
+  return props.options.find(opt => opt.value === props.modelValue) || null
 })
 
 const filteredOptions = computed(() => {
-  if (!props.filterable) return props.options
-  return props.options?.filter(opt => 
+  const options = props.options || []
+  if (!props.filterable) return options
+  return options.filter(opt => 
     opt.label.toLowerCase().includes(searchValue.value.toLowerCase())
-  ) || []
+  )
 })
 
 const selectClass = computed(() => {
@@ -39,10 +43,8 @@ const selectClass = computed(() => {
     'neo-select',
     `neo-select--${props.size}`,
   ]
-  
   if (isOpen.value) classes.push('neo-select--open')
   if (props.disabled) classes.push('neo-select--disabled')
-  
   return classes.join(' ')
 })
 
@@ -52,17 +54,13 @@ const toggleDropdown = () => {
   }
 }
 
-const selectOption = (option: any) => {
+const selectOption = (option: SelectOption) => {
   if (option.disabled) return
-  
   if (props.multiple) {
     const newValue = [...(Array.isArray(props.modelValue) ? props.modelValue : [])]
-    const index = newValue.indexOf(option.value)
-    if (index === -1) {
-      newValue.push(option.value)
-    } else {
-      newValue.splice(index, 1)
-    }
+    const index = (newValue as any[]).indexOf(option.value)
+    if (index === -1) newValue.push(option.value)
+    else newValue.splice(index, 1)
     emit('update:modelValue', newValue)
     emit('change', newValue)
   } else {
@@ -78,70 +76,69 @@ const handleClear = (e: Event) => {
   emit('clear')
   isOpen.value = false
 }
+
+const handleClickOutside = (e: MouseEvent) => {
+  if (selectRef.value && !selectRef.value.contains(e.target as Node)) {
+    isOpen.value = false
+  }
+}
+
+onMounted(() => document.addEventListener('click', handleClickOutside))
+onUnmounted(() => document.removeEventListener('click', handleClickOutside))
 </script>
 
 <template>
-  <div :class="selectClass">
+  <div ref="selectRef" :class="selectClass">
     <div class="neo-select__trigger" @click="toggleDropdown">
-      <!-- Selected display -->
       <div class="neo-select__display">
         <slot name="selected">
           <span v-if="multiple" class="neo-select__multiple">
-            <span v-for="item in selectedOption" :key="item.value" class="neo-select__tag">
-              {{ item.label }}
+            <template v-if="Array.isArray(selectedOption) && selectedOption.length > 0">
+              <span v-for="item in selectedOption" :key="String(item.value)" class="neo-select__tag">
+                {{ item.label }}
+              </span>
+            </template>
+            <span v-else class="neo-select__placeholder">
+              {{ placeholder }}
             </span>
           </span>
-          <span v-else class="neo-select__single">
-            {{ selectedOption?.label || placeholder }}
+          <span v-else :class="['neo-select__single', { 'neo-select__placeholder': !selectedOption }]">
+            {{ selectedOption && !Array.isArray(selectedOption) ? selectedOption.label : placeholder }}
           </span>
         </slot>
       </div>
       
-      <!-- Clear button -->
-      <button
-        v-if="clearable && selectedOption"
-        type="button"
-        class="neo-select__clear"
-        @click="handleClear"
-      >
-        ✕
-      </button>
-      
-      <!-- Arrow -->
+      <button v-if="clearable && selectedOption && (!Array.isArray(selectedOption) || selectedOption.length > 0)" type="button" class="neo-select__clear" @click="handleClear">✕</button>
       <span class="neo-select__arrow">▼</span>
     </div>
     
-    <!-- Dropdown -->
-    <div v-if="isOpen" class="neo-select__dropdown">
-      <!-- Search -->
-      <input
-        v-if="filterable"
-        v-model="searchValue"
-        type="text"
-        class="neo-select__search"
-        :placeholder="$t('请搜索')"
-      />
-      
-      <!-- Options -->
-      <div class="neo-select__options">
-        <div v-if="filteredOptions.length === 0" class="neo-select__empty">
-          {{ searchValue ? noMatchText : noDataText }}
+    <Transition name="neo-select-slide">
+      <div v-if="isOpen" class="neo-select__dropdown">
+        <div v-if="filterable" class="neo-select__search-wrapper">
+          <input v-model="searchValue" type="text" class="neo-select__search" placeholder="Search..." />
         </div>
-        <div
-          v-for="option in filteredOptions"
-          :key="option.value"
-          :class="['neo-select__option', {
-            'neo-select__option--selected': multiple
-              ? Array.isArray(modelValue) && modelValue.includes(option.value)
-              : modelValue === option.value,
-            'neo-select__option--disabled': option.disabled
-          }]"
-          @click="selectOption(option)"
-        >
-          {{ option.label }}
+        
+        <div class="neo-select__options">
+          <div v-if="filteredOptions.length === 0" class="neo-select__empty">
+            {{ searchValue ? noMatchText : noDataText }}
+          </div>
+          <div
+            v-for="option in filteredOptions"
+            :key="String(option.value)"
+            :class="['neo-select__option', {
+              'neo-select__option--selected': multiple
+                ? Array.isArray(modelValue) && (modelValue as any[]).includes(option.value)
+                : modelValue === option.value,
+              'neo-select__option--disabled': option.disabled
+            }]"
+            @click="selectOption(option)"
+          >
+            {{ option.label }}
+            <span v-if="multiple && Array.isArray(modelValue) && (modelValue as any[]).includes(option.value)" class="neo-select__check">✓</span>
+          </div>
         </div>
       </div>
-    </div>
+    </Transition>
   </div>
 </template>
 
@@ -151,6 +148,7 @@ const handleClear = (e: Event) => {
   align-items: center;
   width: 100%;
   position: relative;
+  font-family: var(--neo-font-family);
 }
 
 .neo-select__trigger {
@@ -158,24 +156,27 @@ const handleClear = (e: Event) => {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: var(--neo-input-height-md);
-  padding: 0 var(--neo-spacing-sm);
-  font-size: var(--neo-font-size-sm);
-  color: var(--neo-text-primary);
-  background-color: var(--neo-input-bg);
-  border: var(--neo-input-border-width) solid var(--neo-border-color);
-  border-radius: var(--neo-radius);
-  box-shadow: var(-- neo-shadow-sm);
-  transition: all var(--neo-transition-base);
-  cursor: default;
+  min-height: 3.25rem;
+  padding: 0 1.25rem;
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-black);
+  color: var(--neo-black);
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 4px 4px 0 var(--neo-black);
+  transition: var(--neo-transition);
+  cursor: pointer;
 }
 
-.neo-select__trigger:hover {
-  box-shadow: var(--nio-shadow);
+.neo-select__trigger:hover:not(.neo-select--disabled .neo-select__trigger) {
+  transform: translate(-1px, -1px);
+  box-shadow: 6px 6px 0 var(--neo-black);
 }
 
 .neo-select--open .neo-select__trigger {
-  border-color: var(--neo-border-focus);
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--neo-black);
+  background-color: var(--neo-gray-50);
 }
 
 .neo-select__display {
@@ -183,50 +184,56 @@ const handleClear = (e: Event) => {
   min-width: 0;
 }
 
+.neo-select__placeholder {
+  color: var(--neo-gray-400);
+  font-weight: var(--neo-font-weight-bold);
+}
+
 .neo-select__multiple {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--neo-spacing-xs);
+  gap: 0.5rem;
+  padding: 0.25rem 0;
 }
 
 .neo-select__tag {
   display: inline-flex;
   align-items: center;
-  padding: 2px 6px;
-  font-size: var(--neo-font-size-xs);
-  color: var(--neo-primary);
-  background-color: var(--neo-primary-light);
-  border-radius: var(--neo-radius);
-}
-
-.neo-select__single {
-  color: var(--neo-text-primary);
+  padding: 0.25rem 0.625rem;
+  font-size: 0.75rem;
+  color: var(--neo-black);
+  background-color: var(--neo-main);
+  border: var(--neo-border);
+  box-shadow: 2px 2px 0 var(--neo-black);
+  font-weight: var(--neo-font-weight-black);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
 .neo-select__clear {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  margin-right: var(--neo-spacing-xs);
-  font-size: 10px;
-  color: var(--neo-text-tertiary);
-  background: transparent;
-  border: none;
-  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--neo-white);
+  background-color: var(--neo-danger);
+  border: var(--neo-border);
+  box-shadow: 1px 1px 0 var(--neo-black);
   cursor: pointer;
+  transition: var(--neo-transition);
 }
 
 .neo-select__clear:hover {
-  color: var(--neo-text-primary);
+  transform: scale(1.1);
+  background-color: var(--neo-black);
 }
 
 .neo-select__arrow {
-  margin-left: var(--neo-spacing-xs);
-  font-size: 12px;
-  color: var(--neo-text-tertiary);
-  transition: transform var(--neo-transition-base);
+  font-size: 0.75rem;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .neo-select--open .neo-select__arrow {
@@ -235,63 +242,94 @@ const handleClear = (e: Event) => {
 
 .neo-select__dropdown {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 0.75rem);
   left: 0;
   right: 0;
   z-index: var(--neo-z-dropdown);
-  margin-top: 2px;
-  background-color: var(--neo-bg-primary);
-  border: var(--neo-border-width) solid var(--neo-border-color);
-  border-radius: var(--neo-radius);
-  box-shadow: var(--neo-shadow);
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 8px 8px 0 var(--neo-black);
   overflow: hidden;
+  border-radius: 4px;
+}
+
+.neo-select__search-wrapper {
+  padding: 1rem;
+  border-bottom: var(--neo-border-thick);
+  background-color: var(--neo-gray-50);
 }
 
 .neo-select__search {
   width: 100%;
-  padding: var(--neo-spacing-sm);
-  font-size: var(--neo-font-size-sm);
-  border: none;
-  border-bottom: var(--neo-border-width-thin) solid var(--neo-border-light);
+  padding: 0.625rem 1rem;
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-bold);
+  border: var(--neo-border-thick);
+  box-shadow: 3px 3px 0 var(--neo-black);
   outline: none;
+  background-color: var(--neo-white);
 }
 
 .neo-select__options {
-  max-height: 200px;
+  max-height: 300px;
   overflow-y: auto;
 }
 
 .neo-select__option {
-  padding: var(--neo-spacing-sm);
-  font-size: var(--neo-font-size-sm);
-  color: var(--neo-text-primary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-black);
+  color: var(--neo-black);
   cursor: pointer;
-  transition: all var(--neo-transition-base);
+  transition: var(--neo-transition);
+  border-bottom: var(--neo-border);
 }
 
-.neo-select__option:hover {
-  background-color: var(--neo-gray-100);
+.neo-select__option:last-child {
+  border-bottom: none;
+}
+
+.neo-select__option:hover:not(.neo-select__option--disabled) {
+  background-color: var(--neo-main);
 }
 
 .neo-select__option--selected {
-  background-color: var(--neo-primary-light);
-  color: var(--neo-primary);
+  background-color: var(--neo-info-light);
+  color: var(--neo-black);
 }
 
 .neo-select__option--disabled {
-  opacity: 0.5;
+  opacity: 0.3;
   cursor: not-allowed;
+  background-color: var(--neo-gray-50);
 }
 
 .neo-select__empty {
-  padding: var(--neo-spacing-md);
-  font-size: var(--neo-font-size-sm);
-  color: var(--neo-text-tertiary);
+  padding: 2rem;
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-bold);
+  color: var(--neo-gray-400);
   text-align: center;
 }
 
-.neo-select__disabled {
+.neo-select--disabled {
   opacity: 0.5;
+}
+
+.neo-select--disabled .neo-select__trigger {
   cursor: not-allowed;
+  box-shadow: 2px 2px 0 var(--neo-black);
+}
+
+/* Transitions */
+.neo-select-slide-enter-active, .neo-select-slide-leave-active {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.neo-select-slide-enter-from, .neo-select-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-15px) scale(0.98);
 }
 </style>

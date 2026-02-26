@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+
 const props = withDefaults(defineProps<{
   title?: string
   value?: string | number
@@ -6,22 +8,33 @@ const props = withDefaults(defineProps<{
   prefix?: string
   suffix?: string
   valueStyle?: any
+  color?: string
 }>(), {
-  precision: 0
+  precision: 0,
+  color: 'var(--neo-main)'
+})
+
+const formattedValue = computed(() => {
+  if (typeof props.value === 'number') {
+    return props.value.toFixed(props.precision)
+  }
+  return props.value
 })
 </script>
 
 <template>
   <div class="neo-statistic">
-    <div v-if="title || $slots.title" class="neo-statistic__title">
-      <slot name="title">{{ title }}</slot>
+    <div v-if="title || $slots.title" class="neo-statistic__header">
+      <span class="neo-statistic__title">
+        <slot name="title">{{ title }}</slot>
+      </span>
     </div>
-    <div class="neo-statistic__content" :style="valueStyle">
+    <div class="neo-statistic__content" :style="{ ...valueStyle, color: color }">
       <span v-if="prefix || $slots.prefix" class="neo-statistic__prefix">
         <slot name="prefix">{{ prefix }}</slot>
       </span>
       <span class="neo-statistic__value">
-        {{ typeof value === 'number' ? value.toFixed(precision) : value }}
+        {{ formattedValue }}
       </span>
       <span v-if="suffix || $slots.suffix" class="neo-statistic__suffix">
         <slot name="suffix">{{ suffix }}</slot>
@@ -32,33 +45,54 @@ const props = withDefaults(defineProps<{
 
 <style scoped>
 .neo-statistic {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 1.5rem 2rem;
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 6px 6px 0px var(--neo-black);
+  transition: var(--neo-transition);
   font-family: var(--neo-font-family);
-  padding: 1.5rem;
-  background: white;
-  border: 4px solid black;
-  box-shadow: 6px 6px 0px black;
-  display: inline-block;
-  min-width: 151px;
+  min-width: 180px;
+}
+
+.neo-statistic:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 10px 10px 0px var(--neo-black);
+}
+
+.neo-statistic__header {
+  margin-bottom: 0.75rem;
 }
 
 .neo-statistic__title {
-  font-size: 0.9rem;
-  font-weight: 800;
-  color: #666;
+  font-size: 0.8125rem;
+  font-weight: var(--neo-font-weight-black);
+  color: var(--neo-gray-600);
   text-transform: uppercase;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+  background-color: var(--neo-gray-50);
+  padding: 2px 6px;
+  border: 1px solid var(--neo-black);
 }
 
 .neo-statistic__content {
   display: flex;
   align-items: baseline;
-  font-size: 2rem;
-  font-weight: 900;
-  color: black;
+  font-size: 2.5rem;
+  font-weight: var(--neo-font-weight-black);
+  color: var(--neo-black);
+  line-height: 1;
 }
 
-.neo-statistic__prefix, .neo-statistic__suffix {
+.neo-statistic__prefix, 
+.neo-statistic__suffix {
   font-size: 1.25rem;
+  font-weight: var(--neo-font-weight-bold);
   margin: 0 4px;
+}
+
+.neo-statistic__value {
+  text-shadow: 2px 2px 0 rgba(0,0,0,0.1);
 }
 </style>

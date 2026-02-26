@@ -4,21 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoScrollArea height="200px">
-    <div>很长很长的内容...</div>
-  </NeoScrollArea>
-</template>
-```
+<demo vue="../../demos/scroll-area-basic.vue" />
 
 ## 最大高度
 
-```vue
-<template>
-  <NeoScrollArea max-height="300px">内容</NeoScrollArea>
-</template>
-```
+<demo vue="../../demos/scroll-area-max.vue" />
 
 ## API
 

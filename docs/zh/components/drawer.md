@@ -4,27 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoButton @click="open = true">打开抽屉</NeoButton>
-  <NeoDrawer v-model="open" title="抽屉标题" direction="rtl">
-    抽屉内容
-  </NeoDrawer>
-</template>
-
-<script setup lang="ts">
-const open = ref(false)
-</script>
-```
+<demo vue="../../demos/drawer-basic.vue" />
 
 ## 方向与尺寸
 
-```vue
-<template>
-  <NeoDrawer v-model="open" title="右侧抽屉" direction="rtl" size="400px" />
-  <NeoDrawer v-model="open2" title="底部抽屉" direction="btt" />
-</template>
-```
+<demo vue="../../demos/drawer-direction.vue" />
 
 ## API
 

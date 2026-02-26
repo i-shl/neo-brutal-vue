@@ -4,26 +4,11 @@ Single selection from a group of options.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoRadio v-model="picked" label="option1">Option A</NeoRadio>
-  <NeoRadio v-model="picked" label="option2">Option B</NeoRadio>
-</template>
+<demo vue="../demos/radio-basic.vue" />
 
-<script setup lang="ts">
-const picked = ref('option1')
-</script>
-```
+## Radio Group (with border)
 
-## Radio Group
-
-```vue
-<template>
-  <NeoRadio v-model="city" label="beijing">Beijing</NeoRadio>
-  <NeoRadio v-model="city" label="shanghai">Shanghai</NeoRadio>
-  <NeoRadio v-model="city" label="guangzhou">Guangzhou</NeoRadio>
-</template>
-```
+<demo vue="../demos/radio-group.vue" />
 
 ## API
 

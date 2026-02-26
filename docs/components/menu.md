@@ -4,26 +4,17 @@ Navigation menu for sidebar or top.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoMenu default-active="1" mode="vertical">
-    <NeoMenuItem index="1">Home</NeoMenuItem>
-    <NeoMenuItem index="2">List</NeoMenuItem>
-    <NeoMenuItem index="3">Settings</NeoMenuItem>
-  </NeoMenu>
-</template>
-```
+<demo vue="../demos/menu-basic.vue" />
 
 ## Horizontal Menu
 
-```vue
-<template>
-  <NeoMenu default-active="1" mode="horizontal">
-    <NeoMenuItem index="1">Home</NeoMenuItem>
-    <NeoMenuItem index="2">About</NeoMenuItem>
-  </NeoMenu>
-</template>
-```
+<demo vue="../demos/menu-horizontal.vue" />
+
+## SubMenu
+
+Use `NeoSubMenu` with `NeoMenuItem` children for nested menus.
+
+<demo vue="../demos/menu-submenu.vue" />
 
 ## API
 
@@ -45,6 +36,12 @@ Navigation menu for sidebar or top.
 | index | Unique identifier | `string` |
 | disabled | Disabled | `boolean` |
 
-Slots: `title`, default. Submenus via `children` or nested NeoMenuItem.
+**NeoSubMenu**
+
+| Prop | Description | Type |
+|------|-------------|------|
+| index | Unique identifier (use `parent-child` for nested) | `string` |
+| title | Submenu title | `string` |
+| disabled | Disabled | `boolean` |
 
 Events: `select`.

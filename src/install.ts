@@ -1,25 +1,152 @@
 // NeoBrutal Vue - Vue Plugin
-// 全量注册时仅注册常用组件；其余组件请按需 import { NeoX } from 'neo-brutal-vue'
 import type { App, Component } from 'vue'
+
+// Base Components
 import NeoButton from './components/base/Button.vue'
+import NeoLink from './components/base/Link.vue'
+import NeoSpace from './components/base/Space.vue'
+import NeoDivider from './components/base/Divider.vue'
+
+// Form Components
 import NeoInput from './components/form/Input.vue'
-import NeoCard from './components/layout/Card.vue'
-import NeoTag from './components/data-display/Tag.vue'
-import NeoAlert from './components/feedback/Alert.vue'
+import NeoInputNumber from './components/form/InputNumber.vue'
+import NeoTextarea from './components/form/Textarea.vue'
+import NeoSelect from './components/form/Select.vue'
+import NeoRadio from './components/form/Radio.vue'
 import NeoCheckbox from './components/form/Checkbox.vue'
+import NeoSwitch from './components/form/Switch.vue'
+import NeoSlider from './components/form/Slider.vue'
+import NeoRate from './components/form/Rate.vue'
+import NeoUpload from './components/form/Upload.vue'
+
+// Layout Components
+import NeoCard from './components/layout/Card.vue'
+import NeoRow from './components/layout/Row.vue'
+import NeoCol from './components/layout/Col.vue'
+import NeoCollapse from './components/layout/Collapse.vue'
+import NeoCollapseItem from './components/layout/CollapseItem.vue'
+import NeoAccordion from './components/layout/Accordion.vue'
+import NeoAccordionItem from './components/layout/AccordionItem.vue'
+import NeoScrollArea from './components/layout/ScrollArea.vue'
+
+// Data Display Components
+import NeoTag from './components/data-display/Tag.vue'
 import NeoBadge from './components/data-display/Badge.vue'
+import NeoProgress from './components/data-display/Progress.vue'
+import NeoAvatar from './components/data-display/Avatar.vue'
+import NeoEmpty from './components/data-display/Empty.vue'
+import NeoSkeleton from './components/data-display/Skeleton.vue'
+import NeoTimeline from './components/data-display/Timeline.vue'
+import NeoTimelineItem from './components/data-display/TimelineItem.vue'
+import NeoDescriptions from './components/data-display/Descriptions.vue'
+import NeoDescriptionsItem from './components/data-display/DescriptionsItem.vue'
+import NeoTree from './components/data-display/Tree.vue'
+import NeoTable from './components/data-table/Table.vue'
+import NeoCarousel from './components/data-display/Carousel.vue'
+import NeoStatistic from './components/data-display/Statistic.vue'
+
+// Feedback Components
+import NeoAlert from './components/feedback/Alert.vue'
 import NeoDialog from './components/feedback/Dialog.vue'
+import NeoLoading from './components/feedback/Loading.vue'
+import NeoToast from './components/feedback/Toast.vue'
+import NeoResult from './components/feedback/Result.vue'
+import NeoTooltip from './components/overlays/Tooltip.vue'
+import NeoDrawer from './components/overlays/Drawer.vue'
+import NeoPopover from './components/overlays/Popover.vue'
+
+// Navigation Components
+import NeoTabs from './components/navigation/Tabs.vue'
+import NeoTabPane from './components/navigation/TabPane.vue'
+import NeoBreadcrumb from './components/navigation/Breadcrumb.vue'
+import NeoBreadcrumbItem from './components/navigation/BreadcrumbItem.vue'
+import NeoPagination from './components/navigation/Pagination.vue'
+import NeoSteps from './components/navigation/Steps.vue'
+import NeoStep from './components/navigation/Step.vue'
+import NeoMenu from './components/navigation/Menu.vue'
+import NeoMenuItem from './components/navigation/MenuItem.vue'
+import NeoSubMenu from './components/navigation/SubMenu.vue'
+import NeoDropdown from './components/navigation/Dropdown.vue'
+
+// Others
+import NeoCalendar from './components/others/Calendar.vue'
+import NeoCommand from './components/others/Command.vue'
+import NeoBacktop from './components/others/Backtop.vue'
+
 import './styles/variables.css'
 
 const components: Record<string, Component> = {
+  // Base
   NeoButton,
+  NeoLink,
+  NeoSpace,
+  NeoDivider,
+  
+  // Form
   NeoInput,
-  NeoCard,
-  NeoTag,
-  NeoAlert,
+  NeoInputNumber,
+  NeoTextarea,
+  NeoSelect,
+  NeoRadio,
   NeoCheckbox,
+  NeoSwitch,
+  NeoSlider,
+  NeoRate,
+  NeoUpload,
+  
+  // Layout
+  NeoCard,
+  NeoRow,
+  NeoCol,
+  NeoCollapse,
+  NeoCollapseItem,
+  NeoAccordion,
+  NeoAccordionItem,
+  NeoScrollArea,
+  
+  // Data Display
+  NeoTag,
   NeoBadge,
+  NeoProgress,
+  NeoAvatar,
+  NeoEmpty,
+  NeoSkeleton,
+  NeoTimeline,
+  NeoTimelineItem,
+  NeoDescriptions,
+  NeoDescriptionsItem,
+  NeoTree,
+  NeoTable,
+  NeoCarousel,
+  NeoStatistic,
+  
+  // Feedback
+  NeoAlert,
   NeoDialog,
+  NeoLoading,
+  NeoToast,
+  NeoResult,
+  NeoTooltip,
+  NeoDrawer,
+  NeoPopover,
+  
+  // Navigation
+  NeoTabs,
+  NeoTabPane,
+  NeoBreadcrumb,
+  NeoBreadcrumbItem,
+  NeoPagination,
+  NeoSteps,
+  NeoStep,
+  NeoMenu,
+  NeoMenuItem,
+  NeoSubMenu,
+  NeoDropdown,
+  
+  // Others
+  NeoCalendar,
+  NeoCommand,
+  NeoBacktop,
 }
 
 export interface NeoBrutalVueOptions {
@@ -39,18 +166,8 @@ const install = (app: App, options: NeoBrutalVueOptions = {}) => {
 
 export default install
 
-// 单独导出组件，方便按需引入
-export {
-  NeoButton,
-  NeoInput,
-  NeoCard,
-  NeoTag,
-  NeoAlert,
-  NeoCheckbox,
-  NeoBadge,
-  NeoDialog,
-  install
-}
+// 导出所有组件以便按需引入
+export * from './index'
 
 // 版本信息
-export const version = '1.0.0'
+export const version = '1.0.1'

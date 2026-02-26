@@ -4,43 +4,15 @@ Dropdown select with single/multiple selection and search.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoSelect
-    v-model="value"
-    :options="options"
-    placeholder="Select"
-  />
-</template>
-
-<script setup lang="ts">
-const value = ref('')
-const options = [
-  { label: 'Option 1', value: '1' },
-  { label: 'Option 2', value: '2' },
-]
-</script>
-```
+<demo vue="../demos/select-basic.vue" />
 
 ## Multiple
 
-```vue
-<template>
-  <NeoSelect v-model="values" :options="options" multiple placeholder="Multiple" />
-</template>
-
-<script setup lang="ts">
-const values = ref<string[]>([])
-</script>
-```
+<demo vue="../demos/select-multiple.vue" />
 
 ## Filterable
 
-```vue
-<template>
-  <NeoSelect v-model="value" :options="options" filterable placeholder="Search" />
-</template>
-```
+<demo vue="../demos/select-search.vue" />
 
 ## API
 

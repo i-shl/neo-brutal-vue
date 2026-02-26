@@ -4,23 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoInputNumber v-model="num" :min="0" :max="100" />
-</template>
-
-<script setup lang="ts">
-const num = ref(0)
-</script>
-```
+<demo vue="../../demos/input-number-basic.vue" />
 
 ## 步进与精度
 
-```vue
-<template>
-  <NeoInputNumber v-model="num" :step="0.5" :precision="1" />
-</template>
-```
+<demo vue="../../demos/input-number-step.vue" />
 
 ## API
 

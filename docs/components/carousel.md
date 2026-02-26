@@ -4,26 +4,11 @@ Carousel for images or content.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoCarousel :items="items" />
-</template>
-
-<script setup lang="ts">
-const items = ref([
-  { image: 'https://picsum.photos/800/300?1', title: 'Title 1' },
-  { image: 'https://picsum.photos/800/300?2', title: 'Title 2' },
-])
-</script>
-```
+<demo vue="../demos/carousel-basic.vue" />
 
 ## Height & Active Item
 
-```vue
-<template>
-  <NeoCarousel :items="items" height="400px" :active="1" />
-</template>
-```
+<demo vue="../demos/carousel-height.vue" />
 
 ## API
 

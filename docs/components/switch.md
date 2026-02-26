@@ -4,15 +4,11 @@ Toggle switch.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoSwitch v-model="enabled" />
-</template>
+<demo vue="../demos/switch-basic.vue" />
 
-<script setup lang="ts">
-const enabled = ref(false)
-</script>
-```
+## Disabled & Size
+
+<demo vue="../demos/switch-more.vue" />
 
 ## API
 

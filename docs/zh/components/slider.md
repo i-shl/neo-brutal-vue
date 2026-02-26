@@ -4,44 +4,25 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoSlider v-model="value" :min="0" :max="100" />
-</template>
+<demo vue="../../demos/slider-basic.vue" />
 
-<script setup lang="ts">
-const value = ref(50)
-</script>
-```
-
-## 带输入框
-
-```vue
-<template>
-  <NeoSlider v-model="value" show-input />
-</template>
-```
+使用 `show-input` 在滑块旁显示数值输入框。
 
 ## 范围选择
 
-```vue
-<template>
-  <NeoSlider v-model="range" :min="0" :max="100" range />
-</template>
+<demo vue="../../demos/slider-range.vue" />
 
-<script setup lang="ts">
-const range = ref([20, 80])
-</script>
-```
+使用 `range` 配合 `show-input` 可显示双滑块及数值。下方为禁用状态示例。
 
 ## API
 
 | 属性 | 说明 | 类型 |
 |------|------|------|
-| modelValue | 绑定值（单值为 number，范围为 [number, number]） | `number \| number[]` |
+| modelValue | 绑定值（单值为 number，范围为 [number, number]） | `number \| [number, number]` |
 | min | 最小值 | `number` |
 | max | 最大值 | `number` |
 | step | 步长 | `number` |
+| range | 范围模式（双滑块） | `boolean` |
 | showInput | 是否显示输入框 | `boolean` |
 | showTooltip | 是否显示悬浮提示 | `boolean` |
 | disabled | 禁用 | `boolean` |

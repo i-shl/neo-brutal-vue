@@ -4,26 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoSteps :active="1">
-    <NeoStep title="步骤一" description="描述一" />
-    <NeoStep title="步骤二" description="描述二" />
-    <NeoStep title="步骤三" description="描述三" />
-  </NeoSteps>
-</template>
-```
+<demo vue="../../demos/steps-basic.vue" />
 
 ## 垂直方向与对齐
 
-```vue
-<template>
-  <NeoSteps :active="2" direction="vertical">
-    <NeoStep title="A" />
-    <NeoStep title="B" />
-  </NeoSteps>
-</template>
-```
+<demo vue="../../demos/steps-vertical.vue" />
 
 ## API
 

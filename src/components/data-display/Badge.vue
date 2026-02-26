@@ -9,11 +9,9 @@ const props = withDefaults(defineProps<BadgeProps>(), {
 
 const badgeClass = computed(() => {
   const classes: string[] = ['neo-badge']
-  
   if (props.type) classes.push(`neo-badge--${props.type}`)
   if (props.isDot) classes.push('neo-badge--dot')
   if (props.hidden) classes.push('neo-badge--hidden')
-  
   return classes.join(' ')
 })
 
@@ -29,9 +27,11 @@ const displayValue = computed(() => {
 <template>
   <span :class="badgeClass">
     <slot />
-    <sup v-if="!hidden" class="neo-badge__content">
-      {{ displayValue }}
-    </sup>
+    <Transition name="neo-badge-pop">
+      <sup v-if="!hidden" class="neo-badge__content">
+        {{ displayValue }}
+      </sup>
+    </Transition>
   </span>
 </template>
 
@@ -39,7 +39,7 @@ const displayValue = computed(() => {
 .neo-badge {
   position: relative;
   display: inline-flex;
-  align-items: center;
+  vertical-align: middle;
 }
 
 .neo-badge__content {
@@ -49,49 +49,54 @@ const displayValue = computed(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 4px;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.5rem;
+  
   font-family: var(--neo-font-family);
-  font-size: 10px;
-  font-weight: var(--neo-font-weight-bold);
-  line-height: 1;
-  color: var(--neo-white);
-  background-color: var(--neo-danger);
-  border: 2px solid var(--neo-bg-primary);
-  border-radius: var(--neo-radius-full);
-  transform: translate(30%, -30%);
-  box-shadow: var(--neo-shadow-sm);
+  font-size: 0.75rem;
+  font-weight: var(--neo-font-weight-black);
+  
+  color: var(--neo-black);
+  background-color: var(--neo-accent);
+  border: var(--neo-border);
+  border-radius: 4px;
+  transform: translate(50%, -50%);
+  box-shadow: 3px 3px 0px var(--neo-black);
+  z-index: 10;
+  transition: var(--neo-transition);
 }
 
-/* ==================== Badge Types ==================== */
-.neo-badge--primary .neo-badge__content {
-  background-color: var(--neo-primary);
-}
+/* --- Types --- */
+.neo-badge--primary .neo-badge__content { background-color: var(--neo-main); }
+.neo-badge--danger .neo-badge__content { background-color: var(--neo-danger); color: var(--neo-white); }
+.neo-badge--success .neo-badge__content { background-color: var(--neo-success); }
+.neo-badge--info .neo-badge__content { background-color: var(--neo-info); color: var(--neo-white); }
+.neo-badge--warning .neo-badge__content { background-color: var(--neo-warning); }
 
-.neo-badge--success .neo-badge__content {
-  background-color: var(--neo-success);
-}
-
-.neo-badge--warning .neo-badge__content {
-  background-color: var(--neo-warning);
-}
-
-.neo-badge--info .neo-badge__content {
-  background-color: var(--neo-info);
-}
-
-/* ==================== Badge Dot ==================== */
 .neo-badge--dot .neo-badge__content {
-  width: 8px;
-  height: 8px;
+  width: 0.75rem;
+  height: 0.75rem;
   min-width: 0;
   padding: 0;
   border-radius: 50%;
 }
 
-/* ==================== Badge Hidden ==================== */
 .neo-badge--hidden .neo-badge__content {
   display: none;
+}
+
+/* Pop Animation */
+.neo-badge-pop-enter-active {
+  animation: neo-badge-pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.neo-badge-pop-leave-active {
+  animation: neo-badge-pop-in 0.3s reverse ease-in;
+}
+
+@keyframes neo-badge-pop-in {
+  0% { transform: translate(50%, -50%) scale(0); opacity: 0; }
+  80% { transform: translate(50%, -50%) scale(1.2); opacity: 1; }
+  100% { transform: translate(50%, -50%) scale(1); opacity: 1; }
 }
 </style>

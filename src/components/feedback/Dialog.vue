@@ -16,24 +16,22 @@ const props = withDefaults(defineProps<DialogProps>(), {
 
 const emit = defineEmits<DialogEmits>()
 
-const dialogVisible = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
-})
-
 const dialogStyle = computed(() => ({
   width: typeof props.width === 'number' ? `${props.width}px` : props.width,
-  top: props.top
+  marginTop: props.alignCenter ? '0' : props.top
 }))
 
 watch(() => props.modelValue, (val) => {
   if (val) {
     emit('open')
+    document.body.style.overflow = 'hidden'
     nextTick(() => {
       emit('opened')
     })
+  } else {
+    document.body.style.overflow = ''
   }
-})
+}, { immediate: true })
 
 const handleClose = () => {
   emit('update:modelValue', false)
@@ -55,17 +53,16 @@ const handleKeydown = (e: KeyboardEvent) => {
 
 <template>
   <Teleport to="body">
-    <Transition name="neo-dialog">
-      <div v-if="modelValue" class="neo-dialog__wrapper" @click="handleBackdropClick" @keydown="handleKeydown">
-        <!-- Backdrop -->
-        <div v-if="modal" class="neo-dialog__backdrop" />
+    <Transition name="neo-dialog-bounce">
+      <div v-if="modelValue" class="neo-dialog-wrapper" :class="{ 'is-centered': alignCenter }">
+        <div v-if="modal" class="neo-dialog-backdrop" @click="handleBackdropClick" />
         
-        <!-- Dialog -->
         <div
-          :class="['neo-dialog', { 'neo-dialog--center': alignCenter }]"
+          class="neo-dialog"
           :style="dialogStyle"
           role="dialog"
           aria-modal="true"
+          @keydown="handleKeydown"
         >
           <!-- Header -->
           <div v-if="title || showClose || $slots.header" class="neo-dialog__header">
@@ -75,10 +72,13 @@ const handleKeydown = (e: KeyboardEvent) => {
             <button
               v-if="showClose"
               type="button"
-              class="neo-dialog__close"
+              class="neo-dialog__close-btn"
+              title="Close"
               @click="handleClose"
             >
-              ✕
+              <svg viewBox="0 0 24 24" width="20" height="20">
+                <path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" d="M18 6L6 18M6 6l12 12" />
+              </svg>
             </button>
           </div>
           
@@ -98,115 +98,118 @@ const handleKeydown = (e: KeyboardEvent) => {
 </template>
 
 <style scoped>
-/* ==================== Dialog Wrapper ==================== */
-.neo-dialog__wrapper {
+.neo-dialog-wrapper {
   position: fixed;
   inset: 0;
   z-index: var(--neo-z-modal);
   display: flex;
-  overflow: auto;
+  justify-content: center;
+  padding: 2rem;
+  overflow-y: auto;
+  pointer-events: auto;
 }
 
-.neo-dialog__backdrop {
-  position: absolute;
+.neo-dialog-wrapper.is-centered {
+  align-items: center;
+}
+
+.neo-dialog-backdrop {
+  position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+  z-index: -1;
 }
 
-/* ==================== Dialog ==================== */
 .neo-dialog {
-  --dialog-bg: var(--neo-bg-primary);
-  --dialog-border: var(--neo-border-color);
-  
   position: relative;
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 12px 12px 0px var(--neo-black);
+  max-width: 100%;
   display: flex;
   flex-direction: column;
-  margin: auto;
-  background-color: var(--dialog-bg);
-  border: var(--neo-border-width) solid var(--dialog-border);
-  border-radius: var(--neo-radius);
-  box-shadow: var(--neo-shadow-lg);
-  max-width: calc(100vw - 32px);
-  max-height: calc(100vh - 32px);
+  z-index: 10;
+  transition: var(--neo-transition);
 }
 
-.neo-dialog--center {
-  margin: auto;
-}
-
-/* ==================== Dialog Header ==================== */
 .neo-dialog__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--neo-spacing-md);
-  border-bottom: var(--neo-border-width) solid var(--dialog-border);
+  padding: 1.25rem 1.5rem;
+  background-color: var(--neo-main);
+  border-bottom: var(--neo-border-thick);
+  color: var(--neo-black);
 }
 
 .neo-dialog__title {
-  font-size: var(--neo-font-size-lg);
-  font-weight: var(--neo-font-weight-bold);
-  color: var(--neo-text-primary);
+  font-size: 1.5rem;
+  font-weight: var(--neo-font-weight-black);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
 }
 
-.neo-dialog__close {
+.neo-dialog__close-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  font-size: var(--neo-font-size-base);
-  color: var(--neo-text-secondary);
-  background: transparent;
-  border: none;
-  border-radius: var(--neo-radius);
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 2px 2px 0 var(--neo-black);
   cursor: pointer;
-  transition: all var(--neo-transition-fast);
+  transition: var(--neo-transition);
+  color: var(--neo-black);
 }
 
-.neo-dialog__close:hover {
-  color: var(--neo-text-primary);
-  background-color: var(--neo-gray-100);
+.neo-dialog__close-btn:hover {
+  background-color: var(--neo-danger);
+  color: var(--neo-white);
+  transform: scale(1.1) rotate(90deg);
 }
 
-/* ==================== Dialog Body ==================== */
 .neo-dialog__body {
-  flex: 1;
-  padding: var(--neo-spacing-md);
-  overflow: auto;
-  color: var(--neo-text-primary);
+  padding: 2rem;
+  font-size: 1rem;
+  font-weight: var(--neo-font-weight-bold);
+  color: var(--neo-black);
+  line-height: 1.6;
 }
 
-/* ==================== Dialog Footer ==================== */
 .neo-dialog__footer {
+  padding: 1.25rem 1.5rem;
+  border-top: var(--neo-border-thick);
+  background-color: var(--neo-gray-50);
   display: flex;
-  align-items: center;
   justify-content: flex-end;
-  gap: var(--neo-spacing-sm);
-  padding: var(--neo-spacing-md);
-  border-top: var(--neo-border-width) solid var(--dialog-border);
+  gap: 1rem;
 }
 
-/* ==================== Dialog Transitions ==================== */
-.neo-dialog-enter-active,
-.neo-dialog-leave-active {
-  transition: opacity var(--neo-transition-base);
+/* Animations */
+.neo-dialog-bounce-enter-active {
+  transition: opacity 0.3s ease;
+}
+.neo-dialog-bounce-enter-active .neo-dialog {
+  animation: neo-dialog-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.neo-dialog-enter-active .neo-dialog,
-.neo-dialog-leave-active .neo-dialog {
-  transition: transform var(--neo-transition-base), opacity var(--neo-transition-base);
+.neo-dialog-bounce-leave-active {
+  transition: opacity 0.3s ease;
+}
+.neo-dialog-bounce-leave-active .neo-dialog {
+  animation: neo-dialog-in 0.3s reverse ease-in;
 }
 
-.neo-dialog-enter-from,
-.neo-dialog-leave-to {
-  opacity: 0;
+@keyframes neo-dialog-in {
+  0% { transform: scale(0.6) translateY(40px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 
-.neo-dialog-enter-from .neo-dialog,
-.neo-dialog-leave-to .neo-dialog {
-  transform: scale(0.95);
+.neo-dialog-bounce-enter-from,
+.neo-dialog-bounce-leave-to {
   opacity: 0;
 }
 </style>

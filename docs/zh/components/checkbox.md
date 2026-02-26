@@ -4,15 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoCheckbox v-model="checked">我已阅读协议</NeoCheckbox>
-</template>
+<demo vue="../../demos/checkbox-basic.vue" />
 
-<script setup lang="ts">
-const checked = ref(false)
-</script>
-```
+## 禁用与尺寸
+
+<demo vue="../../demos/checkbox-more.vue" />
 
 ## API
 

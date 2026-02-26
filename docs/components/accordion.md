@@ -4,18 +4,7 @@ Similar to Collapse. Supports accordion (single expand) or multiple expand. API 
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoAccordion v-model="active">
-    <NeoAccordionItem name="a" title="Item A">Content A</NeoAccordionItem>
-    <NeoAccordionItem name="b" title="Item B">Content B</NeoAccordionItem>
-  </NeoAccordion>
-</template>
-
-<script setup lang="ts">
-const active = ref('a')
-</script>
-```
+<demo vue="../demos/accordion-basic.vue" />
 
 ## API
 

@@ -4,26 +4,17 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoMenu default-active="1" mode="vertical">
-    <NeoMenuItem index="1">首页</NeoMenuItem>
-    <NeoMenuItem index="2">列表</NeoMenuItem>
-    <NeoMenuItem index="3">设置</NeoMenuItem>
-  </NeoMenu>
-</template>
-```
+<demo vue="../../demos/menu-basic.vue" />
 
 ## 水平菜单
 
-```vue
-<template>
-  <NeoMenu default-active="1" mode="horizontal">
-    <NeoMenuItem index="1">首页</NeoMenuItem>
-    <NeoMenuItem index="2">关于</NeoMenuItem>
-  </NeoMenu>
-</template>
-```
+<demo vue="../../demos/menu-horizontal.vue" />
+
+## 子菜单
+
+使用 `NeoSubMenu` 配合 `NeoMenuItem` 实现嵌套菜单。
+
+<demo vue="../../demos/menu-submenu.vue" />
 
 ## API
 
@@ -45,6 +36,12 @@
 | index | 唯一标识 | `string` |
 | disabled | 禁用 | `boolean` |
 
-插槽：`title`、默认。子菜单通过 `children` 或嵌套 NeoMenuItem 实现。
+**NeoSubMenu**
+
+| 属性 | 说明 | 类型 |
+|------|------|------|
+| index | 唯一标识（嵌套用 `父-子`） | `string` |
+| title | 子菜单标题 | `string` |
+| disabled | 禁用 | `boolean` |
 
 事件：`select`。

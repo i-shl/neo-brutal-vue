@@ -4,27 +4,15 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoUpload action="/api/upload" />
-</template>
-```
+<demo vue="../../demos/upload-basic.vue" />
 
 ## 拖拽上传
 
-```vue
-<template>
-  <NeoUpload action="/api/upload" drag />
-</template>
-```
+<demo vue="../../demos/upload-drag.vue" />
 
 ## 多选与限制
 
-```vue
-<template>
-  <NeoUpload action="/api/upload" multiple :limit="5" accept="image/*" />
-</template>
-```
+<demo vue="../../demos/upload-multiple.vue" />
 
 ## API
 

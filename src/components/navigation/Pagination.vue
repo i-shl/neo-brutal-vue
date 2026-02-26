@@ -7,7 +7,7 @@ const props = withDefaults(defineProps<PaginationProps>(), {
   pageSize: 10,
   total: 0,
   pageSizes: () => [10, 20, 50, 100],
-  layout: 'total, sizes, prev, pager, next, jumper',
+  layout: 'total, prev, pager, next',
   background: false,
   small: false
 })
@@ -29,19 +29,34 @@ const paginationClass = computed(() => {
   return classes.join(' ')
 })
 
+// Windowing logic for 5 pages
+const pagerPages = computed(() => {
+  const count = 5
+  const total = totalPages.value
+  const current = props.current
+  
+  if (total <= count) {
+    return Array.from({ length: total }, (_, i) => i + 1)
+  }
+  
+  let start = current - Math.floor(count / 2)
+  if (start < 1) start = 1
+  if (start + count - 1 > total) start = total - count + 1
+  
+  return Array.from({ length: count }, (_, i) => start + i)
+})
+
 const handlePrev = () => {
   if (props.current > 1) {
     const newPage = props.current - 1
-    emit('update:current', newPage)
-    emit('change', newPage, props.pageSize)
+    handlePageClick(newPage)
   }
 }
 
 const handleNext = () => {
   if (props.current < totalPages.value) {
     const newPage = props.current + 1
-    emit('update:current', newPage)
-    emit('change', newPage, props.pageSize)
+    handlePageClick(newPage)
   }
 }
 
@@ -63,20 +78,21 @@ const handlePageSizeChange = (e: Event) => {
   <div :class="paginationClass">
     <!-- Total -->
     <span v-if="layout.includes('total')" class="neo-pagination__total">
-      共 {{ total }} 条
+      TOTAL: {{ total }}
     </span>
     
     <!-- Page Sizes -->
-    <select
-      v-if="layout.includes('sizes')"
-      class="neo-pagination__sizes"
-      :value="pageSize"
-      @change="handlePageSizeChange"
-    >
-      <option v-for="size in pageSizes" :key="size" :value="size">
-        {{ size }} 条/页
-      </option>
-    </select>
+    <div v-if="layout.includes('sizes')" class="neo-pagination__sizes-wrapper">
+      <select
+        class="neo-pagination__sizes"
+        :value="pageSize"
+        @change="handlePageSizeChange"
+      >
+        <option v-for="size in pageSizes" :key="size" :value="size">
+          {{ size }} / PAGE
+        </option>
+      </select>
+    </div>
     
     <!-- Prev -->
     <button
@@ -86,21 +102,21 @@ const handlePageSizeChange = (e: Event) => {
       :disabled="current <= 1"
       @click="handlePrev"
     >
-      ‹
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" d="M15 18l-6-6 6-6"/></svg>
     </button>
     
     <!-- Pager -->
-    <span v-if="layout.includes('pager')" class="neo-pagination__pagers">
+    <div v-if="layout.includes('pager')" class="neo-pagination__pagers">
       <button
-        v-for="page in totalPages"
+        v-for="page in pagerPages"
         :key="page"
         type="button"
-        :class="['neo-pagination__btn', 'neo-pagination__pager', { 'neo-pagination__pager--active': page === current }]"
+        :class="['neo-pagination__btn', 'neo-pagination__pager', { 'is-active': page === current }]"
         @click="handlePageClick(page)"
       >
         {{ page }}
       </button>
-    </span>
+    </div>
     
     <!-- Next -->
     <button
@@ -110,21 +126,21 @@ const handlePageSizeChange = (e: Event) => {
       :disabled="current >= totalPages"
       @click="handleNext"
     >
-      ›
+      <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" d="M9 18l6-6-6-6"/></svg>
     </button>
     
     <!-- Jumper -->
-    <span v-if="layout.includes('jumper')" class="neo-pagination__jumper">
-      前往
+    <div v-if="layout.includes('jumper')" class="neo-pagination__jumper">
+      GO TO
       <input
         type="number"
         class="neo-pagination__input"
+        :value="current"
         :min="1"
         :max="totalPages"
         @keyup.enter="(e) => handlePageClick(parseInt((e.target as HTMLInputElement).value))"
       />
-      页
-    </span>
+    </div>
   </div>
 </template>
 
@@ -132,97 +148,117 @@ const handlePageSizeChange = (e: Event) => {
 .neo-pagination {
   display: inline-flex;
   align-items: center;
-  gap: var(--neo-spacing-sm);
+  gap: 1rem;
   font-family: var(--neo-font-family);
 }
 
 .neo-pagination__total {
-  font-size: var(--neo-font-size-sm);
-  color: var(--neo-text-secondary);
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-black);
+  color: var(--neo-black);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.neo-pagination__sizes-wrapper {
+  position: relative;
 }
 
 .neo-pagination__sizes {
-  padding: var(--neo-spacing-xs) var(--neo-spacing-sm);
-  font-size: var(--neo-font-size-sm);
-  color: var(--neo-text-primary);
-  background: var(--neo-bg-primary);
-  border: var(--neo-border-width-thin) solid var(--neo-border-color);
-  border-radius: var(--neo-radius);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-black);
+  color: var(--neo-black);
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 3px 3px 0px var(--neo-black);
   cursor: pointer;
+  appearance: none;
+  text-transform: uppercase;
 }
 
 .neo-pagination__btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 32px;
-  height: 32px;
-  padding: 0 var(--neo-spacing-sm);
-  font-size: var(--neo-font-size-sm);
-  font-weight: var(--neo-font-weight-medium);
-  color: var(--neo-text-primary);
-  background: var(--neo-bg-primary);
-  border: var(--neo-border-width-thin) solid var(--neo-border-color);
-  border-radius: var(--neo-radius);
-  box-shadow: var(--neo-shadow-sm);
+  min-width: 2.5rem;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+  font-weight: var(--neo-font-weight-black);
+  color: var(--neo-black);
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 4px 4px 0px var(--neo-black);
   cursor: pointer;
-  transition: all var(--neo-transition-base);
+  transition: var(--neo-transition);
 }
 
 .neo-pagination__btn:hover:not(:disabled) {
+  background-color: var(--neo-gray-50);
   transform: translate(-1px, -1px);
-  box-shadow: var(--neo-shadow);
+  box-shadow: 6px 6px 0px var(--neo-black);
+}
+
+.neo-pagination__btn:active:not(:disabled) {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0px var(--neo-black);
 }
 
 .neo-pagination__btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+  filter: grayscale(1);
 }
 
-.neo-pagination__pager {
-  margin: 0 2px;
+.neo-pagination__pagers {
+  display: inline-flex;
+  gap: 0.75rem;
 }
 
-.neo-pagination__pager--active {
-  background: var(--neo-primary);
-  color: var(--neo-white);
-  border-color: var(--neo-primary);
+.neo-pagination__pager.is-active {
+  background-color: var(--neo-main);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0px var(--neo-black);
 }
 
 .neo-pagination__jumper {
   display: inline-flex;
   align-items: center;
-  gap: var(--neo-spacing-xs);
-  font-size: var(--neo-font-size-sm);
-  color: var(--neo-text-secondary);
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-black);
+  color: var(--neo-black);
+  text-transform: uppercase;
 }
 
 .neo-pagination__input {
-  width: 48px;
-  height: 28px;
-  padding: 0 var(--neo-spacing-xs);
-  font-size: var(--neo-font-size-sm);
+  width: 3.5rem;
+  height: 2.5rem;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+  font-weight: var(--neo-font-weight-black);
   text-align: center;
-  color: var(--neo-text-primary);
-  background: var(--neo-bg-primary);
-  border: var(--neo-border-width-thin) solid var(--neo-border-color);
-  border-radius: var(--neo-radius);
+  color: var(--neo-black);
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 3px 3px 0px var(--neo-black);
+  transition: var(--neo-transition);
 }
 
-/* Background variant */
-.neo-pagination--background .neo-pagination__btn {
-  background: var(--neo-gray-100);
-}
-
-.neo-pagination--background .neo-pagination__pager--active {
-  background: var(--neo-primary);
-  color: var(--neo-white);
+.neo-pagination__input:focus {
+  outline: none;
+  background-color: var(--neo-main);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0px var(--neo-black);
 }
 
 /* Small variant */
-.neo-pagination--small .neo-pagination__btn {
-  height: 28px;
-  min-width: 28px;
-  font-size: var(--neo-font-size-xs);
+.neo-pagination--small .neo-pagination__btn,
+.neo-pagination--small .neo-pagination__input,
+.neo-pagination--small .neo-pagination__sizes {
+  height: 2rem;
+  min-width: 2rem;
+  font-size: 0.75rem;
 }
 </style>

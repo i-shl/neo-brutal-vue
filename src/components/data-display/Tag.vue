@@ -7,7 +7,6 @@ const props = withDefaults(defineProps<TagProps>(), {
   size: 'md',
   effect: 'light',
   closable: false,
-  disableTransitions: false
 })
 
 const emit = defineEmits<{
@@ -20,35 +19,13 @@ const tagClass = computed(() => {
     'neo-tag',
     `neo-tag--${props.type}`,
     `neo-tag--${props.size}`,
-    `neo-tag--${props.effect}`,
   ]
-  
-  if (props.hit) classes.push('neo-tag--hit')
   if (props.closable) classes.push('neo-tag--closable')
-  
   return classes.join(' ')
 })
 
-const tagStyle = computed(() => {
-  if (props.color) {
-    return {
-      '--tag-bg': props.color,
-      '--tag-text': getContrastColor(props.color),
-      '--tag-border': props.color
-    }
-  }
-  return {}
-})
-
-function getContrastColor(hexColor: string): string {
-  const r = parseInt(hexColor.slice(1, 3), 16)
-  const g = parseInt(hexColor.slice(3, 5), 16)
-  const b = parseInt(hexColor.slice(5, 7), 16)
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-  return luminance > 0.5 ? '#000000' : '#FFFFFF'
-}
-
 const handleClose = (e: MouseEvent) => {
+  e.stopPropagation()
   emit('close', e)
 }
 
@@ -58,7 +35,7 @@ const handleClick = (e: MouseEvent) => {
 </script>
 
 <template>
-  <span :class="tagClass" :style="tagStyle" @click="handleClick">
+  <span :class="tagClass" @click="handleClick">
     <span class="neo-tag__content">
       <slot />
     </span>
@@ -74,174 +51,82 @@ const handleClick = (e: MouseEvent) => {
 </template>
 
 <style scoped>
-/* ==================== Base Tag Styles ==================== */
 .neo-tag {
-  --tag-bg: var(--neo-gray-100);
-  --tag-text: var(--neo-text-primary);
-  --tag-border: var(--neo-border-color);
-  --tag-shadow: var(--neo-shadow-sm);
+  --tag-bg: var(--neo-white);
+  --tag-color: var(--neo-black);
   
   display: inline-flex;
   align-items: center;
-  gap: var(--neo-spacing-xs);
-  height: auto;
-  padding: var(--neo-spacing-xs) var(--neo-spacing-sm);
+  gap: 0.5rem;
+  padding: 0 0.875rem;
+  height: 2rem;
+  
   font-family: var(--neo-font-family);
-  font-size: var(--neo-font-size-xs);
-  font-weight: var(--neo-font-weight-medium);
-  line-height: 1;
-  color: var(--tag-text);
+  font-size: 0.75rem;
+  font-weight: var(--neo-font-weight-black);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  
   background-color: var(--tag-bg);
-  border: var(--neo-border-width-thin) solid var(--tag-border);
-  border-radius: var(--neo-radius);
-  box-shadow: var(--tag-shadow);
-  cursor: default;
-  transition: all var(--neo-transition-base) var(--neo-transition-timing);
+  color: var(--tag-color);
+  border: var(--neo-border-thick);
+  box-shadow: 3px 3px 0 var(--neo-black);
+  
+  transition: var(--neo-transition);
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
 }
 
 .neo-tag:hover {
   transform: translate(-1px, -1px);
-  box-shadow: var(--neo-shadow);
+  box-shadow: 4px 4px 0 var(--neo-black);
+  background-color: var(--neo-gray-50);
 }
 
-.neo-tag--closable {
-  padding-right: var(--neo-spacing-xs);
+.neo-tag:active {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 var(--neo-black);
 }
 
-/* ==================== Tag Types ==================== */
-.neo-tag--primary {
-  --tag-bg: var(--neo-primary-light);
-  --tag-text: var(--neo-primary);
-  --tag-border: var(--neo-primary);
-}
+/* --- Types --- */
+.neo-tag--primary { --tag-bg: var(--neo-main); }
+.neo-tag--success { --tag-bg: var(--neo-success); }
+.neo-tag--warning { --tag-bg: var(--neo-warning); }
+.neo-tag--danger { --tag-bg: var(--neo-danger); --tag-color: var(--neo-white); }
+.neo-tag--info { --tag-bg: var(--neo-info); --tag-color: var(--neo-white); }
+.neo-tag--default { --tag-bg: var(--neo-white); }
 
-.neo-tag--secondary {
-  --tag-bg: var(--neo-secondary-light);
-  --tag-text: var(--neo-secondary);
-  --tag-border: var(--neo-secondary);
-}
+/* --- Sizes --- */
+.neo-tag--sm { height: 1.5rem; padding: 0 0.5rem; font-size: 0.625rem; }
+.neo-tag--lg { height: 2.75rem; padding: 0 1.25rem; font-size: 1rem; border-width: 4px; box-shadow: 5px 5px 0 var(--neo-black); }
+.neo-tag--lg:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--neo-black); }
 
-.neo-tag--success {
-  --tag-bg: var(--neo-success-light);
-  --tag-text: var(--neo-success);
-  --tag-border: var(--neo-success);
-}
-
-.neo-tag--warning {
-  --tag-bg: var(--neo-warning-light);
-  --tag-text: var(--neo-warning);
-  --tag-border: var(--neo-warning);
-}
-
-.neo-tag--danger {
-  --tag-bg: var(--neo-danger-light);
-  --tag-text: var(--neo-danger);
-  --tag-border: var(--neo-danger);
-}
-
-.neo-tag--info {
-  --tag-bg: var(--neo-info-light);
-  --tag-text: var(--neo-info);
-  --tag-border: var(--neo-info);
-}
-
-.neo-tag--default {
-  --tag-bg: var(--neo-gray-100);
-  --tag-text: var(--neo-text-primary);
-  --tag-border: var(--neo-border-color);
-}
-
-/* ==================== Tag Effects ==================== */
-.neo-tag--dark {
-  --tag-text: var(--neo-white);
-}
-
-.neo-tag--dark.neo-tag--primary {
-  --tag-bg: var(--neo-primary);
-}
-
-.neo-tag--dark.neo-tag--secondary {
-  --tag-bg: var(--neo-secondary);
-}
-
-.neo-tag--dark.neo-tag--success {
-  --tag-bg: var(--neo-success);
-}
-
-.neo-tag--dark.neo-tag--warning {
-  --tag-bg: var(--neo-warning);
-}
-
-.neo-tag--dark.neo-tag--danger {
-  --tag-bg: var(--neo-danger);
-}
-
-.neo-tag--dark.neo-tag--info {
-  --tag-bg: var(--neo-info);
-}
-
-.neo-tag--plain {
-  --tag-bg: transparent;
-  --tag-shadow: none;
-}
-
-.neo-tag--plain:hover {
-  --tag-bg: var(--neo-gray-100);
-  transform: none;
-  box-shadow: none;
-}
-
-/* ==================== Tag Sizes ==================== */
-.neo-tag--xs {
-  padding: 2px 4px;
-  font-size: 10px;
-}
-
-.neo-tag--sm {
-  padding: 2px 6px;
-  font-size: var(--neo-font-size-xs);
-}
-
-.neo-tag--md {
-  padding: var(--neo-spacing-xs) var(--neo-spacing-sm);
-}
-
-.neo-tag--lg {
-  padding: var(--neo-spacing-sm) var(--neo-spacing-md);
-  font-size: var(--neo-font-size-sm);
-}
-
-/* ==================== Tag States ==================== */
-.neo-tag--hit {
-  border-radius: var(--neo-radius-full);
-}
-
-/* ==================== Tag Close Button ==================== */
 .neo-tag__close {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 14px;
-  height: 14px;
+  width: 1.125rem;
+  height: 1.125rem;
+  font-size: 0.625rem;
   padding: 0;
-  margin-left: 2px;
-  font-size: 10px;
-  color: inherit;
-  background: transparent;
-  border: none;
-  border-radius: 50%;
+  border: var(--neo-border);
+  background-color: var(--neo-white);
+  color: var(--neo-black);
+  box-shadow: 1px 1px 0 var(--neo-black);
   cursor: pointer;
-  opacity: 0.7;
-  transition: all var(--neo-transition-fast);
+  transition: var(--neo-transition);
+  font-weight: var(--neo-font-weight-black);
 }
 
 .neo-tag__close:hover {
-  opacity: 1;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: var(--neo-danger);
+  color: var(--neo-white);
+  transform: scale(1.1);
 }
 
 .neo-tag__content {
-  display: inline-flex;
+  display: flex;
   align-items: center;
 }
 </style>

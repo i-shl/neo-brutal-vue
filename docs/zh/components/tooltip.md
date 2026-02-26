@@ -4,22 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoTooltip content="提示文字">
-    <NeoButton>悬停我</NeoButton>
-  </NeoTooltip>
-</template>
-```
+<demo vue="../../demos/tooltip-basic.vue" />
 
 ## 位置与触发方式
 
-```vue
-<template>
-  <NeoTooltip content="顶部" placement="top">Top</NeoTooltip>
-  <NeoTooltip content="点击显示" trigger="click">Click</NeoTooltip>
-</template>
-```
+<demo vue="../../demos/tooltip-placement.vue" />
 
 ## API
 

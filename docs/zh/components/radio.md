@@ -4,26 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoRadio v-model="picked" label="option1">选项 A</NeoRadio>
-  <NeoRadio v-model="picked" label="option2">选项 B</NeoRadio>
-</template>
+<demo vue="../../demos/radio-basic.vue" />
 
-<script setup lang="ts">
-const picked = ref('option1')
-</script>
-```
+## 单选组（带边框）
 
-## 单选组
-
-```vue
-<template>
-  <NeoRadio v-model="city" label="beijing">北京</NeoRadio>
-  <NeoRadio v-model="city" label="shanghai">上海</NeoRadio>
-  <NeoRadio v-model="city" label="guangzhou">广州</NeoRadio>
-</template>
-```
+<demo vue="../../demos/radio-group.vue" />
 
 ## API
 

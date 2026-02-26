@@ -1,6 +1,23 @@
 import { defineConfig } from 'vitepress'
+import { vitepressDemoPlugin } from 'vitepress-demo-plugin'
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
+  markdown: {
+    config(md) {
+      md.use(vitepressDemoPlugin, { locale: 'en-US' })
+    },
+  },
+  vite: {
+    resolve: {
+      alias: {
+        'neo-brutal-vue': path.resolve(__dirname, '../../src/index.ts'),
+      },
+    },
+  },
   title: 'NeoBrutal Vue',
   description: 'Neobrutalism style Vue 3 UI component library',
   base: '/',

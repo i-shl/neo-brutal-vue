@@ -5,7 +5,9 @@ import type { CardProps } from '@/types'
 const props = withDefaults(defineProps<CardProps>(), {
   shadow: true,
   bordered: true,
-  variant: 'default'
+  variant: 'default',
+  showHeader: true,
+  showFooter: true,
 })
 
 const cardClass = computed(() => {
@@ -25,13 +27,15 @@ const bodyStyle = computed(() => props.bodyStyle as any)
 <template>
   <div :class="cardClass">
     <!-- Header -->
-    <div v-if="title || $slots.header" class="neo-card__header" :style="headerStyle" :class="headerClass">
+    <div v-if="showHeader && (title || $slots.header)" class="neo-card__header" :style="headerStyle" :class="headerClass">
       <slot name="header">
-        <div class="neo-card__title">
-          <slot name="title">{{ title }}</slot>
-        </div>
-        <div v-if="subTitle || $slots['sub-title']" class="neo-card__subtitle">
-          <slot name="sub-title">{{ subTitle }}</slot>
+        <div class="neo-card__title-group">
+          <div class="neo-card__title">
+            <slot name="title">{{ title }}</slot>
+          </div>
+          <div v-if="subTitle || $slots['sub-title']" class="neo-card__subtitle">
+            <slot name="sub-title">{{ subTitle }}</slot>
+          </div>
         </div>
       </slot>
     </div>
@@ -42,7 +46,7 @@ const bodyStyle = computed(() => props.bodyStyle as any)
     </div>
     
     <!-- Footer -->
-    <div v-if="$slots.footer" class="neo-card__footer">
+    <div v-if="showFooter && $slots.footer" class="neo-card__footer">
       <slot name="footer" />
     </div>
   </div>
@@ -50,126 +54,78 @@ const bodyStyle = computed(() => props.bodyStyle as any)
 
 <style scoped>
 .neo-card {
-  --card-bg: var(--neo-bg-primary);
-  --card-border: var(--neo-border-color);
-  --card-shadow: var(--neo-shadow);
-  --card-shadow-hover: var(--neo-shadow-hover);
-  
   display: flex;
   flex-direction: column;
-  background-color: var(--card-bg);
-  border: var(--neo-border-width) solid var(--card-border);
-  border-radius: var(--neo-radius);
-  box-shadow: var(--card-shadow);
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 10px 10px 0px var(--neo-black);
   overflow: hidden;
-  transition: all var(--neo-transition-base) var(--neo-transition-timing);
+  transition: var(--neo-transition);
+  font-family: var(--neo-font-family);
 }
 
-/* NeoBrutalism Card Variants */
-.neo-card--default {
-  border-radius: var(--neo-radius);
-}
-
-.neo-card--flat {
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.neo-card--flat:hover {
-  transform: none;
-  box-shadow: none;
-}
-
-.neo-card--elevated {
-  border: var(--neo-border-width-thick) solid var(--card-border);
-  box-shadow: var(--neo-shadow-lg);
-}
-
+/* --- Variants --- */
 .neo-card--elevated:hover {
   transform: translate(-4px, -4px);
-  box-shadow: var(--neo-shadow-xl);
+  box-shadow: 16px 16px 0px var(--neo-black);
 }
 
 .neo-card--gradient {
-  border: var(--neo-border-width) solid var(--card-border);
-  background: linear-gradient(135deg, var(--neo-primary-light) 0%, var(--neo-secondary-light) 100%);
-}
-
-.neo-card--gradient:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: var(--neo-shadow-lg);
+  background: linear-gradient(135deg, var(--neo-main) 0%, var(--neo-yellow) 100%);
 }
 
 .neo-card--colored {
-  border: var(--neo-border-width) solid var(--neo-primary);
-  background-color: var(--neo-primary-light);
+  background-color: var(--neo-main);
 }
 
-.neo-card--colored:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: var(--neo-shadow-primary);
-}
-
-.neo-card:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: var(--card-shadow-hover);
-}
-
-.neo-card--no-shadow {
-  box-shadow: none;
-}
-
-.neo-card--no-shadow:hover {
-  transform: none;
-  box-shadow: none;
-}
+.neo-card--no-shadow { box-shadow: none; }
+.neo-card--no-border { border: none; }
 
 .neo-card--shadow-hover {
   box-shadow: none;
 }
-
 .neo-card--shadow-hover:hover {
-  box-shadow: var(--card-shadow);
-  transform: translate(-2px, -2px);
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0px var(--neo-black);
 }
 
-.neo-card--no-border {
-  border: none;
-}
-
-/* ==================== Card Header ==================== */
+/* --- Components --- */
 .neo-card__header {
-  display: flex;
-  flex-direction: column;
-  gap: var(--neo-spacing-xs);
-  padding: var(--neo-spacing-md);
-  border-bottom: var(--neo-border-width) solid var(--card-border);
+  padding: 1.5rem;
+  background-color: var(--neo-main);
+  border-bottom: var(--neo-border-thick);
 }
 
 .neo-card__title {
-  font-size: var(--neo-font-size-lg);
-  font-weight: var(--neo-font-weight-bold);
-  color: var(--neo-text-primary);
+  font-size: 1.5rem;
+  font-weight: var(--neo-font-weight-black);
+  text-transform: uppercase;
+  color: var(--neo-black);
+  letter-spacing: 0.05em;
+  line-height: 1.2;
 }
 
 .neo-card__subtitle {
-  font-size: var(--neo-font-size-sm);
-  color: var(--neo-text-secondary);
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-bold);
+  color: var(--neo-black);
+  opacity: 0.8;
+  margin-top: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
-/* ==================== Card Body ==================== */
 .neo-card__body {
+  padding: 2rem;
   flex: 1;
-  padding: var(--neo-spacing-md);
-  color: var(--neo-text-primary);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--neo-black);
 }
 
-/* ==================== Card Footer ==================== */
 .neo-card__footer {
-  display: flex;
-  align-items: center;
-  gap: var(--neo-spacing-sm);
-  padding: var(--neo-spacing-md);
-  border-top: var(--neo-border-width) solid var(--card-border);
+  padding: 1.25rem 1.5rem;
+  background-color: var(--neo-gray-50);
+  border-top: var(--neo-border-thick);
 }
 </style>

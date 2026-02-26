@@ -4,26 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoBreadcrumb>
-    <NeoBreadcrumbItem to="/">首页</NeoBreadcrumbItem>
-    <NeoBreadcrumbItem to="/list">列表</NeoBreadcrumbItem>
-    <NeoBreadcrumbItem>详情</NeoBreadcrumbItem>
-  </NeoBreadcrumb>
-</template>
-```
+<demo vue="../../demos/breadcrumb-basic.vue" />
 
 ## 自定义分隔符
 
-```vue
-<template>
-  <NeoBreadcrumb separator=">">
-    <NeoBreadcrumbItem>首页</NeoBreadcrumbItem>
-    <NeoBreadcrumbItem>当前</NeoBreadcrumbItem>
-  </NeoBreadcrumb>
-</template>
-```
+<demo vue="../../demos/breadcrumb-separator.vue" />
 
 ## API
 

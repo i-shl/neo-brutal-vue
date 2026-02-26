@@ -4,23 +4,11 @@ Numeric input with step, min/max support.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoInputNumber v-model="num" :min="0" :max="100" />
-</template>
-
-<script setup lang="ts">
-const num = ref(0)
-</script>
-```
+<demo vue="../demos/input-number-basic.vue" />
 
 ## Step & Precision
 
-```vue
-<template>
-  <NeoInputNumber v-model="num" :step="0.5" :precision="1" />
-</template>
-```
+<demo vue="../demos/input-number-step.vue" />
 
 ## API
 

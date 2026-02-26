@@ -4,15 +4,11 @@ Multi-select checkbox.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoCheckbox v-model="checked">I agree</NeoCheckbox>
-</template>
+<demo vue="../demos/checkbox-basic.vue" />
 
-<script setup lang="ts">
-const checked = ref(false)
-</script>
-```
+## Disabled & Size
+
+<demo vue="../demos/checkbox-more.vue" />
 
 ## API
 

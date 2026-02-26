@@ -4,41 +4,44 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoTable :data="tableData" :columns="columns" />
-</template>
-
-<script setup lang="ts">
-const tableData = ref([
-  { name: '张三', age: 18 },
-  { name: '李四', age: 20 },
-])
-const columns = [
-  { prop: 'name', label: '姓名' },
-  { prop: 'age', label: '年龄' },
-]
-</script>
-```
+<demo vue="../../demos/table-basic.vue" />
 
 ## 斑马纹与边框
 
-```vue
-<template>
-  <NeoTable :data="data" :columns="columns" stripe border />
-</template>
-```
+<demo vue="../../demos/table-stripe.vue" />
+
+## 自定义插槽
+
+通过 `#[prop]` 可以自定义列的内容，通过 `#header-[prop]` 可以自定义表头内容。
+
+<demo vue="../../demos/table-slots.vue" />
 
 ## API
 
+### Table Attributes
+
+| 属性 | 说明 | 类型 | 默认值 |
+|------|------|------|--------|
+| data | 表格数据 | `any[]` | `[]` |
+| columns | 列配置 | `TableColumn[]` | `[]` |
+| stripe | 是否显示斑马纹 | `boolean` | `false` |
+| border | 是否显示外边框与投影 | `boolean` | `true` |
+| rowKey | 行数据的 Key，用于渲染性能优化或排序 | `string | (row) => string` | `id` |
+| showHeader | 是否显示表头 | `boolean` | `true` |
+
+### TableColumn Attributes
+
 | 属性 | 说明 | 类型 |
 |------|------|------|
-| data | 表格数据 | `any[]` |
-| columns | 列配置 | `TableColumn[]` |
-| stripe | 斑马纹 | `boolean` |
-| border | 边框 | `boolean` |
-| height | 固定高度 | `string \| number` |
-| maxHeight | 最大高度 | `string \| number` |
-| showHeader | 是否显示表头 | `boolean` |
+| prop | 字段名称 | `string` |
+| label | 显示标题 | `string` |
+| width | 列宽 | `string | number` |
+| align | 对齐方式 (`left` | `center` | `right`) | `left` |
 
-TableColumn：`prop`、`label`、`width`、`minWidth`、`fixed`、`sortable`、`formatter` 等。
+### Table Slots
+
+| 名称 | 说明 |
+|------|------|
+| [prop] | 对应的列内容插槽，参数为 `{ row, index }` |
+| header-[prop] | 对应的表头内容插槽，参数为 `{ column }` |
+| empty | 无数据时的内容插槽 |

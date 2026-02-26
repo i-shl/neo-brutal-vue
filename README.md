@@ -37,7 +37,7 @@ import NeoBrutalVue from 'neo-brutal-vue'
 import 'neo-brutal-vue/dist/style.css'
 
 const app = createApp(App)
-app.use(NeoBrutalVue)
+app.use(NeoBrutalVue) // Automatically registers all components with the "Neo" prefix
 ```
 
 ### On-demand import

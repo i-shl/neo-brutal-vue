@@ -4,19 +4,11 @@ Display statistic numbers. Supports prefix, suffix, and precision.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoStatistic title="Total Sales" :value="123456.78" prefix="¥" />
-</template>
-```
+<demo vue="../demos/statistic-basic.vue" />
 
 ## Precision & Suffix
 
-```vue
-<template>
-  <NeoStatistic :value="98.5" :precision="1" suffix="%" />
-</template>
-```
+<demo vue="../demos/statistic-precision.vue" />
 
 ## API
 

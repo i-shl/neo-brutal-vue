@@ -19,11 +19,9 @@ const radioClass = computed(() => {
     'neo-radio',
     `neo-radio--${props.size}`,
   ]
-  
   if (isChecked.value) classes.push('neo-radio--checked')
   if (props.disabled) classes.push('neo-radio--disabled')
   if (props.border) classes.push('neo-radio--border')
-  
   return classes.join(' ')
 })
 
@@ -54,17 +52,14 @@ const handleChange = () => {
 
 <style scoped>
 .neo-radio {
-  --radio-color: var(--neo-primary);
-  --radio-size: 18px;
-  
   display: inline-flex;
   align-items: center;
-  gap: var(--neo-spacing-sm);
+  gap: 0.75rem;
   cursor: pointer;
   user-select: none;
-  font-family: var(--neo-font-family);
-  font-size: var(--neo-font-size-sm);
-  color: var(--neo-text-primary);
+  font-weight: var(--neo-font-weight-bold);
+  color: var(--neo-black);
+  transition: var(--neo-transition);
 }
 
 .neo-radio__input {
@@ -78,31 +73,33 @@ const handleChange = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--radio-size);
-  height: var(--radio-size);
-  background-color: var(--neo-bg-primary);
-  border: var(--neo-border-width) solid var(--neo-border-color);
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
   border-radius: 50%;
-  box-shadow: var(--neo-shadow-sm);
-  transition: all var(--neo-transition-fast);
+  box-shadow: 2px 2px 0 var(--neo-black);
+  transition: var(--neo-transition);
   flex-shrink: 0;
 }
 
 .neo-radio__dot {
-  width: calc(var(--radio-size) * 0.5);
-  height: calc(var(--radio-size) * 0.5);
-  background-color: var(--radio-color);
+  width: 0.625rem;
+  height: 0.625rem;
+  background-color: var(--neo-primary);
   border-radius: 50%;
   transform: scale(0);
-  transition: transform var(--neo-transition-fast);
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid var(--neo-black);
 }
 
-.neo-radio:hover .neo-radio__box {
-  box-shadow: var(--neo-shadow);
+.neo-radio:hover:not(.neo-radio--disabled) .neo-radio__box {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--neo-black);
 }
 
 .neo-radio--checked .neo-radio__box {
-  border-color: var(--radio-color);
+  border-color: var(--neo-black);
 }
 
 .neo-radio--checked .neo-radio__dot {
@@ -110,20 +107,38 @@ const handleChange = () => {
 }
 
 .neo-radio--disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 /* Sizes */
-.neo-radio--xs { --radio-size: 14px; font-size: var(--neo-font-size-xs); }
-.neo-radio--sm { --radio-size: 16px; font-size: var(--neo-font-size-xs); }
-.neo-radio--lg { --radio-size: 20px; font-size: var(--neo-font-size-base); }
-.neo-radio--xl { --radio-size: 24px; font-size: var(--neo-font-size-lg); }
+.neo-radio--xs .neo-radio__box { width: 0.875rem; height: 0.875rem; }
+.neo-radio--xs .neo-radio__dot { width: 0.4375rem; height: 0.4375rem; }
 
-/* Border */
+.neo-radio--sm .neo-radio__box { width: 1rem; height: 1rem; }
+.neo-radio--sm .neo-radio__dot { width: 0.5rem; height: 0.5rem; }
+
+.neo-radio--lg .neo-radio__box { width: 1.5rem; height: 1.5rem; }
+.neo-radio--lg .neo-radio__dot { width: 0.75rem; height: 0.75rem; }
+
+.neo-radio--xl .neo-radio__box { width: 1.75rem; height: 1.75rem; }
+.neo-radio--xl .neo-radio__dot { width: 0.875rem; height: 0.875rem; }
+
+/* Border Style */
 .neo-radio--border {
-  padding: var(--neo-spacing-xs) var(--neo-spacing-sm);
-  border: var(--neo-border-width) solid var(--neo-border-color);
-  border-radius: var(--neo-radius);
+  padding: 0.5rem 0.75rem;
+  border: var(--neo-border-thick);
+  background-color: var(--neo-white);
+  box-shadow: var(--neo-shadow-sm);
+  border-radius: var(--neo-radius-sm);
+}
+
+.neo-radio--border:hover:not(.neo-radio--disabled) {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--neo-shadow);
+}
+
+.neo-radio--border.neo-radio--checked {
+  background-color: var(--neo-gray-50);
 }
 </style>

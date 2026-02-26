@@ -4,34 +4,15 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoInput v-model="value" placeholder="请输入" />
-</template>
+<demo vue="../../demos/input-basic.vue" />
 
-<script setup lang="ts">
-const value = ref('')
-</script>
-```
+## 禁用、只读与可清空
 
-## 禁用与只读
-
-```vue
-<template>
-  <NeoInput v-model="value" disabled placeholder="禁用" />
-  <NeoInput v-model="value" readonly placeholder="只读" />
-</template>
-```
-
-## 可清空
-
-```vue
-<template>
-  <NeoInput v-model="value" clearable placeholder="可清空" />
-</template>
-```
+<demo vue="../../demos/input-states.vue" />
 
 ## 尺寸与形状
+
+<demo vue="../../demos/input-size.vue" />
 
 `size`：`xs` / `sm` / `md` / `lg` / `xl`。  
 `shape`：`default` / `round` / `pill`。

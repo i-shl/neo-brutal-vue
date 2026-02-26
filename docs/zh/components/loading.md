@@ -4,34 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoLoading text="加载中..." />
-</template>
-```
+<demo vue="../../demos/loading-basic.vue" />
 
 ## 全屏加载
 
-通过方法调用（若组件库提供全局方法）：
-
-```ts
-// 打开全屏 Loading
-NeoLoading.service({ text: '加载中...', fullscreen: true })
-
-// 关闭
-loadingInstance.close()
-```
-
-或在父级容器内使用：
-
-```vue
-<template>
-  <div style="position: relative;">
-    <NeoLoading fullscreen />
-    内容区域
-  </div>
-</template>
-```
+<demo vue="../../demos/loading-fullscreen.vue" />
 
 ## API
 

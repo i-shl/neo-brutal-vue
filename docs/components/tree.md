@@ -4,29 +4,11 @@ Tree structure data display. Supports expand/collapse and selection.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoTree :data="treeData" />
-</template>
-
-<script setup lang="ts">
-const treeData = ref([
-  { id: '1', label: 'Level 1', children: [
-    { id: '1-1', label: 'Level 2-1' },
-    { id: '1-2', label: 'Level 2-2' },
-  ]},
-  { id: '2', label: 'Level 2' },
-])
-</script>
-```
+<demo vue="../demos/tree-basic.vue" />
 
 ## Selectable & Line
 
-```vue
-<template>
-  <NeoTree :data="treeData" selectable show-line />
-</template>
-```
+<demo vue="../demos/tree-selectable.vue" />
 
 ## API
 

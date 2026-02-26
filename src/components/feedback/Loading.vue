@@ -1,15 +1,20 @@
 <script setup lang="ts">
-import { computed, ref, onMounted } from 'vue'
+import { computed } from 'vue'
 
-const props = defineProps<{
-  loading?: boolean
-  size?: 'small' | 'default' | 'large'
-  text?: string
-}>()
+const props = withDefaults(
+  defineProps<{
+    loading?: boolean
+    size?: 'small' | 'default' | 'large'
+    text?: string
+    fullscreen?: boolean
+  }>(),
+  { loading: true },
+)
 
 const spinnerClass = computed(() => {
   const classes = ['neo-spinner']
   if (props.size) classes.push(`neo-spinner--${props.size}`)
+  if (props.fullscreen) classes.push('neo-spinner--fullscreen')
   return classes
 })
 </script>
@@ -74,5 +79,13 @@ const spinnerClass = computed(() => {
 .neo-spinner--large .neo-spinner__rotate {
   width: 48px;
   height: 48px;
+}
+
+.neo-spinner--fullscreen {
+  position: absolute;
+  inset: 0;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.8);
+  z-index: var(--neo-z-loading, 2000);
 }
 </style>

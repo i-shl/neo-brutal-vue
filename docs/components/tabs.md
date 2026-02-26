@@ -4,28 +4,11 @@ Tab switching for content.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoTabs v-model="activeName">
-    <NeoTabPane name="tab1" label="Tab 1">Content 1</NeoTabPane>
-    <NeoTabPane name="tab2" label="Tab 2">Content 2</NeoTabPane>
-    <NeoTabPane name="tab3" label="Tab 3">Content 3</NeoTabPane>
-  </NeoTabs>
-</template>
-
-<script setup lang="ts">
-const activeName = ref('tab1')
-</script>
-```
+<demo vue="../demos/tabs-basic.vue" />
 
 ## Card & Border Card
 
-```vue
-<template>
-  <NeoTabs v-model="active" type="card" />
-  <NeoTabs v-model="active" type="border-card" />
-</template>
-```
+<demo vue="../demos/tabs-card.vue" />
 
 ## API
 

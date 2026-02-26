@@ -122,7 +122,7 @@ defineExpose({
   border: var(--neo-border-width) solid var(--toast-border);
   border-radius: var(--neo-radius);
   box-shadow: var(--toast-shadow);
-  z-index: var(--neo-z-toast);
+  z-index: var(--neo-z-toast, 5000);
   cursor: pointer;
   font-family: var(--neo-font-family);
 }
@@ -161,24 +161,30 @@ defineExpose({
 }
 
 /* Types */
+.neo-toast {
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 6px 6px 0px var(--neo-black);
+}
+
 .neo-toast--success {
-  --toast-bg: var(--neo-success-light);
-  --toast-border: var(--neo-success);
+  --toast-bg: var(--neo-success);
+  background-color: var(--neo-success);
 }
 
 .neo-toast--error {
-  --toast-bg: var(--neo-danger-light);
-  --toast-border: var(--neo-danger);
+  --toast-bg: var(--neo-danger);
+  background-color: var(--neo-danger);
 }
 
 .neo-toast--warning {
-  --toast-bg: var(--neo-warning-light);
-  --toast-border: var(--neo-warning);
+  --toast-bg: var(--neo-warning);
+  background-color: var(--neo-warning);
 }
 
 .neo-toast--info {
-  --toast-bg: var(--neo-info-light);
-  --toast-border: var(--neo-info);
+  --toast-bg: var(--neo-main);
+  background-color: var(--neo-main);
 }
 
 /* Icon */

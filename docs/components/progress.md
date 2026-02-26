@@ -4,28 +4,15 @@ Display progress percentage.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoProgress :percentage="60" />
-</template>
-```
+<demo vue="../demos/progress-basic.vue" />
 
 ## Status & Inner Text
 
-```vue
-<template>
-  <NeoProgress :percentage="80" status="success" />
-  <NeoProgress :percentage="50" :show-text="true" text-inside />
-</template>
-```
+<demo vue="../demos/progress-status.vue" />
 
 ## Custom Color
 
-```vue
-<template>
-  <NeoProgress :percentage="70" color="#8338ec" />
-</template>
-```
+<demo vue="../demos/progress-color.vue" />
 
 ## API
 

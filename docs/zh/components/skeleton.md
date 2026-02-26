@@ -4,19 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoSkeleton />
-</template>
-```
+<demo vue="../../demos/skeleton-basic.vue" />
 
 ## 多行与自定义
 
-```vue
-<template>
-  <NeoSkeleton :rows="4" />
-</template>
-```
+<demo vue="../../demos/skeleton-rows.vue" />
 
 ## API
 

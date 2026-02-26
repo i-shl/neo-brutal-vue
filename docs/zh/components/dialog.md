@@ -4,32 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoButton @click="open = true">打开对话框</NeoButton>
-  <NeoDialog v-model="open" title="标题" width="500px">
-    对话框内容
-  </NeoDialog>
-</template>
-
-<script setup lang="ts">
-const open = ref(false)
-</script>
-```
+<demo vue="../../demos/dialog-basic.vue" />
 
 ## 自定义底部
 
-```vue
-<template>
-  <NeoDialog v-model="open" title="确认">
-    <p>确定要执行此操作吗？</p>
-    <template #footer>
-      <NeoButton @click="open = false">取消</NeoButton>
-      <NeoButton type="primary" @click="confirm">确定</NeoButton>
-    </template>
-  </NeoDialog>
-</template>
-```
+<demo vue="../../demos/dialog-footer.vue" />
 
 ## API
 

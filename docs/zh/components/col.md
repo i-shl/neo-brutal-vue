@@ -4,23 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoRow>
-    <NeoCol :span="6">6</NeoCol>
-    <NeoCol :span="6">6</NeoCol>
-    <NeoCol :span="12">12</NeoCol>
-  </NeoRow>
-</template>
-```
+<demo vue="../../demos/col-basic.vue" />
 
 ## 偏移
 
-```vue
-<template>
-  <NeoCol :span="6" :offset="6">span=6, offset=6</NeoCol>
-</template>
-```
+<demo vue="../../demos/col-offset.vue" />
 
 ## API
 

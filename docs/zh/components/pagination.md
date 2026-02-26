@@ -4,33 +4,15 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoPagination
-    v-model:current="current"
-    :total="100"
-    :page-size="10"
-  />
-</template>
-
-<script setup lang="ts">
-const current = ref(1)
-</script>
-```
+<demo vue="../../demos/pagination-basic.vue" />
 
 ## 每页条数选择与简洁模式
 
-```vue
-<template>
-  <NeoPagination
-    v-model:current="current"
-    v-model:page-size="pageSize"
-    :total="200"
-    :page-sizes="[10, 20, 50]"
-    layout="sizes, prev, pager, next"
-  />
-</template>
-```
+<demo vue="../../demos/pagination-sizes.vue" />
+
+通过 `layout` 可组合：`total`（总数）、`sizes`（条数选择）、`prev`（上一页）、`pager`（页码）、`next`（下一页）、`jumper`（跳转）。默认显示 `total, prev, pager, next`。
+
+<demo vue="../../demos/pagination-full.vue" />
 
 ## API
 
@@ -40,6 +22,7 @@ const current = ref(1)
 | pageSize | 每页条数（支持 v-model:pageSize） | `number` |
 | total | 总条数 | `number` |
 | pageSizes | 每页条数选项 | `number[]` |
+| pagerCount | 可见页码数（1–10，默认 5） | `number` |
 | layout | 布局子件组合 | `string` |
 | background | 按钮是否带背景 | `boolean` |
 | small | 小尺寸 | `boolean` |

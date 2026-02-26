@@ -26,33 +26,25 @@ const checkboxClass = computed(() => {
     'neo-checkbox',
     `neo-checkbox--${props.size}`,
   ]
-  
   if (isChecked.value) classes.push('neo-checkbox--checked')
   if (props.disabled) classes.push('neo-checkbox--disabled')
   if (props.indeterminate) classes.push('neo-checkbox--indeterminate')
   if (props.border) classes.push('neo-checkbox--border')
-  
   return classes.join(' ')
 })
 
 const handleChange = () => {
   if (props.disabled) return
-  
   let newValue: boolean | any[]
-  
   if (Array.isArray(props.modelValue)) {
     const current = [...props.modelValue]
     const index = current.indexOf(props.label as any)
-    if (index === -1) {
-      current.push(props.label as any)
-    } else {
-      current.splice(index, 1)
-    }
+    if (index === -1) current.push(props.label as any)
+    else current.splice(index, 1)
     newValue = current
   } else {
     newValue = isChecked.value ? props.falseValue : props.trueValue
   }
-  
   emit('update:modelValue', newValue)
   emit('change', newValue)
 }
@@ -69,8 +61,10 @@ const handleChange = () => {
       @change="handleChange"
     />
     <span class="neo-checkbox__box">
-      <span v-if="indeterminate" class="neo-checkbox__indeterminate">−</span>
-      <span v-else-if="isChecked" class="neo-checkbox__check">✓</span>
+      <svg v-if="isChecked && !indeterminate" viewBox="0 0 24 24" class="neo-checkbox__svg">
+        <path d="M4 12l4 4L20 6" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span v-else-if="indeterminate" class="neo-checkbox__indeterminate" />
     </span>
     <span v-if="label || $slots.default" class="neo-checkbox__label">
       <slot>{{ label }}</slot>
@@ -79,21 +73,15 @@ const handleChange = () => {
 </template>
 
 <style scoped>
-/* ==================== Base Checkbox Styles ==================== */
 .neo-checkbox {
-  --checkbox-color: var(--neo-primary);
-  --checkbox-bg: var(--neo-bg-primary);
-  --checkbox-border: var(--neo-border-color);
-  --checkbox-size: 18px;
-  
   display: inline-flex;
   align-items: center;
-  gap: var(--neo-spacing-sm);
+  gap: 0.75rem;
   cursor: pointer;
   user-select: none;
-  font-family: var(--neo-font-family);
-  font-size: var(--neo-font-size-sm);
-  color: var(--neo-text-primary);
+  font-weight: var(--neo-font-weight-bold);
+  color: var(--neo-black);
+  transition: var(--neo-transition);
 }
 
 .neo-checkbox__input {
@@ -107,94 +95,64 @@ const handleChange = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--checkbox-size);
-  height: var(--checkbox-size);
-  background-color: var(--checkbox-bg);
-  border: var(--neo-border-width) solid var(--checkbox-border);
-  border-radius: var(--neo-radius-sm);
-  box-shadow: var(--neo-shadow-sm);
-  transition: all var(--neo-transition-fast);
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 2px 2px 0 var(--neo-black);
+  transition: var(--neo-transition);
   flex-shrink: 0;
+  border-radius: 2px;
 }
 
-.neo-checkbox__check,
-.neo-checkbox__indeterminate {
-  font-size: calc(var(--checkbox-size) * 0.7);
-  font-weight: var(--neo-font-weight-bold);
-  color: var(--checkbox-color);
-}
-
-.neo-checkbox__label {
-  line-height: var(--checkbox-size);
-}
-
-/* ==================== Checkbox States ==================== */
-.neo-checkbox:hover .neo-checkbox__box {
-  box-shadow: var(--neo-shadow);
-}
-
-.neo-checkbox--checked .neo-checkbox__box {
-  background-color: var(--checkbox-color);
-  border-color: var(--checkbox-color);
-}
-
-.neo-checkbox--checked .neo-checkbox__check,
-.neo-checkbox--checked .neo-checkbox__indeterminate {
+.neo-checkbox__svg {
+  width: 0.875rem;
+  height: 0.875rem;
   color: var(--neo-white);
 }
 
+.neo-checkbox__indeterminate {
+  width: 0.75rem;
+  height: 4px;
+  background-color: var(--neo-white);
+  border-radius: 1px;
+}
+
+.neo-checkbox:hover:not(.neo-checkbox--disabled) .neo-checkbox__box {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--neo-black);
+}
+
+.neo-checkbox--checked .neo-checkbox__box,
 .neo-checkbox--indeterminate .neo-checkbox__box {
-  border-color: var(--checkbox-color);
+  background-color: var(--neo-primary);
 }
 
 .neo-checkbox--disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
-.neo-checkbox--disabled:hover .neo-checkbox__box {
-  box-shadow: var(--neo-shadow-sm);
-}
+/* Sizes */
+.neo-checkbox--xs .neo-checkbox__box { width: 0.875rem; height: 0.875rem; }
+.neo-checkbox--sm .neo-checkbox__box { width: 1rem; height: 1rem; }
+.neo-checkbox--lg .neo-checkbox__box { width: 1.5rem; height: 1.5rem; }
+.neo-checkbox--xl .neo-checkbox__box { width: 1.75rem; height: 1.75rem; }
 
-/* ==================== Checkbox Sizes ==================== */
-.neo-checkbox--xs {
-  --checkbox-size: 14px;
-  font-size: var(--neo-font-size-xs);
-}
-
-.neo-checkbox--sm {
-  --checkbox-size: 16px;
-  font-size: var(--neo-font-size-xs);
-}
-
-.neo-checkbox--md {
-  --checkbox-size: 18px;
-}
-
-.neo-checkbox--lg {
-  --checkbox-size: 20px;
-  font-size: var(--neo-font-size-base);
-}
-
-.neo-checkbox--xl {
-  --checkbox-size: 24px;
-  font-size: var(--neo-font-size-lg);
-}
-
-/* ==================== Checkbox Border ==================== */
+/* Border Style */
 .neo-checkbox--border {
-  padding: var(--neo-spacing-xs) var(--neo-spacing-sm);
-  border: var(--neo-border-width) solid var(--checkbox-border);
-  border-radius: var(--neo-radius);
+  padding: 0.5rem 0.75rem;
+  border: var(--neo-border-thick);
+  background-color: var(--neo-white);
   box-shadow: var(--neo-shadow-sm);
-  transition: all var(--neo-transition-base);
 }
 
-.neo-checkbox--border:hover {
+.neo-checkbox--border:hover:not(.neo-checkbox--disabled) {
+  transform: translate(-2px, -2px);
   box-shadow: var(--neo-shadow);
 }
 
 .neo-checkbox--border.neo-checkbox--checked {
-  border-color: var(--checkbox-color);
+  background-color: var(--neo-gray-50);
 }
 </style>

@@ -4,26 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoDescriptions title="用户信息">
-    <NeoDescriptionsItem label="姓名">张三</NeoDescriptionsItem>
-    <NeoDescriptionsItem label="手机">138****0000</NeoDescriptionsItem>
-    <NeoDescriptionsItem label="地址" :span="2">北京市朝阳区</NeoDescriptionsItem>
-  </NeoDescriptions>
-</template>
-```
+<demo vue="../../demos/descriptions-basic.vue" />
 
 ## 边框与列数
 
-```vue
-<template>
-  <NeoDescriptions :column="2" border>
-    <NeoDescriptionsItem label="A">1</NeoDescriptionsItem>
-    <NeoDescriptionsItem label="B">2</NeoDescriptionsItem>
-  </NeoDescriptions>
-</template>
-```
+<demo vue="../../demos/descriptions-border.vue" />
 
 ## API
 

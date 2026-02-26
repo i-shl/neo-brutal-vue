@@ -4,34 +4,15 @@ Single-line text input with prefix, suffix, clear, password toggle, etc.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoInput v-model="value" placeholder="Enter text" />
-</template>
+<demo vue="../demos/input-basic.vue" />
 
-<script setup lang="ts">
-const value = ref('')
-</script>
-```
+## Disabled, Readonly & Clearable
 
-## Disabled & Readonly
-
-```vue
-<template>
-  <NeoInput v-model="value" disabled placeholder="Disabled" />
-  <NeoInput v-model="value" readonly placeholder="Readonly" />
-</template>
-```
-
-## Clearable
-
-```vue
-<template>
-  <NeoInput v-model="value" clearable placeholder="Clearable" />
-</template>
-```
+<demo vue="../demos/input-states.vue" />
 
 ## Size & Shape
+
+<demo vue="../demos/input-size.vue" />
 
 `size`: `xs` / `sm` / `md` / `lg` / `xl`.  
 `shape`: `default` / `round` / `pill`.

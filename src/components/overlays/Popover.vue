@@ -37,15 +37,19 @@ onUnmounted(() => {
       <slot />
     </div>
     
-    <Transition name="neo-pop-fade">
-      <div v-if="visible" ref="popoverRef" :class="['neo-popover', `neo-popover--${placement || 'bottom'}`]" :style="{ width: typeof width === 'number' ? width + 'px' : width }">
-        <div v-if="title || $slots.title" class="neo-popover__title">
+    <Transition name="neo-popover-bounce">
+      <div 
+        v-if="visible" 
+        ref="popoverRef" 
+        :class="['neo-popover', `neo-popover--${placement || 'bottom'}`]" 
+        :style="{ width: typeof width === 'number' ? width + 'px' : width }"
+      >
+        <div v-if="title || $slots.title" class="neo-popover__header">
           <slot name="title">{{ title }}</slot>
         </div>
         <div class="neo-popover__content">
           <slot name="content" />
         </div>
-        <div class="neo-popover__arrow"></div>
       </div>
     </Transition>
   </div>
@@ -57,27 +61,38 @@ onUnmounted(() => {
   display: inline-block;
 }
 
+.neo-popover-trigger {
+  cursor: pointer;
+}
+
 .neo-popover {
   position: absolute;
   z-index: var(--neo-z-popover);
-  background: white;
-  border: 3px solid black;
-  box-shadow: 6px 6px 0px black;
-  min-width: 150px;
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 6px 6px 0px var(--neo-black);
+  min-width: 180px;
+  overflow: hidden;
+  transition: var(--neo-transition);
 }
 
-.neo-popover__title {
-  padding: 0.75rem;
-  font-weight: 800;
+.neo-popover__header {
+  padding: 0.75rem 1rem;
+  background-color: var(--neo-main);
+  border-bottom: var(--neo-border-thick);
+  font-weight: var(--neo-font-weight-black);
   text-transform: uppercase;
-  border-bottom: 3px solid black;
-  background: var(--neo-yellow);
+  font-size: 0.8125rem;
+  color: var(--neo-black);
+  letter-spacing: 0.05em;
 }
 
 .neo-popover__content {
-  padding: 1rem;
-  font-size: 0.9rem;
-  font-weight: 600;
+  padding: 1.25rem;
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-bold);
+  color: var(--neo-black);
+  line-height: 1.5;
 }
 
 /* Placements */
@@ -105,17 +120,33 @@ onUnmounted(() => {
   transform: translateY(-50%) translateX(12px);
 }
 
-.neo-popover-trigger {
-  cursor: pointer;
-}
-
 /* Transitions */
-.neo-pop-fade-enter-active, .neo-pop-fade-leave-active {
-  transition: opacity 0.2s, transform 0.2s;
+.neo-popover-bounce-enter-active,
+.neo-popover-bounce-leave-active {
+  transition: opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.neo-pop-fade-enter-from, .neo-pop-fade-leave-to {
+.neo-popover--bottom.neo-popover-bounce-enter-from,
+.neo-popover--bottom.neo-popover-bounce-leave-to {
   opacity: 0;
-  transform: translateX(-50%) translateY(0) scale(0.95) !important;
+  transform: translateX(-50%) translateY(0) scale(0.9);
+}
+
+.neo-popover--top.neo-popover-bounce-enter-from,
+.neo-popover--top.neo-popover-bounce-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(0) scale(0.9);
+}
+
+.neo-popover--left.neo-popover-bounce-enter-from,
+.neo-popover--left.neo-popover-bounce-leave-to {
+  opacity: 0;
+  transform: translateY(-50%) translateX(0) scale(0.9);
+}
+
+.neo-popover--right.neo-popover-bounce-enter-from,
+.neo-popover--right.neo-popover-bounce-leave-to {
+  opacity: 0;
+  transform: translateY(-50%) translateX(0) scale(0.9);
 }
 </style>

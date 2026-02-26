@@ -4,22 +4,11 @@ Lightweight global message. Auto-dismisses after a period.
 
 ## Basic Usage
 
-Via component or global method (if provided):
+<demo vue="../demos/toast-basic.vue" />
 
-```vue
-<template>
-  <NeoToast v-model="visible" type="success" title="Success" message="Operation completed" />
-</template>
-```
+## Types
 
-Or via API (example):
-
-```ts
-// If library provides useToast or $toast
-toast.success('Operation successful')
-toast.error('Operation failed')
-toast({ type: 'info', message: 'Notice' })
-```
+<demo vue="../demos/toast-more.vue" />
 
 ## API
 

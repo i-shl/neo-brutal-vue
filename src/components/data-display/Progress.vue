@@ -4,7 +4,7 @@ import type { ProgressProps } from '@/types'
 
 const props = withDefaults(defineProps<ProgressProps>(), {
   percentage: 0,
-  strokeWidth: 10,
+  strokeWidth: 16,
   showText: true,
   textInside: false
 })
@@ -19,7 +19,11 @@ const progressClass = computed(() => {
 })
 
 const barStyle = computed(() => ({
-  width: `${props.percentage}%`
+  width: `${props.percentage}%`,
+}))
+
+const outerStyle = computed(() => ({
+  height: `${props.strokeWidth}px`,
 }))
 
 const displayPercentage = computed(() => {
@@ -39,22 +43,22 @@ const barColor = computed(() => {
   if (props.status === 'success') return 'var(--neo-success)'
   if (props.status === 'warning') return 'var(--neo-warning)'
   if (props.status === 'exception') return 'var(--neo-danger)'
-  return 'var(--neo-primary)'
+  return 'var(--neo-main)'
 })
 </script>
 
 <template>
   <div :class="progressClass">
-    <div class="neo-progress__bar">
-      <div class="neo-progress__outer">
+    <div class="neo-progress__bar-container">
+      <div class="neo-progress__outer" :style="outerStyle">
         <div class="neo-progress__inner" :style="{ ...barStyle, backgroundColor: barColor }">
-          <span v-if="textInside && showText" class="neo-progress__text">
+          <span v-if="textInside && showText" class="neo-progress__text neo-progress__text--inside">
             {{ displayPercentage }}
           </span>
         </div>
       </div>
     </div>
-    <span v-if="!textInside && showText" class="neo-progress__text">
+    <span v-if="!textInside && showText" class="neo-progress__text neo-progress__text--outside">
       {{ displayPercentage }}
     </span>
   </div>
@@ -64,57 +68,57 @@ const barColor = computed(() => {
 .neo-progress {
   display: flex;
   align-items: center;
-  gap: var(--neo-spacing-sm);
+  gap: 1rem;
   width: 100%;
 }
 
-.neo-progress__bar {
+.neo-progress__bar-container {
   flex: 1;
 }
 
 .neo-progress__outer {
   width: 100%;
-  background-color: var(--neo-gray-200);
-  border-radius: var(--neo-radius-full);
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 4px 4px 0px var(--neo-black);
+  border-radius: 4px;
   overflow: hidden;
+  position: relative;
 }
 
 .neo-progress__inner {
   height: 100%;
-  background-color: var(--neo-primary);
-  border-radius: var(--neo-radius-full);
-  transition: width var(--neo-transition-base);
+  background-color: var(--neo-main);
+  border-right: var(--neo-border-thick);
+  transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .neo-progress__text {
-  font-size: var(--neo-font-size-sm);
-  font-weight: var(--neo-font-weight-semibold);
-  color: var(--neo-text-primary);
+  font-family: var(--neo-font-family);
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-black);
+  text-transform: uppercase;
+  color: var(--neo-black);
   white-space: nowrap;
 }
 
-.neo-progress--text-inside .neo-progress__inner {
-  position: relative;
+.neo-progress__text--inside {
+  padding-right: 0.5rem;
+  font-size: 0.75rem;
 }
 
-.neo-progress--text-inside .neo-progress__text {
-  position: absolute;
-  right: 0;
-  transform: translateX(100%);
-  padding-left: var(--neo-spacing-sm);
-  color: var(--neo-text-secondary);
+.neo-progress__text--outside {
+  background-color: var(--neo-black);
+  color: var(--neo-white);
+  padding: 2px 8px;
+  border-radius: 4px;
 }
 
-.neo-progress--success .neo-progress__inner {
-  background-color: var(--neo-success);
-}
-
-.neo-progress--warning .neo-progress__inner {
-  background-color: var(--neo-warning);
-}
-
-.neo-progress--exception .neo-progress__inner {
-  background-color: var(--neo-danger);
-}
+.neo-progress--success .neo-progress__inner { background-color: var(--neo-success); }
+.neo-progress--warning .neo-progress__inner { background-color: var(--neo-warning); }
+.neo-progress--exception .neo-progress__inner { background-color: var(--neo-danger); }
 </style>

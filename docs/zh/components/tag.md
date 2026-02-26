@@ -4,23 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoTag>默认</NeoTag>
-  <NeoTag type="primary">主要</NeoTag>
-  <NeoTag type="success">成功</NeoTag>
-  <NeoTag type="warning">警告</NeoTag>
-  <NeoTag type="danger">危险</NeoTag>
-</template>
-```
+<demo vue="../../demos/tag-basic.vue" />
 
 ## 可关闭
 
-```vue
-<template>
-  <NeoTag closable @close="handleClose">可关闭</NeoTag>
-</template>
-```
+<demo vue="../../demos/tag-closable.vue" />
 
 ## API
 

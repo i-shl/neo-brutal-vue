@@ -4,26 +4,11 @@ Display current page path hierarchy.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoBreadcrumb>
-    <NeoBreadcrumbItem to="/">Home</NeoBreadcrumbItem>
-    <NeoBreadcrumbItem to="/list">List</NeoBreadcrumbItem>
-    <NeoBreadcrumbItem>Detail</NeoBreadcrumbItem>
-  </NeoBreadcrumb>
-</template>
-```
+<demo vue="../demos/breadcrumb-basic.vue" />
 
 ## Custom Separator
 
-```vue
-<template>
-  <NeoBreadcrumb separator=">">
-    <NeoBreadcrumbItem>Home</NeoBreadcrumbItem>
-    <NeoBreadcrumbItem>Current</NeoBreadcrumbItem>
-  </NeoBreadcrumb>
-</template>
-```
+<demo vue="../demos/breadcrumb-separator.vue" />
 
 ## API
 

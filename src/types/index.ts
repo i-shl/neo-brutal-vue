@@ -1,6 +1,6 @@
 // NeoBrutal Vue - Component Types
 
-import type { ExtractPropTypes, PropType } from 'vue'
+
 
 // ==================== Size Types ====================
 export type ComponentSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl'
@@ -56,7 +56,7 @@ export interface SelectOption {
 }
 
 export interface SelectProps {
-  modelValue?: string | number | boolean | Array<string | number>
+  modelValue?: string | number | boolean | Array<string | number | boolean>
   options?: SelectOption[]
   multiple?: boolean
   collapseTags?: boolean
@@ -157,6 +157,8 @@ export interface CardProps {
   shadow?: boolean | 'hover' | 'never'
   bordered?: boolean
   variant?: CardVariant
+  showHeader?: boolean
+  showFooter?: boolean
   bodyStyle?: string | object
   headerStyle?: string | object
   bodyClass?: string
@@ -279,6 +281,7 @@ export interface TableColumn {
   fixed?: boolean | 'left' | 'right'
   sortable?: boolean | 'asc' | 'desc'
   formatter?: (row: any, column: any, cellValue: any, index: number) => string
+  align?: 'left' | 'center' | 'right'
   slots?: {
     default?: string
     header?: string

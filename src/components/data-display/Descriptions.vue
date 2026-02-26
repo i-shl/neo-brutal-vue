@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const props = withDefaults(defineProps<{
   title?: string
   column?: number
@@ -12,7 +13,7 @@ const props = withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="neo-descriptions" :class="{ 'is-bordered': border }">
+  <div class="neo-descriptions" :class="{ 'is-bordered': border, 'is-vertical': direction === 'vertical' }">
     <div v-if="title || $slots.title" class="neo-descriptions__header">
       <div class="neo-descriptions__title">
         <slot name="title">{{ title }}</slot>
@@ -21,7 +22,7 @@ const props = withDefaults(defineProps<{
     <div class="neo-descriptions__body">
       <div 
         class="neo-descriptions__container"
-        :style="{ gridTemplateColumns: `repeat(${column}, 1fr)` }"
+        :style="{ gridTemplateColumns: direction === 'horizontal' ? `repeat(${column}, 1fr)` : `repeat(${column}, minmax(0, 1fr))` }"
       >
         <slot />
       </div>
@@ -32,53 +33,83 @@ const props = withDefaults(defineProps<{
 <style scoped>
 .neo-descriptions {
   font-family: var(--neo-font-family);
+  width: 100%;
 }
 
 .neo-descriptions__header {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .neo-descriptions__title {
   font-size: 1.25rem;
-  font-weight: 900;
+  font-weight: var(--neo-font-weight-black);
   text-transform: uppercase;
-  border-left: 8px solid var(--neo-primary);
-  padding-left: 1rem;
+  color: var(--neo-black);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+/* Cleaner title indicator */
+.neo-descriptions__title::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 1.5rem;
+  background-color: var(--neo-main);
+  border: 2px solid var(--neo-black);
 }
 
 .neo-descriptions__container {
   display: grid;
-  border: 3px solid black;
-  box-shadow: 6px 6px 0px black;
-  background: white;
-}
-
-.is-bordered .neo-descriptions__container {
-  border-collapse: collapse;
+  width: 100%;
+  border: var(--neo-border-thick);
+  box-shadow: 6px 6px 0 var(--neo-black);
+  background: var(--neo-black);
+  gap: var(--neo-border-width-thick);
+  overflow: hidden;
 }
 
 :deep(.neo-descriptions-item) {
-  border: 1.5px solid black;
   display: flex;
-  flex-direction: column;
+  background-color: var(--neo-white);
 }
 
 :deep(.neo-descriptions-item__label) {
-  background: var(--neo-yellow);
-  padding: 0.75rem 1rem;
-  font-weight: 800;
-  border-bottom: 2px solid black;
+  background: var(--neo-gray-100);
+  padding: 1rem 1.25rem;
+  font-weight: var(--neo-font-weight-black);
   text-transform: uppercase;
   font-size: 0.75rem;
+  color: var(--neo-black);
+  border-right: var(--neo-border-thick);
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
 }
 
 :deep(.neo-descriptions-item__content) {
-  padding: 0.75rem 1rem;
-  font-weight: 600;
+  padding: 1rem 1.25rem;
+  font-weight: var(--neo-font-weight-bold);
   flex: 1;
+  background-color: var(--neo-white);
+  color: var(--neo-black);
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
 }
 
-.neo-descriptions[direction="vertical"] :deep(.neo-descriptions-item) {
+.is-vertical :deep(.neo-descriptions-item) {
   flex-direction: column;
+}
+
+.is-vertical :deep(.neo-descriptions-item__label) {
+  border-right: none;
+  border-bottom: var(--neo-border-thick);
+  background-color: var(--neo-gray-100);
 }
 </style>

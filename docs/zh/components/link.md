@@ -4,15 +4,12 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoLink href="https://github.com">默认链接</NeoLink>
-</template>
-```
+<demo vue="../../demos/link-basic.vue" />
 
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| href | 跳转地址 | `string` |
-| target | 打开方式，如 `_blank` | `string` |
+| 属性 | 说明 | 类型 | 默认值 |
+|------|------|------|--------|
+| href | 跳转地址 | `string` | - |
+| underline | 是否下划线 | `boolean` | `true` |
+| target | 打开方式，如 `_blank` | `string` | - |

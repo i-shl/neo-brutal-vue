@@ -4,15 +4,12 @@ Text link component with Neobrutalism style.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoLink href="https://github.com">Default Link</NeoLink>
-</template>
-```
+<demo vue="../demos/link-basic.vue" />
 
 ## API
 
-| Prop | Description | Type |
-|------|-------------|------|
-| href | URL | `string` |
-| target | Target, e.g. `_blank` | `string` |
+| Prop | Description | Type | Default |
+|------|-------------|------|---------|
+| href | URL | `string` | - |
+| underline | Show underline | `boolean` | `true` |
+| target | Target, e.g. `_blank` | `string` | - |

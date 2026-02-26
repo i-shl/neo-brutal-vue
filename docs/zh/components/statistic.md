@@ -4,19 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoStatistic title="总销售额" :value="123456.78" prefix="¥" />
-</template>
-```
+<demo vue="../../demos/statistic-basic.vue" />
 
 ## 精度与后缀
 
-```vue
-<template>
-  <NeoStatistic :value="98.5" :precision="1" suffix="%" />
-</template>
-```
+<demo vue="../../demos/statistic-precision.vue" />
 
 ## API
 

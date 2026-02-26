@@ -4,13 +4,7 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoCard title="卡片标题" sub-title="副标题">
-    卡片内容
-  </NeoCard>
-</template>
-```
+<demo vue="../../demos/card-basic.vue" />
 
 ## 变体 (variant)
 
@@ -24,12 +18,20 @@
 - `footer`：底部
 - 默认：正文内容
 
+## 无头部
+
+<demo vue="../../demos/card-no-header.vue" />
+
+设置 <code>show-header="false"</code> 可隐藏头部。
+
 ## API
 
 | 属性 | 说明 | 类型 |
 |------|------|------|
 | title | 标题 | `string` |
 | subTitle | 副标题 | `string` |
+| showHeader | 是否显示头部 | `boolean` |
+| showFooter | 是否显示底部 | `boolean` |
 | shadow | 是否阴影 | `boolean \| 'hover' \| 'never'` |
 | bordered | 是否边框 | `boolean` |
 | variant | 样式变体 | `CardVariant` |

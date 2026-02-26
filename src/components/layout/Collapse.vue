@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, provide } from 'vue'
 
 const props = defineProps<{
   modelValue?: string | string[]
@@ -10,25 +10,16 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: string | string[]): void
 }>()
 
+provide('collapseModelValue', () => props.modelValue)
+provide('collapseAccordion', () => props.accordion)
+provide('collapseEmit', (value: string | string[]) => {
+  emit('update:modelValue', value)
+})
+
 const collapseClass = computed(() => [
   'neo-collapse',
   props.accordion ? 'neo-collapse--accordion' : ''
 ])
-
-const handleItemClick = (name: string) => {
-  if (props.accordion) {
-    emit('update:modelValue', name)
-  } else {
-    const current = Array.isArray(props.modelValue) ? [...props.modelValue] : []
-    const index = current.indexOf(name)
-    if (index === -1) {
-      current.push(name)
-    } else {
-      current.splice(index, 1)
-    }
-    emit('update:modelValue', current)
-  }
-}
 </script>
 
 <template>
@@ -39,12 +30,12 @@ const handleItemClick = (name: string) => {
 
 <style scoped>
 .neo-collapse {
-  border: var(--neo-border-width) solid var(--neo-border-color);
-  border-radius: var(--neo-radius);
+  border: var(--neo-border-thick);
+  box-shadow: 6px 6px 0px var(--neo-black);
+  background-color: var(--neo-black);
   overflow: hidden;
-}
-
-.neo-collapse--accordion {
-  /* accordion specific styles */
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 </style>

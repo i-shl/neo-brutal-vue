@@ -9,16 +9,23 @@ const breadcrumbClass = computed(() => ['neo-breadcrumb'])
 </script>
 
 <template>
-  <nav :class="breadcrumbClass">
-    <slot />
+  <nav :class="breadcrumbClass" aria-label="Breadcrumb">
+    <div class="neo-breadcrumb__inner">
+      <slot />
+    </div>
   </nav>
 </template>
 
 <style scoped>
 .neo-breadcrumb {
-  display: inline-flex;
-  align-items: center;
   font-family: var(--neo-font-family);
-  font-size: var(--neo-font-size-sm);
+  display: inline-block;
+}
+
+.neo-breadcrumb__inner {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 </style>

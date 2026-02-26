@@ -4,24 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoTextarea v-model="text" placeholder="请输入多行内容" :rows="4" />
-</template>
+<demo vue="../../demos/textarea-basic.vue" />
 
-<script setup lang="ts">
-const text = ref('')
-</script>
-```
+## 禁用与状态
 
-## 禁用与只读
-
-```vue
-<template>
-  <NeoTextarea v-model="text" disabled />
-  <NeoTextarea v-model="text" readonly />
-</template>
-```
+<demo vue="../../demos/textarea-states.vue" />
 
 ## API
 

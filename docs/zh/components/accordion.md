@@ -4,18 +4,7 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoAccordion v-model="active">
-    <NeoAccordionItem name="a" title="项 A">内容 A</NeoAccordionItem>
-    <NeoAccordionItem name="b" title="项 B">内容 B</NeoAccordionItem>
-  </NeoAccordion>
-</template>
-
-<script setup lang="ts">
-const active = ref('a')
-</script>
-```
+<demo vue="../../demos/accordion-basic.vue" />
 
 ## API
 

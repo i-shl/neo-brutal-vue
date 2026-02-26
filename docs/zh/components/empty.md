@@ -4,24 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoEmpty description="暂无数据" />
-</template>
-```
+<demo vue="../../demos/empty-basic.vue" />
 
 ## 自定义插槽
 
-```vue
-<template>
-  <NeoEmpty>
-    <template #default>
-      <p>自定义空状态内容</p>
-      <NeoButton type="primary">去添加</NeoButton>
-    </template>
-  </NeoEmpty>
-</template>
-```
+<demo vue="../../demos/empty-custom.vue" />
 
 ## API
 

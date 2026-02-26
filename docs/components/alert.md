@@ -4,23 +4,11 @@ In-page alert message. Supports types and closable.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoAlert title="Notice" description="This is a description" />
-  <NeoAlert type="success" title="Success" />
-  <NeoAlert type="warning" title="Warning" />
-  <NeoAlert type="error" title="Error" />
-  <NeoAlert type="info" title="Info" />
-</template>
-```
+<demo vue="../demos/alert-basic.vue" />
 
 ## Closable
 
-```vue
-<template>
-  <NeoAlert title="Closable" closable @close="handleClose" />
-</template>
-```
+<demo vue="../demos/alert-closable.vue" />
 
 ## API
 

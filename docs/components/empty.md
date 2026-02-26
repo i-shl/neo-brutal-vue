@@ -4,24 +4,11 @@ Placeholder when there is no data.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoEmpty description="No data" />
-</template>
-```
+<demo vue="../demos/empty-basic.vue" />
 
 ## Custom Slot
 
-```vue
-<template>
-  <NeoEmpty>
-    <template #default>
-      <p>Custom empty state content</p>
-      <NeoButton type="primary">Add</NeoButton>
-    </template>
-  </NeoEmpty>
-</template>
-```
+<demo vue="../demos/empty-custom.vue" />
 
 ## API
 

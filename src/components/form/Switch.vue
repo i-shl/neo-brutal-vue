@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import type { SwitchProps } from '@/types'
 
 const props = withDefaults(defineProps<SwitchProps>(), {
@@ -16,22 +16,14 @@ const emit = defineEmits<{
 const isChecked = computed(() => props.modelValue === props.activeValue)
 
 const switchClass = computed(() => {
-  const classes: string[] = [
-    'neo-switch',
-    `neo-switch--${props.size}`,
-  ]
-  
+  const classes: string[] = ['neo-switch', `neo-switch--${props.size}`]
   if (isChecked.value) classes.push('neo-switch--checked')
   if (props.disabled) classes.push('neo-switch--disabled')
-  if (props.activeText) classes.push('neo-switch--text')
-  if (props.inactiveText) classes.push('neo-switch--text')
-  
   return classes.join(' ')
 })
 
 const handleClick = () => {
   if (props.disabled) return
-  
   const newValue = isChecked.value ? props.inactiveValue : props.activeValue
   emit('update:modelValue', newValue)
   emit('change', newValue)
@@ -40,111 +32,98 @@ const handleClick = () => {
 
 <template>
   <div :class="switchClass" @click="handleClick">
-    <input
-      type="checkbox"
-      :checked="isChecked"
-      :disabled="disabled"
-      class="neo-switch__input"
-    />
-    <span class="neo-switch__track">
-      <span class="neo-switch__thumb" />
-    </span>
-    <span v-if="activeText || inactiveText" class="neo-switch__text">
-      {{ isChecked ? activeText : inactiveText }}
+    <div class="neo-switch__track">
+      <div class="neo-switch__thumb">
+        <span v-if="isChecked" class="neo-switch__icon">✓</span>
+        <span v-else class="neo-switch__icon">✕</span>
+      </div>
+    </div>
+    <span v-if="activeText || inactiveText || $slots.default" class="neo-switch__label">
+      <slot>{{ isChecked ? activeText : inactiveText }}</slot>
     </span>
   </div>
 </template>
 
 <style scoped>
 .neo-switch {
-  --switch-color: var(--neo-primary);
-  --switch-width: 44px;
-  --switch-height: 24px;
-  --switch-thumb-size: 18px;
-  
   display: inline-flex;
   align-items: center;
-  gap: var(--neo-spacing-sm);
+  gap: 0.75rem;
   cursor: pointer;
   user-select: none;
-}
-
-.neo-switch__input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
+  transition: var(--neo-transition);
 }
 
 .neo-switch__track {
   position: relative;
-  width: var(--switch-width);
-  height: var(--switch-height);
-  background-color: var(--neo-gray-300);
-  border: var(--neo-border-width-thin) solid var(--neo-border-color);
-  border-radius: var(--neo-radius-full);
-  box-shadow: var(--neo-shadow-sm);
-  transition: all var(--neo-transition-base);
+  width: 3.5rem;
+  height: 1.75rem;
+  background-color: var(--neo-white);
+  border: var(--neo-border-thick);
+  box-shadow: 3px 3px 0 var(--neo-black);
+  transition: var(--neo-transition);
+  border-radius: 4px;
+  overflow: visible;
+}
+
+.neo-switch--checked .neo-switch__track {
+  background-color: var(--neo-main);
+  box-shadow: 2px 2px 0 var(--neo-black);
+  transform: translate(1px, 1px);
 }
 
 .neo-switch__thumb {
   position: absolute;
-  top: 2px;
-  left: 2px;
-  width: calc(var(--switch-height) - 6px);
-  height: calc(var(--switch-height) - 6px);
+  top: 50%;
+  left: 0.25rem;
+  width: 1.25rem;
+  height: 1.25rem;
   background-color: var(--neo-white);
-  border: var(--neo-border-width-thin) solid var(--neo-border-color);
-  border-radius: 50%;
-  box-shadow: var(--neo-shadow-sm);
-  transition: all var(--neo-transition-base);
-}
-
-/* Checked State */
-.neo-switch--checked .neo-switch__track {
-  background-color: var(--switch-color);
-  border-color: var(--switch-color);
+  border: var(--neo-border);
+  box-shadow: 2px 2px 0 var(--neo-black);
+  transform: translateY(-50%);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
 }
 
 .neo-switch--checked .neo-switch__thumb {
-  left: calc(100% - var(--switch-height) + 2px);
-  border-color: var(--neo-white);
+  left: calc(100% - 1.5rem);
+  background-color: var(--neo-black);
+  color: var(--neo-white);
+  box-shadow: -2px 2px 0 rgba(0,0,0,0.3);
 }
 
-/* Disabled */
+.neo-switch__icon {
+  font-size: 0.625rem;
+  font-weight: var(--neo-font-weight-black);
+}
+
+.neo-switch__label {
+  font-size: 0.875rem;
+  font-weight: var(--neo-font-weight-black);
+  text-transform: uppercase;
+  color: var(--neo-black);
+}
+
+.neo-switch:hover:not(.neo-switch--disabled) .neo-switch__track {
+  box-shadow: 4px 4px 0 var(--neo-black);
+  transform: translate(-1px, -1px);
+}
+
 .neo-switch--disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 /* Sizes */
-.neo-switch--xs {
-  --switch-width: 32px;
-  --switch-height: 18px;
-  --switch-thumb-size: 14px;
-}
+.neo-switch--sm .neo-switch__track { width: 2.75rem; height: 1.25rem; }
+.neo-switch--sm .neo-switch__thumb { width: 0.875rem; height: 0.875rem; }
+.neo-switch--sm .neo-switch--checked .neo-switch__thumb { left: calc(100% - 1.125rem); }
 
-.neo-switch--sm {
-  --switch-width: 38px;
-  --switch-height: 20px;
-  --switch-thumb-size: 16px;
-}
-
-.neo-switch--lg {
-  --switch-width: 52px;
-  --switch-height: 28px;
-  --switch-thumb-size: 22px;
-}
-
-.neo-switch--xl {
-  --switch-width: 60px;
-  --switch-height: 32px;
-  --switch-thumb-size: 26px;
-}
-
-/* Text */
-.neo-switch__text {
-  font-size: var(--neo-font-size-sm);
-  color: var(--neo-text-secondary);
-}
+.neo-switch--lg .neo-switch__track { width: 4.5rem; height: 2.25rem; }
+.neo-switch--lg .neo-switch__thumb { width: 1.75rem; height: 1.75rem; }
+.neo-switch--lg .neo-switch--checked .neo-switch__thumb { left: calc(100% - 2rem); }
 </style>

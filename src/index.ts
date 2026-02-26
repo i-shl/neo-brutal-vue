@@ -1,4 +1,5 @@
 // NeoBrutal Vue - Component Exports
+import 'normalize.css'
 import './styles/variables.css'
 
 // Base Components
@@ -65,6 +66,7 @@ export { default as NeoSteps } from './components/navigation/Steps.vue'
 export { default as NeoStep } from './components/navigation/Step.vue'
 export { default as NeoMenu } from './components/navigation/Menu.vue'
 export { default as NeoMenuItem } from './components/navigation/MenuItem.vue'
+export { default as NeoSubMenu } from './components/navigation/SubMenu.vue'
 export { default as NeoDropdown } from './components/navigation/Dropdown.vue'
 export { default as NeoCalendar } from './components/others/Calendar.vue'
 export { default as NeoCommand } from './components/others/Command.vue'

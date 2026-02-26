@@ -1,27 +1,67 @@
 <script setup lang="ts">
-const props = withDefaults(defineProps<{
-  title?: string
-  subTitle?: string
-  status?: 'success' | 'warning' | 'error' | 'info' | '404' | '403' | '500'
-}>(), {
-  status: 'info'
-})
+import { computed } from 'vue'
+
+const props = withDefaults(
+  defineProps<{
+    title?: string
+    subTitle?: string
+    status?: 'success' | 'warning' | 'error' | 'info' | '404' | '403' | '500'
+  }>(),
+  { status: 'info' },
+)
 
 const statusConfig = {
-  success: { icon: '✅', color: 'var(--neo-green)' },
-  warning: { icon: '⚠️', color: 'var(--neo-yellow)' },
-  error: { icon: '❌', color: 'var(--neo-pink)' },
-  info: { icon: 'ℹ️', color: 'var(--neo-cyan)' },
-  '404': { icon: '🔍', color: 'var(--neo-purple)' },
-  '403': { icon: '🚫', color: 'var(--neo-orange)' },
-  '500': { icon: '🔥', color: 'var(--neo-primary)' }
+  success: {
+    color: 'var(--neo-main)',
+    svg: 'M6 10l3 3 5-6',
+  },
+  warning: {
+    color: 'var(--neo-warning)',
+    svg: 'M10 5v5M10 14h.01',
+  },
+  error: {
+    color: 'var(--neo-danger)',
+    svg: 'M7 7l6 6M13 7l-6 6',
+  },
+  info: {
+    color: 'var(--neo-info)',
+    svg: 'M10 5v5M10 14h.01',
+  },
+  '404': {
+    color: 'var(--neo-purple)',
+    svg: 'M8 4l4 4-4 4m4-8l4 4-4 4',
+  },
+  '403': {
+    color: 'var(--neo-orange)',
+    svg: 'M4 4l12 12M16 4L4 16',
+  },
+  '500': {
+    color: 'var(--neo-primary)',
+    svg: 'M10 3l2 6 6 1-4 4 1 6-6-3-6 3-1-6 4-4',
+  },
 }
+
+const currentConfig = computed(() => statusConfig[props.status])
 </script>
 
 <template>
   <div class="neo-result">
-    <div class="neo-result__icon" :style="{ background: statusConfig[status].color }">
-      {{ statusConfig[status].icon }}
+    <div
+      class="neo-result__icon"
+      :style="{ backgroundColor: currentConfig.color }"
+    >
+      <svg
+        width="48"
+        height="48"
+        viewBox="0 0 20 20"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="3"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path :d="currentConfig.svg" />
+      </svg>
     </div>
     <div class="neo-result__title">
       <slot name="title">{{ title }}</slot>
@@ -41,40 +81,46 @@ const statusConfig = {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 4rem 1.5rem;
+  background-color: var(--neo-white);
 }
 
 .neo-result__icon {
-  width: 100px;
-  height: 100px;
-  border: 4px solid black;
-  box-shadow: 8px 8px 0px black;
+  width: 120px;
+  height: 120px;
+  border: var(--neo-border-thick);
+  box-shadow: 8px 8px 0 var(--neo-black);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  border-radius: 50%;
+  margin-bottom: 2.5rem;
+  background-color: var(--neo-white);
+  color: var(--neo-black);
+  transform: rotate(-2deg);
 }
 
 .neo-result__title {
-  font-size: 2rem;
-  font-weight: 900;
+  font-size: 2.5rem;
+  font-weight: var(--neo-font-weight-black);
   text-transform: uppercase;
-  margin-bottom: 1rem;
-  color: black;
+  margin-bottom: 1.25rem;
+  color: var(--neo-black);
+  letter-spacing: -0.02em;
 }
 
 .neo-result__subtitle {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #666;
-  max-width: 500px;
-  margin-bottom: 2.5rem;
+  font-size: 1.125rem;
+  font-weight: var(--neo-font-weight-bold);
+  color: var(--neo-gray-600);
+  max-width: 600px;
+  margin-bottom: 3rem;
+  line-height: 1.5;
 }
 
 .neo-result__extra {
   display: flex;
-  gap: 1rem;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 </style>

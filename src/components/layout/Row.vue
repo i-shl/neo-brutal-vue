@@ -11,12 +11,16 @@ const gridClass = computed(() => [
 ])
 
 const gridStyle = computed(() => ({
-  gap: props.gap ? `${props.gap}px` : undefined,
-  gridTemplateColumns: typeof props.columns === 'number' 
-    ? `repeat(${props.columns}, 1fr)` 
+  gap: props.gap
+    ? typeof props.gap === 'number'
+      ? `${props.gap}px`
+      : String(props.gap)
+    : undefined,
+  gridTemplateColumns: typeof props.columns === 'number'
+    ? `repeat(${props.columns}, 1fr)`
     : typeof props.columns === 'string'
       ? props.columns
-      : 'repeat(auto-fit, minmax(250px, 1fr))'
+      : 'repeat(12, 1fr)',
 }))
 </script>
 
@@ -31,7 +35,7 @@ const gridStyle = computed(() => ({
   display: grid;
   width: 100%;
   gap: var(--neo-spacing-md);
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(12, 1fr);
 }
 
 .neo-row--cols-1 { grid-template-columns: repeat(1, 1fr); }

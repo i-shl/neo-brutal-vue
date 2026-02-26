@@ -4,30 +4,11 @@ Data table. Supports column config, stripe, border, etc.
 
 ## Basic Usage
 
-```vue
-<template>
-  <NeoTable :data="tableData" :columns="columns" />
-</template>
-
-<script setup lang="ts">
-const tableData = ref([
-  { name: 'Tom', age: 18 },
-  { name: 'Jerry', age: 20 },
-])
-const columns = [
-  { prop: 'name', label: 'Name' },
-  { prop: 'age', label: 'Age' },
-]
-</script>
-```
+<demo vue="../demos/table-basic.vue" />
 
 ## Stripe & Border
 
-```vue
-<template>
-  <NeoTable :data="data" :columns="columns" stripe border />
-</template>
-```
+<demo vue="../demos/table-stripe.vue" />
 
 ## API
 

@@ -1,67 +1,102 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-const props = defineProps<{
-  showIcon?: boolean
-}>()
 
-const skeletonClass = computed(() => [
-  'neo-skeleton',
-  props.showIcon ? 'neo-skeleton--with-icon' : ''
-])
+const props = withDefaults(defineProps<{
+  loading?: boolean
+  animated?: boolean
+  rows?: number
+  avatar?: boolean
+}>(), {
+  loading: true,
+  animated: true,
+  rows: 3
+})
+
+const skeletonClass = computed(() => {
+  const classes = ['neo-skeleton']
+  if (props.animated !== false) classes.push('neo-skeleton--animated')
+  return classes.join(' ')
+})
+
+const rowCount = computed(() => props.rows ?? 3)
 </script>
 
 <template>
   <div :class="skeletonClass">
-    <div class="neo-skeleton__content">
-      <div class="neo-skeleton__avatar" />
-      <div class="neo-skeleton__text">
-        <div class="neo-skeleton__line neo-skeleton__line--short" />
-        <div class="neo-skeleton__line" />
-        <div class="neo-skeleton__line neo-skeleton__line--short" />
+    <div v-if="loading" class="neo-skeleton__container">
+      <div v-if="avatar" class="neo-skeleton__avatar" />
+      <div class="neo-skeleton__rows">
+        <div 
+          v-for="i in rowCount" 
+          :key="i" 
+          class="neo-skeleton__row"
+          :style="{ width: i === rowCount && rowCount > 1 ? '60%' : '100%' }"
+        />
       </div>
     </div>
+    <slot v-else />
   </div>
 </template>
 
 <style scoped>
 .neo-skeleton {
-  padding: var(--neo-spacing-md);
+  width: 100%;
 }
 
-.neo-skeleton__content {
+.neo-skeleton__container {
   display: flex;
-  align-items: flex-start;
-  gap: var(--neo-spacing-md);
+  gap: 1rem;
+  padding: 0.5rem;
 }
 
 .neo-skeleton__avatar {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(90deg, var(--neo-gray-200) 25%, var(--neo-gray-100) 50%, var(--neo-gray-200) 75%);
-  background-size: 200% 100%;
-  border-radius: 50%;
-  animation: neo-skeleton-loading 1.5s infinite;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 4px;
+  background-color: var(--neo-gray-200);
+  border: var(--neo-border);
+  flex-shrink: 0;
 }
 
-.neo-skeleton__text {
+.neo-skeleton__rows {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.neo-skeleton__line {
-  height: 16px;
-  margin-bottom: var(--neo-spacing-xs);
-  background: linear-gradient(90deg, var(--neo-gray-200) 25%, var(--neo-gray-100) 50%, var(--neo-gray-200) 75%);
-  background-size: 200% 100%;
-  border-radius: var(--neo-radius);
-  animation: neo-skeleton-loading 1.5s infinite;
+.neo-skeleton__row {
+  height: 1rem;
+  border-radius: 2px;
+  background-color: var(--neo-gray-200);
+  border: var(--neo-border);
 }
 
-.neo-skeleton__line--short {
-  width: 30%;
+.neo-skeleton--animated .neo-skeleton__avatar,
+.neo-skeleton--animated .neo-skeleton__row {
+  position: relative;
+  overflow: hidden;
 }
 
-@keyframes neo-skeleton-loading {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+.neo-skeleton--animated .neo-skeleton__avatar::after,
+.neo-skeleton--animated .neo-skeleton__row::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+  animation: neo-skeleton-shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes neo-skeleton-shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
 }
 </style>

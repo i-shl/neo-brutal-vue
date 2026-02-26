@@ -4,28 +4,11 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoTabs v-model="activeName">
-    <NeoTabPane name="tab1" label="标签一">内容一</NeoTabPane>
-    <NeoTabPane name="tab2" label="标签二">内容二</NeoTabPane>
-    <NeoTabPane name="tab3" label="标签三">内容三</NeoTabPane>
-  </NeoTabs>
-</template>
-
-<script setup lang="ts">
-const activeName = ref('tab1')
-</script>
-```
+<demo vue="../../demos/tabs-basic.vue" />
 
 ## 卡片式与边框式
 
-```vue
-<template>
-  <NeoTabs v-model="active" type="card" />
-  <NeoTabs v-model="active" type="border-card" />
-</template>
-```
+<demo vue="../../demos/tabs-card.vue" />
 
 ## API
 

@@ -4,21 +4,7 @@
 
 ## 基础用法
 
-```vue
-<template>
-  <NeoPopover content="气泡内容" title="标题">
-    <NeoButton>点击</NeoButton>
-  </NeoPopover>
-</template>
-```
-
-## 触发方式与位置
-
-```vue
-<template>
-  <NeoPopover trigger="hover" placement="bottom" content="悬停显示" />
-</template>
-```
+<demo vue="../../demos/popover-basic.vue" />
 
 ## API
 
