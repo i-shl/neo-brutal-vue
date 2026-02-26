@@ -46,16 +46,31 @@ const calculateLayout = () => {
 }
 
 let resizeObserver: ResizeObserver | null = null
+let itemResizeObserver: ResizeObserver | null = null
+
+const observeItems = () => {
+  if (!containerRef.value) return
+  itemResizeObserver?.disconnect()
+  itemResizeObserver = new ResizeObserver(() => {
+    calculateLayout()
+  })
+  const elements = containerRef.value.querySelectorAll('.neo-waterfall-item')
+  elements.forEach((el) => itemResizeObserver!.observe(el))
+}
 
 watch(() => props.items, () => {
   nextTick(() => {
-    setTimeout(calculateLayout, 50)
+    setTimeout(() => {
+      calculateLayout()
+      observeItems()
+    }, 50)
   })
 }, { deep: true })
 
 onMounted(() => {
   nextTick(() => {
     calculateLayout()
+    observeItems()
     if (containerRef.value) {
       resizeObserver = new ResizeObserver(() => {
         calculateLayout()
@@ -68,9 +83,8 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener('resize', calculateLayout)
-  if (resizeObserver) {
-    resizeObserver.disconnect()
-  }
+  resizeObserver?.disconnect()
+  itemResizeObserver?.disconnect()
 })
 </script>
 
@@ -94,7 +108,7 @@ onUnmounted(() => {
         transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
       }"
     >
-      <div class="neo-waterfall-content" @load="calculateLayout">
+      <div class="neo-waterfall-content">
         <slot :item="item" :index="index"></slot>
       </div>
     </div>
