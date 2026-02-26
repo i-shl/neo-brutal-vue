@@ -1,7 +1,7 @@
 {
   "name": "neo-brutal-vue",
   "version": "1.0.5",
-  "description": "Neobrutalism style UI component library for Vue 3",
+  "description": "Neobrutalism style Vue 3 UI component library / 新粗野主义风格的 Vue 3 UI 组件库",
   "type": "module",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
