@@ -572,7 +572,70 @@ export interface CallbackParams<T extends any[]> {
   instance: any
 }
 
+// ==================== Tour Types ====================
+export interface TourStep {
+  target: string | (() => HTMLElement)
+  title?: string
+  description?: string
+  placement?: 'top' | 'bottom' | 'left' | 'right'
+}
+
+export interface TourProps {
+  modelValue: boolean
+  steps: TourStep[]
+  current?: number
+}
+
+// ==================== Cascader Types ====================
+export interface CascaderOption {
+  value: string | number
+  label: string
+  children?: CascaderOption[]
+  disabled?: boolean
+}
+
+export interface CascaderProps {
+  modelValue: (string | number)[]
+  options: CascaderOption[]
+  placeholder?: string
+  disabled?: boolean
+  clearable?: boolean
+  size?: ComponentSize
+}
+
+// ==================== ColorPicker Types ====================
+export interface ColorPickerProps {
+  modelValue: string
+  disabled?: boolean
+  size?: ComponentSize
+  showAlpha?: boolean
+}
+
+// ==================== Waterfall Types ====================
+export interface WaterfallProps {
+  cols?: number
+  gap?: number
+  items: any[]
+}
+
 // ==================== Component Emit Types ====================
+export interface TourEmits {
+  (e: 'update:modelValue', value: boolean): void
+  (e: 'update:current', value: number): void
+  (e: 'close'): void
+  (e: 'finish'): void
+}
+
+export interface CascaderEmits {
+  (e: 'update:modelValue', value: (string | number)[]): void
+  (e: 'change', value: (string | number)[]): void
+}
+
+export interface ColorPickerEmits {
+  (e: 'update:modelValue', value: string): void
+  (e: 'change', value: string): void
+}
+
 export interface ButtonEmits {
   (e: 'click', event: MouseEvent): void
   (e: 'update:modelValue', value: boolean): void
