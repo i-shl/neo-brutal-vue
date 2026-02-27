@@ -1,6 +1,6 @@
 # NeoBrutal Vue
 
-> Neobrutalism 风格的 Vue 3 组件库
+> 新野兽派 / 新粗犷主义（Neobrutalism）风格的 Vue 3 组件库
 
 [English](./README.md) | 中文
 
@@ -24,6 +24,8 @@ npm install neo-brutal-vue
 yarn add neo-brutal-vue
 # 或
 pnpm add neo-brutal-vue
+# 或
+bun add neo-brutal-vue
 ```
 
 ## 📦 使用方式

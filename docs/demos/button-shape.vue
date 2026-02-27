@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NeoButton shape="default">Default</NeoButton>
     <NeoButton shape="round">Round</NeoButton>
     <NeoButton circle>🔥</NeoButton>
     <NeoButton shape="sharp">Sharp</NeoButton>

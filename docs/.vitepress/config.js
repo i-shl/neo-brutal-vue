@@ -38,7 +38,6 @@ export default defineConfig({
             text: 'Guide',
             items: [
               { text: 'Quick Start', link: '/guide/quickstart' },
-              { text: 'Installation', link: '/guide/installation' },
               { text: 'Theme & Variables', link: '/guide/theme' },
             ],
           },
@@ -170,7 +169,6 @@ export default defineConfig({
             text: '指南',
             items: [
               { text: '快速开始', link: '/zh/guide/quickstart' },
-              { text: '安装', link: '/zh/guide/installation' },
               { text: '主题与变量', link: '/zh/guide/theme' },
             ],
           },

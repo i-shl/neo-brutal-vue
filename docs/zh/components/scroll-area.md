@@ -10,9 +10,16 @@
 
 <demo vue="../../demos/scroll-area-max.vue" />
 
+## 阴影
+
+设置 `shadow` 可启用粗黑阴影效果。
+
+<demo vue="../../demos/scroll-area-shadow.vue" />
+
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| height | 固定高度 | `string \| number` |
-| maxHeight | 最大高度 | `string \| number` |
+| 属性 | 说明 | 类型 | 默认值 |
+|------|------|------|--------|
+| height | 固定高度 | `string \| number` | - |
+| maxHeight | 最大高度 | `string \| number` | - |
+| shadow | 是否显示粗黑阴影 | `boolean` | `false` |

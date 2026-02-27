@@ -4,12 +4,13 @@ import type { DrawerProps, DrawerEmits } from '@/types'
 
 const props = withDefaults(defineProps<DrawerProps>(), {
   modelValue: false,
+  type: 'default',
   direction: 'rtl',
   size: '30%',
   modal: true,
   closeOnClickModal: true,
   showClose: true,
-  withHeader: true
+  withHeader: true,
 })
 
 const emit = defineEmits<DrawerEmits>()
@@ -42,9 +43,9 @@ watch(() => props.modelValue, (val) => {
     <Transition name="neo-drawer-fade">
       <div v-if="modelValue" class="neo-drawer-mask" @click.self="closeOnClickModal && handleClose()">
         <Transition :name="`neo-drawer-slide-${direction}`">
-          <div 
-            v-if="modelValue" 
-            :class="['neo-drawer', `neo-drawer--${direction}`]" 
+          <div
+            v-if="modelValue"
+            :class="['neo-drawer', `neo-drawer--${direction}`, `neo-drawer--${type}`]"
             :style="drawerStyle"
           >
             <header v-if="withHeader" class="neo-drawer__header">
@@ -118,8 +119,34 @@ watch(() => props.modelValue, (val) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--neo-main);
-  color: var(--neo-black);
+  background-color: var(--neo-drawer-header-bg);
+  color: var(--neo-drawer-header-color);
+}
+
+/* Type variants - header color */
+.neo-drawer--default {
+  --neo-drawer-header-bg: var(--neo-main);
+  --neo-drawer-header-color: var(--neo-black);
+}
+.neo-drawer--primary {
+  --neo-drawer-header-bg: var(--neo-primary);
+  --neo-drawer-header-color: var(--neo-white);
+}
+.neo-drawer--success {
+  --neo-drawer-header-bg: var(--neo-success);
+  --neo-drawer-header-color: var(--neo-black);
+}
+.neo-drawer--warning {
+  --neo-drawer-header-bg: var(--neo-warning);
+  --neo-drawer-header-color: var(--neo-black);
+}
+.neo-drawer--danger {
+  --neo-drawer-header-bg: var(--neo-danger);
+  --neo-drawer-header-color: var(--neo-white);
+}
+.neo-drawer--info {
+  --neo-drawer-header-bg: var(--neo-info);
+  --neo-drawer-header-color: var(--neo-white);
 }
 
 .neo-drawer__title {

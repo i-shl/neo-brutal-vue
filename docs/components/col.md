@@ -15,4 +15,4 @@ Grid column. Must be placed inside Row. span is 1–12.
 | Prop | Description | Type |
 |------|-------------|------|
 | span | Grid span 1–12 | `number` |
-| offset | Grid left offset 1–12 | `number` |
+| offset | Grid left offset 0–11 | `number` |

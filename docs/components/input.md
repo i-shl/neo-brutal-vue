@@ -24,6 +24,7 @@ Single-line text input with prefix, suffix, clear, password toggle, etc.
 | modelValue | Bound value | `string \| number` | - |
 | type | Input type | `string` | `'text'` |
 | size | Size | `ComponentSize` | `'md'` |
+| shape | Shape | `'default' \| 'round' \| 'pill'` | `'default'` |
 | disabled | Disabled | `boolean` | `false` |
 | readonly | Readonly | `boolean` | `false` |
 | clearable | Clearable | `boolean` | `false` |

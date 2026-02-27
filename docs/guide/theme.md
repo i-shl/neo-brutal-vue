@@ -32,7 +32,7 @@ The library already defines dark semantic colors (background, text, borders) for
 
 Typical Neobrutalism variables:
 
-- `--neo-border-width`: Border width (default 3px)
+- `--neo-border-width`: Border width (default 2px)
 - `--neo-border-color`: Border color
 - `--neo-shadow`: Hard offset shadow (e.g. 4px 4px 0)
 

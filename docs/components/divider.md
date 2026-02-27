@@ -10,6 +10,10 @@ Separate content blocks or list items.
 
 <demo vue="../demos/divider-more.vue" />
 
+## Type
+
+<demo vue="../demos/divider-type.vue" />
+
 ## API
 
 | Prop | Description | Type | Default |
@@ -17,3 +21,4 @@ Separate content blocks or list items.
 | dashed | Dashed line | `boolean` | `false` |
 | orientation | `horizontal` / `vertical` | `string` | `'horizontal'` |
 | contentPosition | Text position | `'left' \| 'center' \| 'right'` | `'center'` |
+| type | Color type | `'default' \| 'primary' \| 'secondary' \| 'accent' \| 'success' \| 'warning' \| 'danger' \| 'info'` | `'default'` |

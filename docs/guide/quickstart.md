@@ -1,12 +1,20 @@
 # Quick Start
 
+## Requirements
+
+- Vue >= 3.3
+- Build environment with ES Module support (Vite, Webpack, Rollup, etc.)
+
 ## Installation
 
 ```bash
 npm install neo-brutal-vue
 # or
 yarn add neo-brutal-vue
+# or
 pnpm add neo-brutal-vue
+# or
+bun add neo-brutal-vue
 ```
 
 ## Full Import
@@ -25,6 +33,8 @@ app.mount('#app')
 ```
 
 You can then use `<NeoButton>`, `<NeoInput>`, etc. in any component.
+
+> **Note**: You **must** import styles `neo-brutal-vue/dist/style.css` when using the library, otherwise components won't have Neobrutalism styling. Import once in your entry file for global effect.
 
 ## On-Demand Import
 
@@ -57,4 +67,12 @@ When using full registration, you can change the prefix via `app.use(NeoBrutalVu
 
 ```ts
 app.use(NeoBrutalVue, { prefix: 'Nb' })
+```
+
+## TypeScript
+
+The package includes type definitions (`dist/index.d.ts`). No need for extra `@types`. If using on-demand import, you can import types from `neo-brutal-vue`:
+
+```ts
+import type { ButtonProps, ComponentSize } from 'neo-brutal-vue'
 ```

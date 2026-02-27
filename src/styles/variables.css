@@ -93,17 +93,24 @@
   /* --- Typography --- */
   --neo-font-family: 'Public Sans', 'Inter', system-ui, -apple-system, sans-serif;
   --neo-font-weight-normal: 500;
+  --neo-font-weight-semibold: 600;
   --neo-font-weight-bold: 800;
   --neo-font-weight-black: 900;
+  --neo-font-size-sm: 0.875rem;
+  --neo-line-height-normal: 1.5;
 
   /* --- Sizes --- */
+  --neo-spacing-xs: 0.25rem;
   --neo-spacing-sm: 0.5rem;
   --neo-spacing-md: 1rem;
   --neo-spacing-lg: 1.5rem;
   --neo-spacing-xl: 2rem;
 
   /* --- Transitions --- */
-  --neo-transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --neo-transition-timing: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --neo-transition-base: 0.2s;
+  --neo-transition-fast: 0.15s;
+  --neo-transition: all var(--neo-transition-base) var(--neo-transition-timing);
 }
 
 /* Dark Mode Adaptation */

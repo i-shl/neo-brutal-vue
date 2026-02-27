@@ -6,4 +6,13 @@
 
 <demo vue="../../demos/space-basic.vue" />
 
-可通过 `size` 等属性调整间距大小。
+## 垂直排列
+
+<demo vue="../../demos/space-vertical.vue" />
+
+## API
+
+| 属性 | 说明 | 类型 | 默认值 |
+|------|------|------|--------|
+| size | 间距大小 | `'sm' \| 'md' \| 'lg' \| number` | `'md'` |
+| vertical | 是否垂直排列 | `boolean` | `false` |

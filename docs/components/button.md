@@ -41,6 +41,12 @@ Besides default: `primary`, `secondary`, `accent`, `success`, `warning`, `danger
 
 <demo vue="../demos/button-block.vue" />
 
+## Link
+
+Set `href` to render the button as a link. Use `target="_blank"` to open in a new tab.
+
+<demo vue="../demos/button-link.vue" />
+
 ## API
 
 | Prop | Description | Type | Default |
@@ -53,6 +59,7 @@ Besides default: `primary`, `secondary`, `accent`, `success`, `warning`, `danger
 | loading | Loading | `boolean` | `false` |
 | block | Block | `boolean` | `false` |
 | href | Link URL (when rendered as anchor) | `string` | - |
+| target | Link target, e.g. `_blank` | `string` | - |
 
 ## Events
 

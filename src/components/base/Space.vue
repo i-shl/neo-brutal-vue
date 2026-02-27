@@ -4,14 +4,12 @@ import { computed } from 'vue'
 const props = defineProps<{
   vertical?: boolean
   size?: 'sm' | 'md' | 'lg' | number
-  fill?: boolean
 }>()
 
 const spaceClass = computed(() => {
   const classes: string[] = ['neo-space']
   
   if (props.vertical) classes.push('neo-space--vertical')
-  if (props.fill) classes.push('neo-space--fill')
   
   return classes.join(' ')
 })
@@ -37,9 +35,5 @@ const gapStyle = computed(() => {
 
 .neo-space--vertical {
   flex-direction: column;
-}
-
-.neo-space--fill {
-  width: 100%;
 }
 </style>

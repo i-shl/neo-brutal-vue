@@ -14,7 +14,7 @@ const areaStyle = computed(() => ({
 </script>
 
 <template>
-  <div class="neo-scroll-area" :class="{ 'has-shadow': shadow }" :style="areaStyle">
+  <div class="neo-scroll-area" :class="{ 'has-shadow': props.shadow }" :style="areaStyle">
     <div class="neo-scroll-area__viewport">
       <div class="neo-scroll-area__content">
         <slot />

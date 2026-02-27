@@ -1,26 +1,27 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+
+defineOptions({ name: 'NeoCol' })
+
 const props = defineProps<{
+  /** 占据列数 1–12 */
   span?: number
+  /** 左侧偏移列数 0–11 */
   offset?: number
 }>()
-
-const colClass = computed(() => [
-  'neo-col',
-  props.span ? `neo-col--span-${props.span}` : '',
-  props.offset ? `neo-col--offset-${props.offset}` : ''
-])
 
 const colStyle = computed(() => {
   const style: Record<string, string> = {}
   if (props.span) style.gridColumn = `span ${props.span}`
-  if (props.offset) style.gridColumnStart = `${props.offset + 1}`
+  if (props.offset !== undefined && props.offset > 0) {
+    style.gridColumnStart = `${props.offset + 1}`
+  }
   return style
 })
 </script>
 
 <template>
-  <div :class="colClass" :style="colStyle">
+  <div class="neo-col" :style="colStyle">
     <slot />
   </div>
 </template>

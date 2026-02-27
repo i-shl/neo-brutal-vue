@@ -18,6 +18,8 @@ export interface ButtonProps {
   variant?: ButtonVariant
   size?: ComponentSize
   shape?: ButtonShape
+  /** Shorthand for shape="circle" */
+  circle?: boolean
   disabled?: boolean
   loading?: boolean
   block?: boolean
@@ -151,6 +153,72 @@ export interface UploadProps {
   multiple?: boolean
   accept?: string
   limit?: number
+  /** 拖拽区域图标：图片 URL 或 SVG 字符串 */
+  dragIcon?: string
+  /** 拖拽区域主文案 */
+  dragText?: string
+  /** 拖拽区域链接文案（如 "click to upload"） */
+  dragTextLink?: string
+}
+
+// ==================== Space Types ====================
+export type SpaceSize = 'sm' | 'md' | 'lg' | number
+
+export interface SpaceProps {
+  vertical?: boolean
+  size?: SpaceSize
+}
+
+// ==================== Link Types ====================
+export type LinkType =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'accent'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+
+export interface LinkProps {
+  href?: string
+  underline?: boolean
+  disabled?: boolean
+  target?: string
+  type?: LinkType
+  hoverColor?: string
+  hoverTextColor?: string
+}
+
+// ==================== Divider Types ====================
+export type DividerType =
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'accent'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+
+export interface DividerProps {
+  dashed?: boolean
+  orientation?: 'horizontal' | 'vertical'
+  contentPosition?: 'left' | 'center' | 'right'
+  type?: DividerType
+}
+
+// ==================== Row / Col Types ====================
+export interface RowProps {
+  columns?: number | string
+  gap?: number | string
+  align?: 'start' | 'center' | 'end' | 'stretch'
+  justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'
+}
+
+export interface ColProps {
+  span?: number
+  offset?: number
 }
 
 // ==================== Card Types ====================
@@ -172,9 +240,18 @@ export interface CardProps {
 }
 
 // ==================== Dialog Types ====================
+export type DialogType =
+  | 'default'
+  | 'primary'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+
 export interface DialogProps {
   modelValue?: boolean
   title?: string
+  type?: DialogType
   width?: string | number
   top?: string
   modal?: boolean
@@ -187,9 +264,18 @@ export interface DialogProps {
 }
 
 // ==================== Drawer Types ====================
+export type DrawerType =
+  | 'default'
+  | 'primary'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+
 export interface DrawerProps {
   modelValue?: boolean
   title?: string
+  type?: DrawerType
   direction?: 'ltr' | 'rtl' | 'ttb' | 'btt'
   size?: string | number
   modal?: boolean
@@ -342,9 +428,19 @@ export interface TabPane {
   closable?: boolean
 }
 
+export type TabsActiveType =
+  | 'default'
+  | 'primary'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+
 export interface TabsProps {
   modelValue?: string
   type?: 'line' | 'card' | 'border-card'
+  /** 选中标签的颜色类型 */
+  activeType?: TabsActiveType
   tabPosition?: 'top' | 'right' | 'bottom' | 'left'
   addable?: boolean
   editable?: boolean
@@ -566,6 +662,7 @@ export interface BacktopProps {
 export interface ScrollAreaProps {
   height?: string | number
   maxHeight?: string | number
+  shadow?: boolean
 }
 
 // ==================== Utility Types ====================

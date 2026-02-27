@@ -6,4 +6,13 @@ Set spacing between child elements.
 
 <demo vue="../demos/space-basic.vue" />
 
-Use `size` and other props to adjust spacing.
+## Vertical
+
+<demo vue="../demos/space-vertical.vue" />
+
+## API
+
+| Prop | Description | Type | Default |
+|------|-------------|------|---------|
+| size | Spacing size | `'sm' \| 'md' \| 'lg' \| number` | `'md'` |
+| vertical | Vertical layout | `boolean` | `false` |

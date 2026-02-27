@@ -3,7 +3,7 @@ layout: home
 hero:
   name: NeoBrutal Vue
   text: 打破平庸的 Vue 3 组件库
-  tagline: 告别千篇一律的扁平化。粗犷边框、硬核投影、高饱和色彩碰撞。不断迭代的基于 Neobrutalism 风格精心打磨的组件库，开箱即用。
+  tagline: 告别千篇一律的扁平化。粗犷边框、硬核投影、高饱和色彩碰撞。不断迭代的基于新野兽派 / 新粗犷主义（Neobrutalism）风格精心打磨的组件库，开箱即用。
   actions:
     - theme: brand
       text: 快速开始

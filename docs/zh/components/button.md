@@ -41,6 +41,12 @@
 
 <demo vue="../../demos/button-block.vue" />
 
+## 链接形式
+
+设置 `href` 可将按钮渲染为链接。使用 `target="_blank"` 在新窗口打开。
+
+<demo vue="../../demos/button-link.vue" />
+
 ## API
 
 | 属性 | 说明 | 类型 | 默认值 |
@@ -53,6 +59,7 @@
 | loading | 是否加载中 | `boolean` | `false` |
 | block | 是否块级 | `boolean` | `false` |
 | href | 链接地址（为 a 标签时） | `string` | - |
+| target | 链接打开方式，如 `_blank` | `string` | - |
 
 ## 事件
 

@@ -1,12 +1,20 @@
 # 快速开始
 
+## 环境要求
+
+- Vue >= 3.3
+- 支持 ES Module 的构建环境（Vite、Webpack、Rollup 等）
+
 ## 安装
 
 ```bash
 npm install neo-brutal-vue
 # 或
 yarn add neo-brutal-vue
+# 或
 pnpm add neo-brutal-vue
+# 或
+bun add neo-brutal-vue
 ```
 
 ## 全量引入
@@ -25,6 +33,8 @@ app.mount('#app')
 ```
 
 之后即可在任意组件中直接使用 `<NeoButton>`、`<NeoInput>` 等组件。
+
+> **注意**：使用组件库时**必须**引入样式 `neo-brutal-vue/dist/style.css`，否则组件没有 Neobrutalism 样式。在入口文件引入一次即可全局生效。
 
 ## 按需引入
 
@@ -57,4 +67,12 @@ const value = ref('')
 
 ```ts
 app.use(NeoBrutalVue, { prefix: 'Nb' })
+```
+
+## TypeScript
+
+包内自带类型定义（`dist/index.d.ts`），无需额外安装 `@types`。若使用按需引入，可直接从 `neo-brutal-vue` 导入类型：
+
+```ts
+import type { ButtonProps, ComponentSize } from 'neo-brutal-vue'
 ```

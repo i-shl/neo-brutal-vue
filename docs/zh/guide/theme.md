@@ -32,7 +32,7 @@ NeoBrutal Vue 使用 CSS 变量控制主题，便于覆盖和扩展。
 
 Neobrutalism 典型变量：
 
-- `--neo-border-width`：边框粗细（默认 3px）
+- `--neo-border-width`：边框粗细（默认 2px）
 - `--neo-border-color`：边框颜色
 - `--neo-shadow`：硬偏移阴影（如 4px 4px 0）
 

@@ -4,6 +4,7 @@ import type { TabsProps } from '@/types'
 
 const props = withDefaults(defineProps<TabsProps>(), {
   type: 'line',
+  activeType: 'default',
   tabPosition: 'top',
 })
 
@@ -34,13 +35,12 @@ provide('tabsUnregister', (name: string) => {
   if (index !== -1) panes.splice(index, 1)
 })
 
-const tabsClass = computed(() => {
-  return [
-    'neo-tabs',
-    `is-${props.type}`,
-    `is-${props.tabPosition}`
-  ]
-})
+const tabsClass = computed(() => [
+  'neo-tabs',
+  `is-${props.type}`,
+  `is-${props.tabPosition}`,
+  `is-active-${props.activeType}`,
+])
 
 const handleTabClick = (name: string) => {
   setActive(name)
@@ -118,10 +118,36 @@ const handleTabClick = (name: string) => {
 }
 
 .neo-tabs__item.is-active {
-  background-color: var(--neo-main);
-  color: var(--neo-black);
+  background-color: var(--neo-tabs-active-bg);
+  color: var(--neo-tabs-active-color);
   transform: translate(-3px, -3px);
   box-shadow: 8px 8px 0px var(--neo-black);
+}
+
+/* Active type variants */
+.is-active-default .neo-tabs__item.is-active {
+  --neo-tabs-active-bg: var(--neo-main);
+  --neo-tabs-active-color: var(--neo-black);
+}
+.is-active-primary .neo-tabs__item.is-active {
+  --neo-tabs-active-bg: var(--neo-primary);
+  --neo-tabs-active-color: var(--neo-white);
+}
+.is-active-success .neo-tabs__item.is-active {
+  --neo-tabs-active-bg: var(--neo-success);
+  --neo-tabs-active-color: var(--neo-black);
+}
+.is-active-warning .neo-tabs__item.is-active {
+  --neo-tabs-active-bg: var(--neo-warning);
+  --neo-tabs-active-color: var(--neo-black);
+}
+.is-active-danger .neo-tabs__item.is-active {
+  --neo-tabs-active-bg: var(--neo-danger);
+  --neo-tabs-active-color: var(--neo-white);
+}
+.is-active-info .neo-tabs__item.is-active {
+  --neo-tabs-active-bg: var(--neo-info);
+  --neo-tabs-active-color: var(--neo-white);
 }
 
 .neo-tabs__content {

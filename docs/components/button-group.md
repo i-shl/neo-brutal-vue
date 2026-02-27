@@ -10,4 +10,6 @@ Wrap your `<NeoButton>` components in a `<NeoButtonGroup>` to merge their side b
 
 ## API
 
-`NeoButtonGroup` does not accept any specific props. It acts purely as a CSS layout and border wrapper.
+| Prop | Description | Type | Default |
+|------|-------------|------|---------|
+| - | No props. Acts as a CSS layout and border wrapper for child buttons. | - | - |

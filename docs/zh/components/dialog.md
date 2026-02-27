@@ -10,13 +10,20 @@
 
 <demo vue="../../demos/dialog-footer.vue" />
 
+## 头部颜色类型
+
+使用 `type` 自定义对话框头部颜色。
+
+<demo vue="../../demos/dialog-type.vue" />
+
 ## API
 
-| 属性 | 说明 | 类型 |
-|------|------|------|
-| modelValue | 是否显示 | `boolean` |
-| title | 标题 | `string` |
-| width | 宽度 | `string \| number` |
+| 属性 | 说明 | 类型 | 默认值 |
+|------|------|------|--------|
+| modelValue | 是否显示 | `boolean` | - |
+| title | 标题 | `string` | - |
+| type | 头部颜色类型 | `'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` | `'default'` |
+| width | 宽度 | `string \| number` | `'500px'` |
 | modal | 是否显示遮罩 | `boolean` |
 | closeOnClickModal | 点击遮罩是否关闭 | `boolean` |
 | closeOnPressEscape | 按 Esc 是否关闭 | `boolean` |

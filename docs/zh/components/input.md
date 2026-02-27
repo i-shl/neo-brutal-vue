@@ -24,6 +24,7 @@
 | modelValue | 绑定值 | `string \| number` | - |
 | type | 输入类型 | `string` | `'text'` |
 | size | 尺寸 | `ComponentSize` | `'md'` |
+| shape | 形状 | `'default' \| 'round' \| 'pill'` | `'default'` |
 | disabled | 禁用 | `boolean` | `false` |
 | readonly | 只读 | `boolean` | `false` |
 | clearable | 可清空 | `boolean` | `false` |

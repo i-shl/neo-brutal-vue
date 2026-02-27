@@ -10,6 +10,12 @@
 
 <demo vue="../../demos/tabs-card.vue" />
 
+## 选中样式类型
+
+通过 `activeType` 自定义选中标签的颜色：
+
+<demo vue="../../demos/tabs-active-type.vue" />
+
 ## API
 
 **NeoTabs**
@@ -18,6 +24,7 @@
 |------|------|------|
 | modelValue | 当前激活的 name | `string` |
 | type | 样式类型 | `'line' \| 'card' \| 'border-card'` |
+| activeType | 选中标签颜色类型 | `'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` |
 | tabPosition | 标签位置 | `'top' \| 'right' \| 'bottom' \| 'left'` |
 
 **NeoTabPane**

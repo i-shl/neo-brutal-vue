@@ -187,29 +187,13 @@ defineExpose({
   background-color: var(--neo-main);
 }
 
-/* Icon */
+/* Icon - 统一黑色，在各色背景上均可见 */
 .neo-toast__icon {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--toast-border);
-}
-
-.neo-toast--success .neo-toast__icon {
-  color: var(--neo-success);
-}
-
-.neo-toast--error .neo-toast__icon {
-  color: var(--neo-danger);
-}
-
-.neo-toast--warning .neo-toast__icon {
-  color: var(--neo-warning);
-}
-
-.neo-toast--info .neo-toast__icon {
-  color: var(--neo-info);
+  color: var(--neo-black);
 }
 
 /* Content */
@@ -238,7 +222,7 @@ defineExpose({
   align-items: center;
   justify-content: center;
   padding: var(--neo-spacing-xs);
-  color: var(--neo-text-tertiary);
+  color: var(--neo-black);
   background: transparent;
   border: none;
   cursor: pointer;
@@ -246,7 +230,8 @@ defineExpose({
 }
 
 .neo-toast__close:hover {
-  color: var(--neo-text-primary);
+  color: var(--neo-black);
+  opacity: 0.8;
 }
 
 /* Transitions */

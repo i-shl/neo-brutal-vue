@@ -3,6 +3,7 @@ import { computed, watch, nextTick } from 'vue'
 import type { DialogProps, DialogEmits } from '@/types'
 
 const props = withDefaults(defineProps<DialogProps>(), {
+  type: 'default',
   width: '500px',
   top: '15vh',
   modal: true,
@@ -58,7 +59,7 @@ const handleKeydown = (e: KeyboardEvent) => {
         <div v-if="modal" class="neo-dialog-backdrop" @click="handleBackdropClick" />
         
         <div
-          class="neo-dialog"
+          :class="['neo-dialog', `neo-dialog--${type}`]"
           :style="dialogStyle"
           role="dialog"
           aria-modal="true"
@@ -138,9 +139,35 @@ const handleKeydown = (e: KeyboardEvent) => {
   align-items: center;
   justify-content: space-between;
   padding: 1.25rem 1.5rem;
-  background-color: var(--neo-main);
+  background-color: var(--neo-dialog-header-bg);
   border-bottom: var(--neo-border-thick);
-  color: var(--neo-black);
+  color: var(--neo-dialog-header-color);
+}
+
+/* Type variants - header color */
+.neo-dialog--default {
+  --neo-dialog-header-bg: var(--neo-main);
+  --neo-dialog-header-color: var(--neo-black);
+}
+.neo-dialog--primary {
+  --neo-dialog-header-bg: var(--neo-primary);
+  --neo-dialog-header-color: var(--neo-white);
+}
+.neo-dialog--success {
+  --neo-dialog-header-bg: var(--neo-success);
+  --neo-dialog-header-color: var(--neo-black);
+}
+.neo-dialog--warning {
+  --neo-dialog-header-bg: var(--neo-warning);
+  --neo-dialog-header-color: var(--neo-black);
+}
+.neo-dialog--danger {
+  --neo-dialog-header-bg: var(--neo-danger);
+  --neo-dialog-header-color: var(--neo-white);
+}
+.neo-dialog--info {
+  --neo-dialog-header-bg: var(--neo-info);
+  --neo-dialog-header-color: var(--neo-white);
 }
 
 .neo-dialog__title {

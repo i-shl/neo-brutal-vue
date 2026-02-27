@@ -10,12 +10,19 @@ Panel that slides in from the screen side. Often used for forms or details.
 
 <demo vue="../demos/drawer-direction.vue" />
 
+## Type
+
+Customize header color via `type`:
+
+<demo vue="../demos/drawer-type.vue" />
+
 ## API
 
 | Prop | Description | Type |
 |------|-------------|------|
 | modelValue | Whether visible | `boolean` |
 | title | Title | `string` |
+| type | Header color type | `'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` |
 | direction | Direction | `'ltr' \| 'rtl' \| 'ttb' \| 'btt'` |
 | size | Size (width or height) | `string \| number` |
 | modal | Whether to show overlay | `boolean` |

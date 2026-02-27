@@ -10,13 +10,20 @@ Modal dialog for forms, confirmation, or custom content.
 
 <demo vue="../demos/dialog-footer.vue" />
 
+## Header Type
+
+Use `type` to customize the dialog header color.
+
+<demo vue="../demos/dialog-type.vue" />
+
 ## API
 
-| Prop | Description | Type |
-|------|-------------|------|
-| modelValue | Whether visible | `boolean` |
-| title | Title | `string` |
-| width | Width | `string \| number` |
+| Prop | Description | Type | Default |
+|------|-------------|------|---------|
+| modelValue | Whether visible | `boolean` | - |
+| title | Title | `string` | - |
+| type | Header color type | `'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` | `'default'` |
+| width | Width | `string \| number` | `'500px'` |
 | modal | Whether to show overlay | `boolean` |
 | closeOnClickModal | Whether to close on overlay click | `boolean` |
 | closeOnPressEscape | Whether to close on Esc | `boolean` |

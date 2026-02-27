@@ -24,6 +24,8 @@ npm install neo-brutal-vue
 yarn add neo-brutal-vue
 # or
 pnpm add neo-brutal-vue
+# or
+bun add neo-brutal-vue
 ```
 
 ## 📦 Usage

@@ -10,12 +10,19 @@
 
 <demo vue="../../demos/drawer-direction.vue" />
 
+## 类型颜色
+
+通过 `type` 自定义头部颜色：
+
+<demo vue="../../demos/drawer-type.vue" />
+
 ## API
 
 | 属性 | 说明 | 类型 |
 |------|------|------|
 | modelValue | 是否显示 | `boolean` |
 | title | 标题 | `string` |
+| type | 头部颜色类型 | `'default' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'info'` |
 | direction | 方向 | `'ltr' \| 'rtl' \| 'ttb' \| 'btt'` |
 | size | 尺寸（宽或高） | `string \| number` |
 | modal | 是否显示遮罩 | `boolean` |

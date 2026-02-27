@@ -44,6 +44,17 @@ const handleInput = (e: Event) => {
 const handleFocus = (e: FocusEvent) => { isFocused.value = true; emit('focus', e); }
 const handleBlur = (e: FocusEvent) => { isFocused.value = false; emit('blur', e); }
 
+const handleClear = (e: MouseEvent) => {
+  e.preventDefault()
+  e.stopPropagation()
+  emit('update:modelValue', '')
+  emit('clear')
+}
+
+const showClear = computed(
+  () => props.clearable && inputValue.value && !props.disabled && !props.readonly,
+)
+
 const focus = () => inputRef.value?.focus()
 const blur = () => inputRef.value?.blur()
 
@@ -74,6 +85,23 @@ defineExpose({ focus, blur, inputRef })
         @blur="handleBlur"
       />
       
+      <div
+        v-if="showClear"
+        class="neo-input__clear"
+        role="button"
+        tabindex="-1"
+        @click="handleClear"
+      >
+        <svg viewBox="0 0 24 24" width="16" height="16">
+          <path
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="square"
+            d="M18 6L6 18M6 6l12 12"
+          />
+        </svg>
+      </div>
       <div v-if="type === 'password'" class="neo-input__password-toggle" @click="showPassword = !showPassword">
         {{ showPassword ? '🙈' : '👁️' }}
       </div>
@@ -142,6 +170,19 @@ defineExpose({ focus, blur, inputRef })
   display: flex;
   align-items: center;
   color: var(--neo-gray-500);
+}
+
+.neo-input__clear {
+  padding: 0 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  color: var(--neo-gray-500);
+  display: flex;
+  align-items: center;
+}
+
+.neo-input__clear:hover {
+  color: var(--neo-black);
 }
 
 .neo-input__password-toggle {

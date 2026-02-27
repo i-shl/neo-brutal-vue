@@ -1,13 +1,29 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const props = defineProps<{
-  action?: string
-  drag?: boolean
-  multiple?: boolean
-  accept?: string
-  limit?: number
-}>()
+const props = withDefaults(
+  defineProps<{
+    action?: string
+    drag?: boolean
+    multiple?: boolean
+    accept?: string
+    limit?: number
+    /** 拖拽区域图标：图片 URL 或 SVG 字符串 */
+    dragIcon?: string
+    /** 拖拽区域主文案 */
+    dragText?: string
+    /** 拖拽区域链接文案（如 "click to upload"） */
+    dragTextLink?: string
+  }>(),
+  {
+    dragText: 'Drop files here, or ',
+    dragTextLink: 'click to upload',
+  },
+)
+
+/** 判断图标是否为图片 URL（非 SVG 字符串） */
+const isImageUrl = (val: string) =>
+  /^(https?:|\/|\.\/|data:image)/i.test(val) && !val.trim().startsWith('<')
 
 const emit = defineEmits(['change', 'success', 'error', 'remove'])
 
@@ -79,8 +95,27 @@ const triggerClick = () => {
         @change="handleFileSelect"
       >
       <div v-if="drag" class="neo-upload__drag-content">
-        <div class="neo-upload__icon-box">📁</div>
-        <p class="neo-upload__main-text">Drop files here, or <span class="neo-upload__link">click to upload</span></p>
+        <div class="neo-upload__icon-box">
+          <slot name="drag-icon">
+            <img
+              v-if="dragIcon && isImageUrl(dragIcon)"
+              :src="dragIcon"
+              alt=""
+              class="neo-upload__icon-img"
+            >
+            <span
+              v-else-if="dragIcon && !isImageUrl(dragIcon)"
+              class="neo-upload__icon-svg"
+              v-html="dragIcon"
+            />
+            <span v-else>📁</span>
+          </slot>
+        </div>
+        <p class="neo-upload__main-text">
+          <slot name="drag-text">
+            {{ dragText }}<span class="neo-upload__link">{{ dragTextLink }}</span>
+          </slot>
+        </p>
         <p v-if="limit" class="neo-upload__limit">Maximum {{ limit }} file(s) allowed</p>
       </div>
       <slot v-else />
@@ -149,6 +184,26 @@ const triggerClick = () => {
   font-size: 3.5rem;
   margin-bottom: 0.5rem;
   filter: drop-shadow(4px 4px 0 var(--neo-black));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.neo-upload__icon-img {
+  width: 3.5rem;
+  height: 3.5rem;
+  object-fit: contain;
+}
+
+.neo-upload__icon-svg {
+  display: inline-flex;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
+.neo-upload__icon-svg :deep(svg) {
+  width: 100%;
+  height: 100%;
 }
 
 .neo-upload__main-text {
