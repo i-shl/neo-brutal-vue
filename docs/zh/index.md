@@ -11,6 +11,9 @@ hero:
     - theme: alt
       text: 组件示例
       link: /zh/components/button
+    - theme: alt
+      text: 在线演示
+      link: https://earth-management-system.vercel.app
 features:
   - title: 🎨 极具张力的设计语言
     details: 原汁原味的 Neobrutalism 风格。粗粝的边框、极致的实心投影与强烈的色彩对撞，让你的项目瞬间脱颖而出。

@@ -5,6 +5,7 @@
 [English](./README.md) | 中文
 
 - **文档**：本地运行 `npm run docs:dev` 查看完整使用文档（VitePress）
+- **在线示例**：`https://earth-management-system.vercel.app`（基于本组件库构建的地球管理系统演示大屏）
 
 ## ✨ 特性
 
@@ -96,6 +97,10 @@ npm run docs:build
 ```
 
 ## 🌟 示例
+
+### 在线示例
+
+- 地球管理系统演示大屏：`https://earth-management-system.vercel.app`
 
 ### 基础按钮
 

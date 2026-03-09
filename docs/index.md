@@ -11,6 +11,9 @@ hero:
     - theme: alt
       text: Components
       link: /components/button
+    - theme: alt
+      text: Live Demo
+      link: https://earth-management-system.vercel.app
 features:
   - title: 🎨 Striking Design Language
     details: Authentic Neobrutalism. Thick borders, solid offset shadows, and vibrant color clashes make your project instantly memorable.

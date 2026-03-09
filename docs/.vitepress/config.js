@@ -31,6 +31,7 @@ export default defineConfig({
         nav: [
           { text: 'Guide', link: '/guide/quickstart' },
           { text: 'Components', link: '/components/button' },
+          { text: 'Demo', link: 'https://earth-management-system.vercel.app' },
           { text: 'GitHub', link: 'https://github.com/i-shl/neo-brutal-vue' },
         ],
         sidebar: [
@@ -162,6 +163,7 @@ export default defineConfig({
         nav: [
           { text: '指南', link: '/zh/guide/quickstart' },
           { text: '组件', link: '/zh/components/button' },
+          { text: '演示', link: 'https://earth-management-system.vercel.app' },
           { text: 'GitHub', link: 'https://github.com/i-shl/neo-brutal-vue' },
         ],
         sidebar: [

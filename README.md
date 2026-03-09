@@ -5,6 +5,7 @@
 English | [中文](./README.zh-CN.md)
 
 - **Docs**: Run `npm run docs:dev` locally for full documentation (VitePress)
+- **Demo**: `https://earth-management-system.vercel.app` – live dashboard built with NeoBrutal Vue
 
 ## ✨ Features
 
@@ -86,6 +87,10 @@ npm run docs:build   # Build docs (output docs/.vitepress/dist)
 ```
 
 ## 🌟 Examples
+
+### Online demo
+
+- Planet-scale dashboard demo: `https://earth-management-system.vercel.app`
 
 ### Button
 
